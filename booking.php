@@ -1,10 +1,10 @@
-<?php 
+<?php
 session_start();
 
-// Database connection FIRST
+// Database connection
 $servername = "localhost";
 $username = "root";
-$password = "admin";
+$password = "thai";
 $dbname = "travelscapes";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -12,18 +12,55 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Kiểm tra login
+if (!isset($_SESSION["usersid"])) {
+    header("Location: Login/login.php");
+    exit();
+}
+
+// Lấy thông tin người dùng
+$userid = $_SESSION["usersid"];
+$userEmail = "";
+$userName = "";
+
+$sql = "SELECT usersEmail, usersUid FROM login WHERE usersId = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userid);
+$stmt->execute();
+$stmt->bind_result($email, $username);
+if ($stmt->fetch()) {
+    $userEmail = $email;
+    $userName = $username;
+}
+$stmt->close();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['name'] = $_POST['name'] ?? '';
     $_SESSION['email'] = $_POST['email'] ?? '';
-    $_SESSION['tourists'] = $_POST['tourists'] ?? 1;
+    $_SESSION['tourists'] = (int)($_POST['tourists'] ?? 1);
     $_SESSION['dob'] = $_POST['dob'] ?? '';
     $_SESSION['contact'] = $_POST['contact'] ?? '';
-    $_SESSION['amount'] = $_POST['calculatedCost'] ?? 0;
 
+    if (isset($_POST['hotel']) && is_numeric($_POST['hotel'])) {
+        $hotelId = (int)$_POST['hotel'];
+        $hotelQuery = "SELECT hotel, cost FROM hotels WHERE hotelid = $hotelId";
+        $hotelResult = $conn->query($hotelQuery);
+        
+        if ($hotelResult && $hotelResult->num_rows > 0) {
+            $hotelData = $hotelResult->fetch_assoc();
+            $_SESSION['hotelName'] = $hotelData['hotel'];
+            $costPerDay = (int)$hotelData['cost'];
+            $_SESSION['amount'] = $costPerDay * $_SESSION['tourists'];
+        } else {
+            $_SESSION['hotelName'] = 'Unknown Hotel';
+            $_SESSION['amount'] = 0;
+        }
+    } else {
+        $_SESSION['hotelName'] = 'Unknown Hotel';
+        $_SESSION['amount'] = 0;
+    }
 
-
-     // ✅ Save city
-     if (isset($_POST['city']) && is_numeric($_POST['city'])) {
+    if (isset($_POST['city']) && is_numeric($_POST['city'])) {
         $cityId = (int)$_POST['city'];
         $cityQuery = "SELECT city FROM cities WHERE cityid = $cityId";
         $cityResult = $conn->query($cityQuery);
@@ -33,26 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['cityName'] = 'Unknown City';
         }
     }
-   
-    // ✅ Save hotel
-    $hotelName = 'Unknown Hotel';
-    if (isset($_POST['hotel']) && is_numeric($_POST['hotel'])) {
-        $hotelId = (int)$_POST['hotel'];
-        $hotelQuery = "SELECT hotel FROM hotels WHERE hotelid = $hotelId";
-        $hotelResult = $conn->query($hotelQuery);
-        
-        if ($hotelResult && $hotelResult->num_rows > 0) {
-            $hotelName = $hotelResult->fetch_assoc()['hotel'];
-        }
-    }
-    $_SESSION['hotelName'] = $hotelName;
 
     $conn->close();
     header("Location: Payment Interface/payment.php");
     exit;
 }
 
-// Fetch all cities
+// Fetch cities and hotels
 $cities = [];
 $citySql = "SELECT * FROM cities";
 $cityResult = $conn->query($citySql);
@@ -62,7 +86,6 @@ if ($cityResult->num_rows > 0) {
     }
 }
 
-// Fetch all hotels
 $hotels = [];
 $hotelSql = "SELECT * FROM hotels";
 $hotelResult = $conn->query($hotelSql);
@@ -108,10 +131,10 @@ $conn->close();
             <?php endforeach; ?>
         </select><br>
 
-        <input type="text" name="name" placeholder="Name" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="number" name="tourists" id="touristsInput" placeholder="Number of Tourists" required><br>
-        <input type="number" name="calculatedCost" id="calculatedCost"><br>
+        <input type="text" name="name" placeholder="Name" value="<?= htmlspecialchars($userName) ?>" readonly required><br>
+        <input type="email" name="email" placeholder="Email" value="<?= htmlspecialchars($userEmail) ?>" readonly required><br>
+        <input type="number" name="tourists" id="touristsInput" placeholder="Number of Tourists" required min="1"><br>
+        <input type="number" name="calculatedCost" id="calculatedCost" readonly><br>
         <label>Tour Date:</label>
         <input type="date" name="dob" required><br>
         <label>Contact Number:</label>
@@ -132,13 +155,13 @@ $conn->close();
         for (let i = 0; i < hotelSelect.options.length; i++) {
             const option = hotelSelect.options[i];
             if (option.value === "") {
-                option.hidden = false; // keep "Select Hotel" visible
+                option.hidden = false;
                 continue;
             }
             const cityId = option.getAttribute('data-city');
             option.hidden = (cityId !== selectedCity);
         }
-        hotelSelect.value = ""; // reset hotel selection
+        hotelSelect.value = "";
         updateCost();
     }
 
@@ -153,7 +176,6 @@ $conn->close();
     hotelSelect.addEventListener('change', updateCost);
     touristsInput.addEventListener('input', updateCost);
 
-    // Trigger initial hotel filtering and cost calculation
     filterHotels();
     updateCost();
 </script>
