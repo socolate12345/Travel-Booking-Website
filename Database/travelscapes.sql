@@ -107,14 +107,14 @@ DROP TABLE IF EXISTS `hotels`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hotels` (
   `hotelid` int NOT NULL AUTO_INCREMENT,
-  `hotel` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `cityid` int DEFAULT NULL,
-  `cost` decimal(10,2) DEFAULT NULL,
-  `amenities` text COLLATE utf8mb4_general_ci,
-  `ratings` int DEFAULT NULL,
-  PRIMARY KEY (`hotelid`),
-  KEY `hotels_ibfk_1` (`cityid`),
-  CONSTRAINT `hotels_ibfk_1` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`) ON DELETE CASCADE
+    `hotel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `cityid` int DEFAULT NULL,
+    `cost` bigint DEFAULT NULL,
+    `amenities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+    `ratings` int DEFAULT NULL,
+    PRIMARY KEY (`hotelid`),
+    KEY `hotels_ibfk_1` (`cityid`),
+    CONSTRAINT `hotels_ibfk_1` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
