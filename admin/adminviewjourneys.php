@@ -68,7 +68,7 @@ while ($row = $result->fetch_assoc()) {
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "123456";
 $dbname = "travelscapes";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

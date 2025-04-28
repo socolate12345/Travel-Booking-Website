@@ -9,11 +9,11 @@ html, body {
   
   .ocean {
     height: 5%;
-    width:100%;
-    position:absolute;
-    bottom:0;
-    left:0;
-    background: #e84393;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #3498db;
   }
   
   .wave {
@@ -84,14 +84,14 @@ html, body {
   }
   
   a {
-    color: #3d0e2e;
+    color: #0e263d;
     font-size: 14px;
     text-decoration: none;
     margin: 15px 0;
   }
   
   .container {
-    background: #e84393;
+    background: #3498db;
     border-radius: 90px;
     box-shadow: 30px 14px 28px rgba(0, 0, 5, .2), 0 10px 10px rgba(0, 0, 0, .2);
     position: relative;
@@ -102,7 +102,6 @@ html, body {
     min-height: 480px;
     transition: 333ms;
   }
-  
   
   .form-container form {
     background: #fff;
@@ -122,7 +121,7 @@ html, body {
   
   
   .social-container a {
-    border: 1px solid #e84393;
+    border: 1px solid #3498db;
     border-radius: 50%;
     display: inline-flex;
     justify-content: center;
@@ -138,7 +137,9 @@ html, body {
   }
   
   .form-container input {
-    background: #eee;
+    background: #87CEEB; 
+    color: #000; 
+    font-weight: bold; 
     border: none;
     border-radius: 50px;
     padding: 12px 15px;
@@ -151,9 +152,9 @@ html, body {
   
   button {
     border-radius: 50px;
-    box-shadow: 0 1px 1px ;
-    border: 1px solid #e84393;
-    background: #e84393;
+    box-shadow: 0 1px 1px;
+    border: 1px solid #3498db;
+    background: #3498db;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -208,8 +209,8 @@ html, body {
   }
   
   .overlay {
-    background: #ff416c;
-    background: linear-gradient(to right, #e84393, #c31778) no-repeat 0 0 / cover;
+    background: #3498db;
+    background: linear-gradient(to right, #3498db, #2980b9) no-repeat 0 0 / cover;
     color: #fff;
     position: relative;
     left: -100%;

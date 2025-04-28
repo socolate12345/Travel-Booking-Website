@@ -2,7 +2,7 @@
 // Database connection parameters
 $servername = "localhost"; 
 $username = "root";        
-$password = "admin";            
+$password = "123456";            
 $dbname = "travelscapes";  
 
 // Create a connection to the database
@@ -150,7 +150,7 @@ Hotels in <?php echo $cityName; ?>
                  "</div>" .
                  "Hover here"; 
             echo "</td>";
-            echo "<td>" . $row['cost'] . "</td>";
+            echo "<td>" . number_format($row['cost'], 0, ',', '.') . " ₫</td>";
             echo "<td>" . $row['ratings'] . "</td>";
             echo "<td><a href='booking.php?hotel_id=" . $row['hotelid'] . "' class='book-button'>Book Now</a></td>";
             echo "</tr>";

@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "admin";
+$password = "123456";
 $database = "travelscapes";
 
 // Create a connection

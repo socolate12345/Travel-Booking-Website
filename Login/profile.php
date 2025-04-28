@@ -68,7 +68,7 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
         }
 
         .container {
-            background: #e84393;
+            background: #3498db;
             border-radius: 30px;
             box-shadow: 30px 14px 28px rgba(0, 0, 5, .2), 0 10px 10px rgba(0, 0, 0, .2);
             width: 500px;
@@ -103,7 +103,7 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
             border-radius: 50px;
             border: 1px solid #fff;
             background: #fff;
-            color: #e84393;
+            color: #3498db;
             font-size: 14px;
             font-weight: bold;
             padding: 12px 30px;
@@ -113,16 +113,16 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
         }
 
         button:hover {
-            background: #fce4ec;
+            background: #d6eaf8;
         }
 
         .ocean {
             height: 5%;
-            width:100%;
-            position:absolute;
-            bottom:0;
-            left:0;
-            background: #e84393;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: #3498db;
         }
 
         .wave {

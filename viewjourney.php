@@ -2,7 +2,7 @@
 // Database connection parameters
 $servername = "localhost";
 $username = "root";
-$password = "admin";
+$password = "123456";
 $dbname = "travelscapes";
 
 // Create a connection to the database
@@ -81,8 +81,8 @@ if (empty($imagePath)) {
                 <p><strong>Region:</strong> <?php echo $region; ?></p>
                 <p><strong>Season:</strong> <?php echo $season; ?></p>
                 <p><strong>Days:</strong> <?php echo $days; ?></p>
-                <p><strong>Cost:</strong> <?php echo number_format($cost); ?> VND </p>
-            </div>
+                <p><strong>Cost:</strong> <?php echo number_format($cost, 0, ',', '.'); ?> ₫</p>
+                </div>
 
             <div class="view-hotels-button">
                 <a href="view_hotels.php?city_id=<?php echo $cityId; ?>" class="view-button">View Hotels</a>
@@ -93,7 +93,7 @@ if (empty($imagePath)) {
     <?php $conn->close(); ?>
 
     <footer>
-        <p>&copy; 2023 Travelscapes. All rights reserved.</p>
+        <p>&copy; 2025 Travelscapes. All rights reserved.</p>
     </footer>
 </body>
 </html>

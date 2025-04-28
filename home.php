@@ -30,7 +30,7 @@
 
     <div class="icons">
         <span data-tooltip="Favourites" data-flow="top"> <a href="./Login/login.php" class="fas fa-heart"></a></span>
-        <span data-tooltip="Cart" data-flow="top"> <a href="Payment Interface/receiptlist.php" class="fas fa-shopping-cart"></a></span>
+        <span data-tooltip="Cart" data-flow="top"> <a href="./Payment Interface/receiptlist.php" class="fas fa-shopping-cart"></a></span>
         <span data-tooltip="Profile" data-flow="top"> <a href="./Login/login.php" class="fas fa-user"></a></span>
     </div>
 
@@ -122,7 +122,7 @@
             </div>
             <div class="content">
                 <h3>Tay Bac</h3>
-                <div class="price">7.199.000 VNĐ</div>
+                <div class="price">8.199.000 VNĐ</div>
             </div>
         </div>
 
@@ -137,7 +137,7 @@
             </div>
             <div class="content">
                 <h3>Ho Chi Minh</h3>
-                <div class="price">3.900.000 VNĐ</div>
+                <div class="price">5.900.000 VNĐ</div>
             </div>
         </div>
 
@@ -152,7 +152,7 @@
             </div>
             <div class="content">
                 <h3>Nha Trang</h3>
-                <div class="price">3.650.000 VNĐ </div>
+                <div class="price">6.750.000 VNĐ </div>
             </div>
         </div>
 
@@ -167,7 +167,7 @@
             </div>
             <div class="content">
                 <h3>Hue</h3>
-                <div class="price">6.000.000 VNĐ </div>
+                <div class="price">8.000.000 VNĐ </div>
             </div>
         </div>
 
@@ -182,7 +182,7 @@
             </div>
             <div class="content">
                 <h3>Phu Yen</h3>
-                <div class="price">5.260.000 VNĐ</div>
+                <div class="price">6.520.000 VNĐ</div>
             </div>
         </div>
 
@@ -197,7 +197,7 @@
             </div>
             <div class="content">
                 <h3>Da Lat</h3>
-                <div class="price">2.150.000 VNĐ</div>
+                <div class="price">4.250.000 VNĐ</div>
             </div>
         </div>
 
@@ -212,7 +212,7 @@
             </div>
             <div class="content">
                 <h3>Phu Quoc</h3>
-                <div class="price">2.790.000 VNĐ</div>
+                <div class="price">7.790.000 VNĐ</div>
             </div>
         </div>
 
@@ -227,7 +227,7 @@
             </div>
             <div class="content">
                 <h3>Hoi An</h3>
-                <div class="price">3.090.000 VNĐ</div>
+                <div class="price">6.690.000 VNĐ</div>
             </div>
         </div>
 
@@ -242,7 +242,7 @@
             </div>
             <div class="content">
                 <h3>Ha Giang</h3>
-                <div class="price">7.990.000 VNĐ</div>
+                <div class="price">8.990.000 VNĐ</div>
             </div>
         </div>
 
@@ -358,8 +358,6 @@
     <div class="credit">&copy;2025 Travel Booking Website</div>
 
 </section>
-
-
 
 </body>
 </html>

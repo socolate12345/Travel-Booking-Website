@@ -19,8 +19,8 @@ if (file_exists($receiptFile)) {
     <style>
 /* Global Styles */
 body {
-    background-color: #fff; /* White background */
-    color: #e84393; /* Pink text color */
+    background-color: #fff;
+    color:rgb(0, 0, 0); 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
@@ -28,7 +28,7 @@ body {
 
 /* Heading */
 h2 {
-    color: #e84393;
+    color: #3498db; 
     text-align: center;
     margin-bottom: 20px;
 }
@@ -39,21 +39,21 @@ table {
     width: 90%;
     margin: 0 auto 20px auto;
     background-color: #fff;
-    border: 1px solid #e84393; /* Pink border */
+    border: 1px solid #3498db; /* Blue border */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
-    border-bottom: 1px solid #e84393;
+    border-bottom: 1px solid #3498db;
     padding: 12px;
     text-align: center;
 }
 
 th {
-    background-color: #ffe3ec; /* Light pink background for header */
-    color: #e84393;
+    background-color: #eaf6fb; 
+    color: #3498db;
     font-weight: bold;
 }
 
@@ -70,7 +70,7 @@ tr:nth-child(even) {
 .back-home a {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #e84393;
+    background-color: #3498db; 
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -78,7 +78,7 @@ tr:nth-child(even) {
 }
 
 .back-home a:hover {
-    background-color: #ff6384;
+    background-color: #2980b9; 
 }
 </style>
 </head>
@@ -114,7 +114,7 @@ tr:nth-child(even) {
     </table>
     
     <div class="back-home">
-        <a href="/Login/loggedinhome.php">Return to the homepage.</a>
+        <a href="../Login/loggedinhome.php">Return to the homepage.</a>
     </div>
 </body>
 </html>
