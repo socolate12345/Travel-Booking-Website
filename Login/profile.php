@@ -51,141 +51,285 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
     <meta charset="UTF-8">
     <title>Thông tin người dùng</title>
     <style>
-        html, body {
-            width: 100%;
-            height: 100%;
-        }
+/* Reset and base styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f4f8;
+    height: 100%;
+}
 
-        body {
-            background: radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #B7E8EB 100%);
-            overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            padding-top: 40px;
-        }
+/* Main wrapper for the whole layout */
+.main-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    min-height: 80vh;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+}
 
-        .container {
-            background: #e84393;
-            border-radius: 30px;
-            box-shadow: 30px 14px 28px rgba(0, 0, 5, .2), 0 10px 10px rgba(0, 0, 0, .2);
-            width: 500px;
-            max-width: 90%;
-            padding: 40px;
-            text-align: center;
-            color: #fff;
-            opacity: 0.9;
-        }
+/* Navigation Sidebar */
+.nav-tab {
+    width: 300px;
+    background-color: #2f6ecf;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 20px;
+    text-align: center;
+}
 
-        h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-            color: #fff;
-        }
+.nav-tab h2 {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
 
-        .info-item {
-            background: #fff;
-            color: #333;
-            padding: 12px 20px;
-            margin: 10px 0;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
+.nav-buttons {
+    display: flex;
+    flex-direction: row; /* Change to row to align buttons horizontally */
+    gap: 10px;
+    justify-content: center; /* Center the buttons horizontally */
+}
 
-        .back-button {
-            margin-top: 30px;
-        }
+.nav-buttons button {
+    padding: 10px;
+    background-color: white;
+    color: #2f6ecf;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    width: 100px; /* Set a fixed width to ensure buttons are the same size */
+    text-align: center; /* Ensure text is centered within the button */
+}
 
-        button {
-            border-radius: 50px;
-            border: 1px solid #fff;
-            background: #fff;
-            color: #e84393;
-            font-size: 14px;
-            font-weight: bold;
-            padding: 12px 30px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.nav-buttons button:hover {
+    background-color: #d6eaf8;
+}
 
-        button:hover {
-            background: #fce4ec;
-        }
+/* Main content section (right side) */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background-color: #fdfdfd;
+}
 
-        .ocean {
-            height: 5%;
-            width:100%;
-            position:absolute;
-            bottom:0;
-            left:0;
-            background: #e84393;
-        }
+/* User Info & Favorite Cities Box */
+.info-box {
+    border: 2px solid #2f6ecf;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+}
 
-        .wave {
-            background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x;
-            position: absolute;
-            top: -198px;
-            width: 6400px;
-            height: 198px;
-            animation: wave 5s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            transform: translate3d(0, 0, 0);
-        }
+.info-box h3 {
+    margin-top: 0;
+    color: #2f6ecf;
+    font-size: 24px;
+    margin-bottom: 16px;
+}
 
-        .wave:nth-of-type(2) {
-            top: -175px;
-            animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
-            opacity: 1;
-        }
+.info-box p,
+.info-box li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
 
-        @keyframes wave {
-            0% { margin-left: 0; }
-            100% { margin-left: -1600px; }
-        }
+.info-box ul {
+    padding-left: 20px;
+    margin: 0;
+}
 
-        @keyframes swell {
-            0%, 100% { transform: translate3d(0,-25px,0); }
-            50% { transform: translate3d(0,5px,0); }
-        }
+.city-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: flex-start;
+    padding-top: 10px;
+}
+
+.city-item {
+    width: 120px;              /* Chiều rộng mỗi thành phố */
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure consistent spacing between elements */
+    gap: 6px; /* Add consistent gap between image, text, and buttons */
+}
+
+.city-item img {
+    width: 100%;               /* 100% chiều rộng city-item */
+    height: 80px;              /* Chiều cao vừa phải */
+    object-fit: cover;         /* Đảm bảo hình ảnh không bị méo */
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.city-item img:hover {
+    transform: scale(1.05);
+}
+
+.city-item p {
+    margin: 0;                 /* Remove default margin for consistent spacing */
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    word-break: break-word;
+}
+
+.btn-book,
+.btn-remove {
+    display: inline-block;
+    margin: 0;                 /* Remove margin to align consistently */
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;               /* Ensure buttons take full width of city-item */
+    box-sizing: border-box;    /* Include padding in width calculation */
+}
+
+.btn-book {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+}
+
+.btn-book:hover {
+    background-color: #219150;
+}
+
+.btn-remove {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}
+
+.btn-remove:hover {
+    background-color: #c0392b;
+}
+
+
+
+@keyframes wave {
+    0% { margin-left: 0; }
+    100% { margin-left: -1600px; }
+}
+
+@keyframes swell {
+    0%, 100% { transform: translate3d(0,-25px,0); }
+    50% { transform: translate3d(0,5px,0); }
+}
+
     </style>
 </head>
-<body>
 
-<div class="container">
-    <h2>Thông tin người dùng</h2>
-    <?php
-    if ($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='info-item'>ID: " . htmlspecialchars($row["usersId"]) . "</div>";
-        echo "<div class='info-item'>Email: " . htmlspecialchars($row["usersEmail"]) . "</div>";
-        echo "<div class='info-item'>Username: " . htmlspecialchars($row["usersUid"]) . "</div>";
-    } else {
-        echo "<div class='info-item'>Không tìm thấy thông tin người dùng.</div>";
-    }
+<div class="main-wrapper">
+    <!-- Navigation Tab -->
+    <div class="nav-tab">
+        <h2>Navigation tab<br>(Functions Related)</h2>
+        <div class="nav-buttons">
+            <form action="loggedinhome.php" method="get">
+                <button type="submit">Home</button>
+            </form>
+            <form action="login.php" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
 
-    // Hiển thị thành phố yêu thích
-    if ($favoriteCities !== null && count($favoriteCities) > 0) {
-        echo "<div class='info-item'>Các thành phố yêu thích:</div>";
-        foreach ($favoriteCities as $cityName) {
-            echo "<div class='info-item'>" . htmlspecialchars($cityName) . "</div>";
-        }
-    } else {
-        echo "<div class='info-item'>Bạn chưa yêu thích thành phố nào.</div>";
-    }
-    ?>
-    <div class="back-button">
-        <form action="loggedinhome.php" method="get">
-            <button type="submit">Return to Homepage</button>
-        </form>
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- User Info -->
+        <div class="info-box">
+            <h3>User Information</h3>
+            <?php
+            if ($row = mysqli_fetch_assoc($result)) {
+                echo "<p><strong>Name:</strong> " . htmlspecialchars($row["usersUid"]) . "</p>";
+                echo "<p><strong>Email:</strong> " . htmlspecialchars($row["usersEmail"]) . "</p>";
+                echo "<p><strong>Phone:</strong> Not updated</p>";
+            } else {
+                echo "<p>User information not found.</p>";
+            }
+            ?>
+        </div>
+
+        <!-- Favorite Cities -->
+        <div class="info-box">
+            <?php
+            if ($favoriteCities !== null && count($favoriteCities) > 0) {
+                echo "<div class='info-box'>";
+                echo "<h3>Favorite Cities</h3>";
+                echo "<div class='city-gallery'>";
+            
+                $favSql = "
+                    SELECT cities.cityid, cities.city 
+                    FROM favorites 
+                    JOIN cities ON favorites.cityid = cities.cityid 
+                    WHERE favorites.usersid = ?
+                ";
+            
+                $favStmt = mysqli_stmt_init($conn);
+                if (mysqli_stmt_prepare($favStmt, $favSql)) {
+                    mysqli_stmt_bind_param($favStmt, "i", $userid);
+                    mysqli_stmt_execute($favStmt);
+                    $favResult = mysqli_stmt_get_result($favStmt);
+            
+                    while ($favRow = mysqli_fetch_assoc($favResult)) {
+                        $cityName = htmlspecialchars($favRow['city']);
+                        $cityId = intval($favRow['cityid']);
+                        $imagePath = "/Places/{$cityId}.jpg";
+            
+                        echo "<div class='city-item'>";
+                        echo "<img src='$imagePath' alt='$cityName' />";
+                        echo "<p>$cityName</p>";
+            
+                        // Nút đặt vé
+                        echo "<a href='/viewjourney.php?cityid=$cityId' class='btn-book'>Đặt vé</a>";
+            
+                        // Nút xóa yêu thích
+                        echo "
+                            <form action='remove_favorite.php' method='post' style='margin-top: 5px;'>
+                                <input type='hidden' name='cityid' value='$cityId'>
+                                <button type='submit' class='btn-remove'>Xóa</button>
+                            </form>
+                        ";
+            
+                        echo "</div>";
+                    }
+                }
+            
+                echo "</div></div>";
+            } else {
+                echo "<div class='info-box'><p>You haven't favorited any cities.</p></div>";
+            }
+            
+            ?>
+        </div>
     </div>
 </div>
 
-<div class="ocean">
-    <div class="wave"></div>
-    <div class="wave"></div>
+
 </div>
+
 
 </body>
 </html>
