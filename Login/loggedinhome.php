@@ -22,7 +22,10 @@ session_start();
     <input type="checkbox" name="" id="toggler">
     <label for="toggler" class="fas fa-bars"></label>
 
-    <a href="#" class="logo"><span>Travelscapes</span></a>
+    <a href="#" class="logo">
+    <img src="/images/logo.png" alt="VietTransit Logo">
+    <span>VietTransit</span>
+</a>
 
     <nav class="navbar">
         <a href="#home">Home</a>
@@ -51,14 +54,34 @@ session_start();
 </header>
 
 <section class="home" id="home">
+    <!-- Video background -->
+    <div class="video-container">
+        <video id="bgVideo" autoplay muted loop playsinline>
+            <source id="videoSource" src="" type="video/mp4">
+        </video>
+    </div>
 
+    <!-- Nội dung chính -->
     <div class="content">
         <span> Incredible Vietnam: </span>
         <p>Where Every Place is a Story, Every Journey an Adventure.</p>
         <a href="#products" class="btn">Travel Now</a>
     </div>
-
 </section>
+
+<script>
+    function changeVideoBackground() {
+        const hour = new Date().getHours();
+        const videoSrc = (hour >= 6 && hour < 18)
+            ? "/images/daytime.mp4"      // ban ngày
+            : "/images/nighttime.mp4";   // ban đêm
+
+        document.getElementById("videoSource").src = videoSrc;
+        document.getElementById("bgVideo").load();
+    }
+
+    changeVideoBackground();
+</script>
 
 
 <section class="about" id="about">
@@ -133,7 +156,7 @@ session_start();
                 <img src="../images/taybac.jpg" alt="">
                 <div class="icons">
                     <a href="add_favorite.php?cityid=10" class="fas fa-heart"></a>
-                    <a href="../viewjourney.php?cityid=10" class="cart-btn">Visit Us</a>
+                    <a href="..//Journey/viewjourney_taybac.php" class="cart-btn">Visit Us</a>
                     <a href="../cities.php" class="fas fa-share"></a>
                 </div>
             </div>
@@ -148,7 +171,7 @@ session_start();
                 <img src="../images/hcm.jpg" alt="">
                 <div class="icons">
                     <a href="add_favorite.php?cityid=11" class="fas fa-heart"></a>
-                    <a href="../viewjourney.php?cityid=11" class="cart-btn">Visit Us</a>
+                    <a href="..//Journey/viewjourney_hcm.php" class="cart-btn">Visit Us</a>
                     <a href="../cities.php" class="fas fa-share"></a>
                 </div>
             </div>
@@ -163,7 +186,7 @@ session_start();
                 <img src="../images/nhatrang.jpg" alt="">
                 <div class="icons">
                     <a href="add_favorite.php?cityid=12" class="fas fa-heart"></a>
-                    <a href="../viewjourney.php?cityid=12" class="cart-btn">Visit Us</a>
+                    <a href="..//Journey/viewjourney_nhatrang.php" class="cart-btn">Visit Us</a>
                     <a href="../cities.php" class="fas fa-share"></a>
                 </div>
             </div>
@@ -178,7 +201,7 @@ session_start();
                 <img src="../images/hue.jpg" alt="">
                 <div class="icons">
                     <a href="add_favorite.php?cityid=13" class="fas fa-heart"></a>
-                    <a href="../viewjourney.php?cityid=13" class="cart-btn">Visit Us</a>
+                    <a href="..//Journey/viewjourney_hue.php" class="cart-btn">Visit Us</a>
                     <a href="../cities.php" class="fas fa-share"></a>
                 </div>
             </div>
@@ -193,7 +216,7 @@ session_start();
                 <img src="../images/phuyen.jpg" alt="">
                 <div class="icons">
                     <a href="add_favorite.php?cityid=14" class="fas fa-heart"></a>
-                    <a href="../viewjourney.php?cityid=14" class="cart-btn">Visit Us</a>
+                    <a href="..//Journey/viewjourney_phuyen.php" class="cart-btn">Visit Us</a>
                     <a href="../cities.php" class="fas fa-share"></a>
                 </div>
             </div>
@@ -208,7 +231,7 @@ session_start();
                 <img src="../images/dalat.jpg" alt="">
                 <div class="icons">
                     <a href="add_favorite.php?cityid=15" class="fas fa-heart"></a>
-                    <a href="../viewjourney.php?cityid=15" class="cart-btn">Visit Us</a>
+                    <a href="..//Journey/viewjourney_dalat.php" class="cart-btn">Visit Us</a>
                     <a href="../cities.php" class="fas fa-share"></a>
                 </div>
             </div>
@@ -223,7 +246,7 @@ session_start();
                 <img src="../images/phuquoc.jpg" alt="">
                 <div class="icons">
                     <a href="add_favorite.php?cityid=16" class="fas fa-heart"></a>
-                    <a href="../viewjourney.php?cityid=16" class="cart-btn">Visit Us</a>
+                    <a href="..//Journey/viewjourney_phuquoc.php" class="cart-btn">Visit Us</a>
                     <a href="../cities.php" class="fas fa-share"></a>
                 </div>
             </div>
@@ -238,7 +261,7 @@ session_start();
                 <img src="../images/hoian.jpg" alt="">
                 <div class="icons">
                     <a href="add_favorite.php?cityid=17" class="fas fa-heart"></a>
-                    <a href="../viewjourney.php?cityid=17" class="cart-btn">Visit Us</a>
+                    <a href="..//Journey/viewjourney_hoian.php" class="cart-btn">Visit Us</a>
                     <a href="../cities.php" class="fas fa-share"></a>
                 </div>
             </div>
@@ -253,7 +276,7 @@ session_start();
                 <img src="../images/hagiang.jpg" alt="">
                 <div class="icons">
                     <a href="add_favorite.php?cityid=18" class="fas fa-heart"></a>
-                    <a href="../viewjourney.php?cityid=18" class="cart-btn">Visit Us</a>
+                    <a href="..//Journey/viewjourney_hagiang.php" class="cart-btn">Visit Us</a>
                     <a href="../cities.php" class="fas fa-share"></a>
                 </div>
             </div>
@@ -283,7 +306,7 @@ session_start();
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
         </div>
-        <p>Booking my dream trip to the stunning landscapes of Tây Bắc with Travelscapes was a breeze – seamless and stress-free! </p>
+        <p>Booking my dream trip to the stunning landscapes of Tây Bắc with VietTransit was a breeze – seamless and stress-free! </p>
         <div class="user">
             <img src="../images/pic-1.jpg" alt="atharva pfp">
             <div class="user-info">
@@ -374,7 +397,7 @@ session_start();
 
     </div>
 
-    <div class="credit">&copy;2025 Travel Booking Website</div>
+    <div class="credit">&copy;2025 VietTransit</div>
 
 </section>
 

@@ -72,7 +72,7 @@ if ($_SESSION['status'] == 'loggedin') {
           <?php
           $servername = 'localhost';
           $username = 'root';
-          $password = 'root';
+          $password = "admin";
           $db = 'travelscapes';
           $conn = mysqli_connect($servername, $username, $password, $db);
           if (!$conn) {

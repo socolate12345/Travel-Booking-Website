@@ -1,4 +1,6 @@
+
 <?php
+/*
 session_start();
 
 $name = $_SESSION['name'] ?? 'Unknown';
@@ -18,10 +20,12 @@ $receipt = [
     'date' => date('d-m-Y H:i:s')
 ];
 
+
 $receiptFile = "receipts_$username.json";
 $receipts = file_exists($receiptFile) ? json_decode(file_get_contents($receiptFile), true) : [];
 $receipts[] = $receipt;
 file_put_contents($receiptFile, json_encode($receipts, JSON_PRETTY_PRINT));
+*/
 ?>
 
 <!DOCTYPE html>

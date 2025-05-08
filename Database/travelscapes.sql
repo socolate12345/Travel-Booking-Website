@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `admin_login`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin_login` (
   `srno` int NOT NULL AUTO_INCREMENT,
-  `Admin_Name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `Admin_Password` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `Admin_Name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Admin_Password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`srno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -49,9 +49,9 @@ DROP TABLE IF EXISTS `cities`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cities` (
   `cityid` int NOT NULL AUTO_INCREMENT,
-  `city` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `region` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `season` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `region` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `season` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `days` int NOT NULL,
   `cost` int NOT NULL,
   PRIMARY KEY (`cityid`)
@@ -85,7 +85,7 @@ CREATE TABLE `favorites` (
   KEY `cityid` (`cityid`),
   CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`usersid`) REFERENCES `login` (`usersid`) ON DELETE CASCADE,
   CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,8 +94,50 @@ CREATE TABLE `favorites` (
 
 LOCK TABLES `favorites` WRITE;
 /*!40000 ALTER TABLE `favorites` DISABLE KEYS */;
-INSERT INTO `favorites` VALUES (8,1,10,'2025-04-22 10:50:30'),(9,1,11,'2025-04-22 10:50:36'),(10,1,12,'2025-04-22 11:39:27');
+INSERT INTO `favorites` VALUES (14,1,10,'2025-05-05 15:50:38'),(15,1,11,'2025-05-05 15:50:53'),(17,1,14,'2025-05-05 15:51:02');
 /*!40000 ALTER TABLE `favorites` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hotel_bookings`
+--
+
+DROP TABLE IF EXISTS `hotel_bookings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hotel_bookings` (
+  `booking_id` int NOT NULL AUTO_INCREMENT,
+  `userid` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `cityid` int NOT NULL,
+  `city_name` varchar(100) NOT NULL,
+  `hotelid` int NOT NULL,
+  `hotel_name` varchar(100) NOT NULL,
+  `tourists` int NOT NULL DEFAULT '1',
+  `tour_date` date NOT NULL,
+  `contact` varchar(20) NOT NULL,
+  `cost_per_day` int NOT NULL,
+  `total_amount` int NOT NULL,
+  `booking_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`booking_id`),
+  KEY `userid` (`userid`),
+  KEY `cityid` (`cityid`),
+  KEY `hotelid` (`hotelid`),
+  CONSTRAINT `hotel_bookings_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `login` (`usersid`),
+  CONSTRAINT `hotel_bookings_ibfk_2` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`),
+  CONSTRAINT `hotel_bookings_ibfk_3` FOREIGN KEY (`hotelid`) REFERENCES `hotels` (`hotelid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hotel_bookings`
+--
+
+LOCK TABLES `hotel_bookings` WRITE;
+/*!40000 ALTER TABLE `hotel_bookings` DISABLE KEYS */;
+INSERT INTO `hotel_bookings` VALUES (1,1,'test','test@test.com',11,'Hồ Chí Minh',2,'Moonlight Inn',3,'2003-12-14','0784285524',950000,2850000,'2025-05-08 04:37:13');
+/*!40000 ALTER TABLE `hotel_bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -107,14 +149,14 @@ DROP TABLE IF EXISTS `hotels`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hotels` (
   `hotelid` int NOT NULL AUTO_INCREMENT,
-    `hotel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `cityid` int DEFAULT NULL,
-    `cost` bigint DEFAULT NULL,
-    `amenities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-    `ratings` int DEFAULT NULL,
-    PRIMARY KEY (`hotelid`),
-    KEY `hotels_ibfk_1` (`cityid`),
-    CONSTRAINT `hotels_ibfk_1` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`) ON DELETE CASCADE
+  `hotel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `cityid` int DEFAULT NULL,
+  `cost` bigint DEFAULT NULL,
+  `amenities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `ratings` int DEFAULT NULL,
+  PRIMARY KEY (`hotelid`),
+  KEY `hotels_ibfk_1` (`cityid`),
+  CONSTRAINT `hotels_ibfk_1` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -124,7 +166,7 @@ CREATE TABLE `hotels` (
 
 LOCK TABLES `hotels` WRITE;
 /*!40000 ALTER TABLE `hotels` DISABLE KEYS */;
-INSERT INTO `hotels` VALUES (1,'Sunrise Palace',10,1450000.00,'WiFi,Pool,Gym',5),(2,'Moonlight Inn',11,950000.00,'WiFi,Parking',3),(3,'Ocean Breeze Hotel',12,1850000.00,'WiFi,Pool,Spa,Gym',5),(4,'Green Leaf Resort',13,1250000.00,'WiFi,Pool',4),(5,'Skyline Tower',14,2200000.00,'WiFi,Pool,Gym,Spa,Bar',5),(6,'Mountain View Lodge',15,780000.00,'WiFi,Parking',4),(7,'City Central Hotel',16,1380000.00,'WiFi,Gym,Bar',4),(8,'Blue Lagoon',17,1650000.00,'WiFi,Pool,Spa',5),(9,'Comfort Stay',18,650000.00,'WiFi,Parking',3),(10,'Royal Heritage',10,1950000.00,'WiFi,Pool,Gym,Spa',5),(11,'Harmony Suites',11,890000.00,'WiFi,Gym',4),(12,'Luxury Line Hotel',12,2500000.00,'WiFi,Pool,Gym,Spa,Bar,Parking',5),(13,'Golden Nights',13,1550000.00,'WiFi,Bar,Pool',4),(14,'Maple Residency',14,980000.00,'WiFi,Parking,Gym',4),(15,'Urban Nest',15,1030000.00,'WiFi,Gym',4),(16,'Coral Bay',16,1750000.00,'WiFi,Pool,Spa',5),(17,'Elite Comfort',17,1220000.00,'WiFi,Parking,Gym',4),(18,'Cityscape Inn',18,1190000.00,'WiFi,Gym,Parking',4),(19,'Sunset Boulevard',10,1450000.00,'WiFi,Pool',4),(20,'Amber Woods',11,870000.00,'WiFi,Parking,Gym',4),(21,'The Riverfront',12,1690000.00,'WiFi,Pool,Spa,Gym',5),(22,'Nightfall Hotel',13,780000.00,'WiFi,Parking',3),(23,'Crystal Crown',14,2100000.00,'WiFi,Pool,Spa,Gym',5),(24,'Grand Bay Inn',15,1090000.00,'WiFi,Gym,Bar',4),(25,'Emerald Hills',16,1850000.00,'WiFi,Pool,Spa,Parking',5),(26,'Pearl View',17,1590000.00,'WiFi,Pool,Gym',4),(27,'The Downtown Hub',18,950000.00,'WiFi,Gym',4),(28,'Shoreline Suites',10,1280000.00,'WiFi,Pool,Gym',4),(29,'Olive Garden Hotel',11,1150000.00,'WiFi,Parking,Gym',4),(30,'Diamond Edge',12,1980000.00,'WiFi,Pool,Spa,Gym,Bar',5);
+INSERT INTO `hotels` VALUES (1,'Sunrise Palace',10,1450000,'WiFi,Pool,Gym',5),(2,'Moonlight Inn',11,950000,'WiFi,Parking',3),(3,'Ocean Breeze Hotel',12,1850000,'WiFi,Pool,Spa,Gym',5),(4,'Green Leaf Resort',13,1250000,'WiFi,Pool',4),(5,'Skyline Tower',14,2200000,'WiFi,Pool,Gym,Spa,Bar',5),(6,'Mountain View Lodge',15,780000,'WiFi,Parking',4),(7,'City Central Hotel',16,1380000,'WiFi,Gym,Bar',4),(8,'Blue Lagoon',17,1650000,'WiFi,Pool,Spa',5),(9,'Comfort Stay',18,650000,'WiFi,Parking',3),(10,'Royal Heritage',10,1950000,'WiFi,Pool,Gym,Spa',5),(11,'Harmony Suites',11,890000,'WiFi,Gym',4),(12,'Luxury Line Hotel',12,2500000,'WiFi,Pool,Gym,Spa,Bar,Parking',5),(13,'Golden Nights',13,1550000,'WiFi,Bar,Pool',4),(14,'Maple Residency',14,980000,'WiFi,Parking,Gym',4),(15,'Urban Nest',15,1030000,'WiFi,Gym',4),(16,'Coral Bay',16,1750000,'WiFi,Pool,Spa',5),(17,'Elite Comfort',17,1220000,'WiFi,Parking,Gym',4),(18,'Cityscape Inn',18,1190000,'WiFi,Gym,Parking',4),(19,'Sunset Boulevard',10,1450000,'WiFi,Pool',4),(20,'Amber Woods',11,870000,'WiFi,Parking,Gym',4),(21,'The Riverfront',12,1690000,'WiFi,Pool,Spa,Gym',5),(22,'Nightfall Hotel',13,780000,'WiFi,Parking',3),(23,'Crystal Crown',14,2100000,'WiFi,Pool,Spa,Gym',5),(24,'Grand Bay Inn',15,1090000,'WiFi,Gym,Bar',4),(25,'Emerald Hills',16,1850000,'WiFi,Pool,Spa,Parking',5),(26,'Pearl View',17,1590000,'WiFi,Pool,Gym',4),(27,'The Downtown Hub',18,950000,'WiFi,Gym',4),(28,'Shoreline Suites',10,1280000,'WiFi,Pool,Gym',4),(29,'Olive Garden Hotel',11,1150000,'WiFi,Parking,Gym',4),(30,'Diamond Edge',12,1980000,'WiFi,Pool,Spa,Gym,Bar',5);
 /*!40000 ALTER TABLE `hotels` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,9 +179,9 @@ DROP TABLE IF EXISTS `login`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `login` (
   `usersid` int NOT NULL AUTO_INCREMENT,
-  `usersEmail` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
-  `usersuid` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
-  `userspwd` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `usersEmail` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `usersuid` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `userspwd` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`usersid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -163,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-22 21:12:38
+-- Dump completed on 2025-05-08 16:23:37

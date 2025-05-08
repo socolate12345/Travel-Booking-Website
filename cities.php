@@ -2,7 +2,7 @@
 
 $servername = "localhost"; 
 $username = "root";        
-$password = "123456";            
+$password = "admin";            
 $dbname = "travelscapes";  
 
 // Create a connection to the database

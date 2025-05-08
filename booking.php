@@ -4,7 +4,7 @@ session_start();
 // Database connection
 $servername = "localhost";
 $username = "root";
-$password = "123456";
+$password = "admin";
 $dbname = "travelscapes";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -35,29 +35,30 @@ if ($stmt->fetch()) {
 $stmt->close();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION['name'] = $_POST['name'] ?? '';
-    $_SESSION['email'] = $_POST['email'] ?? '';
-    $_SESSION['tourists'] = (int)($_POST['tourists'] ?? 1);
-    $_SESSION['dob'] = $_POST['dob'] ?? '';
-    $_SESSION['contact'] = $_POST['contact'] ?? '';
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $tourists = (int)($_POST['tourists'] ?? 1);
+    $dob = $_POST['dob'] ?? '';
+    $contact = $_POST['contact'] ?? '';
+
+    $hotelName = 'Unknown Hotel';
+    $cityName = 'Unknown City';
+    $costPerDay = 0;
+    $amount = 0;
+    $hotelId = 0;
+    $cityId = 0;
 
     if (isset($_POST['hotel']) && is_numeric($_POST['hotel'])) {
         $hotelId = (int)$_POST['hotel'];
         $hotelQuery = "SELECT hotel, cost FROM hotels WHERE hotelid = $hotelId";
         $hotelResult = $conn->query($hotelQuery);
-        
+
         if ($hotelResult && $hotelResult->num_rows > 0) {
             $hotelData = $hotelResult->fetch_assoc();
-            $_SESSION['hotelName'] = $hotelData['hotel'];
+            $hotelName = $hotelData['hotel'];
             $costPerDay = (int)$hotelData['cost'];
-            $_SESSION['amount'] = $costPerDay * $_SESSION['tourists'];
-        } else {
-            $_SESSION['hotelName'] = 'Unknown Hotel';
-            $_SESSION['amount'] = 0;
+            $amount = $costPerDay * $tourists;
         }
-    } else {
-        $_SESSION['hotelName'] = 'Unknown Hotel';
-        $_SESSION['amount'] = 0;
     }
 
     if (isset($_POST['city']) && is_numeric($_POST['city'])) {
@@ -65,19 +66,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cityQuery = "SELECT city FROM cities WHERE cityid = $cityId";
         $cityResult = $conn->query($cityQuery);
         if ($cityResult && $cityResult->num_rows > 0) {
-            $_SESSION['cityName'] = $cityResult->fetch_assoc()['city'];
-        } else {
-            $_SESSION['cityName'] = 'Unknown City';
+            $cityName = $cityResult->fetch_assoc()['city'];
         }
     }
 
-    $conn->close();
-    header("Location: Payment Interface/payment.php");
-    exit;
+    // ✅ Insert vào bảng hotel_bookings
+    $insertSql = "INSERT INTO hotel_bookings (
+        userid, name, email, cityid, city_name, hotelid, hotel_name,
+        tourists, tour_date, contact, cost_per_day, total_amount
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($insertSql);
+    $stmt->bind_param(
+        "ississsissii",
+        $userid, $name, $email, $cityId, $cityName, $hotelId, $hotelName,
+        $tourists, $dob, $contact, $costPerDay, $amount
+    );
+
+    if ($stmt->execute()) {
+        // Thành công
+        $_SESSION['hotelName'] = $hotelName;
+        $_SESSION['cityName'] = $cityName;
+        $_SESSION['amount'] = $amount;
+        $stmt->close();
+        $conn->close();
+        header("Location: Payment Interface/payment.php");
+        exit;
+    } else {
+        echo "Đặt phòng thất bại: " . $stmt->error;
+        $stmt->close();
+        $conn->close();
+    }
 }
 
 // Fetch cities and hotels
 $cities = [];
+$hotels = [];
+
+$servername = "localhost";
+$username = "root";
+$password = "admin";
+$dbname = "travelscapes";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
 $citySql = "SELECT * FROM cities";
 $cityResult = $conn->query($citySql);
 if ($cityResult->num_rows > 0) {
@@ -86,7 +118,6 @@ if ($cityResult->num_rows > 0) {
     }
 }
 
-$hotels = [];
 $hotelSql = "SELECT * FROM hotels";
 $hotelResult = $conn->query($hotelSql);
 if ($hotelResult->num_rows > 0) {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Travelscapes </title>
+    <title> VietTransit </title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -17,7 +17,10 @@
     <input type="checkbox" name="" id="toggler">
     <label for="toggler" class="fas fa-bars"></label>
 
-    <a href="#" class="logo"><span>Travelscapes</span></a>
+<a href="#" class="logo">
+    <img src="images/logo.png" alt="VietTransit Logo">
+    <span>VietTransit</span>
+</a>
 
     <nav class="navbar">
         <a href="#home">Home</a>
@@ -37,14 +40,34 @@
 </header>
 
 <section class="home" id="home">
+    <!-- Video background -->
+    <div class="video-container">
+        <video id="bgVideo" autoplay muted loop playsinline>
+            <source id="videoSource" src="" type="video/mp4">
+        </video>
+    </div>
 
+    <!-- Nội dung chính -->
     <div class="content">
         <span> Incredible Vietnam: </span>
         <p>Where Every Place is a Story, Every Journey an Adventure.</p>
         <a href="#products" class="btn">Travel Now</a>
     </div>
-
 </section>
+
+<script>
+    function changeVideoBackground() {
+        const hour = new Date().getHours();
+        const videoSrc = (hour >= 6 && hour < 18)
+            ? "images/daytime.mp4"      // ban ngày
+            : "images/nighttime.mp4";   // ban đêm
+
+        document.getElementById("videoSource").src = videoSrc;
+        document.getElementById("bgVideo").load();
+    }
+
+    changeVideoBackground();
+</script>
 
 
 <section class="about" id="about">
@@ -265,7 +288,7 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
         </div>
-        <p>Booking my dream trip to the stunning landscapes of Tây Bắc with Travelscapes was a breeze – seamless and stress-free! </p>
+        <p>Booking my dream trip to the stunning landscapes of Tây Bắc with VietTransit was a breeze – seamless and stress-free! </p>
         <div class="user">
             <img src="./images/pic-1.jpg" alt="atharva pfp">
             <div class="user-info">
@@ -284,7 +307,7 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
         </div>
-        <p>Thanks to Travelscapes, I explored the breathtaking beauty of Phu Yen with ease, and the deals were unbeatable!</p>
+        <p>Thanks to VietTransit, I explored the breathtaking beauty of Phu Yen with ease, and the deals were unbeatable!</p>
         <div class="user">
             <img src="./images/pic-2.png" alt="Yash pfp">
             <div class="user-info">
@@ -355,7 +378,7 @@
         </div>
     </div>
 
-    <div class="credit">&copy;2025 Travel Booking Website</div>
+    <div class="credit">&copy;2025 VietTransit</div>
 
 </section>
 
