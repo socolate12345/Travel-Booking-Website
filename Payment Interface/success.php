@@ -1,4 +1,6 @@
+
 <?php
+/*
 session_start();
 
 $name = $_SESSION['name'] ?? 'Unknown';
@@ -18,10 +20,12 @@ $receipt = [
     'date' => date('d-m-Y H:i:s')
 ];
 
+
 $receiptFile = "receipts_$username.json";
 $receipts = file_exists($receiptFile) ? json_decode(file_get_contents($receiptFile), true) : [];
 $receipts[] = $receipt;
 file_put_contents($receiptFile, json_encode($receipts, JSON_PRETTY_PRINT));
+*/
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +46,7 @@ file_put_contents($receiptFile, json_encode($receipts, JSON_PRETTY_PRINT));
         <p>Amount Paid: <strong><?= htmlspecialchars($amount) ?> VND</strong></p>
         <p>Your receipt has been saved.</p>
         <a href="receiptlist.php">View Receipts</a>
-        <a href="/Login/loggedinhome.php">Go to Home</a>
+        <a href="../Login/loggedinhome.php">Go to Home</a>
     </div>
 </body>
 </html>
