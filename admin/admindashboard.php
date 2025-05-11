@@ -16,7 +16,7 @@ session_start();
         </div>
         <nav class="navigation">
             <ul class="nav-menu">
-                <li><a href="adminviewjourneys.php">View all Journeys</a></li>
+                <li><a href="adminviewjourneys.php">View Cities</a></li>
                 <li><a href="adminviewusers.php">View Users</a></li>
                 <li><a href="adminusers.php">View Admins</a></li>
                 <li><a href="#">Settings</a></li>
@@ -32,10 +32,10 @@ session_start();
             <h2 style="color: cornsilk;">Welcome, <?php echo $_SESSION['AdminLoginId'];?></h2>
             <ul class="sidebar-menu">
                 <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
-                <li><a href="#"><i class="fa fa-edit"></i> Content Management</a></li>
-                <li><a href="#"><i class="fa fa-users"></i> User Management</a></li>
-                <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
-                <li><a href="adminviewjourneys.php"><i class="fa fa-pencil"></i> Update Journeys</a></li>
+                <li><a href="adminviewtour.php"><i class="fa fa-edit"></i> Tour Management</a></li>
+                <li><a href="adminviewhotel.php"><i class="fa fa-users"></i> Hotel Management</a></li>
+                <li><a href="adminuser.php"><i class="fa fa-comments"></i> User Management</a></li>
+                <li><a href="adminviewjourneys.php"><i class="fa fa-pencil"></i> City Management</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
             </ul>
             <div class="sidebar-footer" style="color: #333;">

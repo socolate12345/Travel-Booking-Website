@@ -10,7 +10,7 @@ if (!isset($_SESSION['usersid'])) {
 $userid = $_SESSION['usersid'];
 $servername = "localhost";
 $username = "root";
-$password = "123456";
+$password ="admin";
 $dbname = "travelscapes";
 
 // Kết nối DB

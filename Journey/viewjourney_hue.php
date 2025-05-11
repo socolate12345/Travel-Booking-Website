@@ -74,7 +74,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <li><span class="icon">🚌</span> Bus</li>
                 </ul>
                 <p class="price">6,990,000 ₫ <span class="original-price">7,943,182 ₫</span></p>
-                <button>See More</button>
+              <a href="/Tour_detail/hue_1.php" class="btn">See More</a>
             </div>
         </div>
 
@@ -92,7 +92,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <li><span class="icon">🚌</span> Bus</li>
                 </ul>
                 <p class="price">23,590,000 ₫ <span class="original-price">26,211,111 ₫</span></p>
-                <button>See More</button>
+                <a href="/Tour_detail/hue_2.php" class="btn">See More</a>
             </div>
         </div>
     </div>

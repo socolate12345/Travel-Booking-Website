@@ -4,7 +4,7 @@ session_start();
 // Database connection
 $servername = "localhost";
 $username = "root";
-$password = "123456";
+$password = "admin";
 $dbname = "travelscapes";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -75,7 +75,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <li><span class="icon">👥</span> 18</li>
                 </ul>
                 <p class="price">5,250,000 ₫ <span class="original-price">7,000,000 ₫</span></p>
-                <button>See More</button>
+                <a href="/Tour_detail/phuquoc_1.php" class="btn">See More</a>
             </div>
         </div>
 
@@ -94,7 +94,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <li><span class="icon">👥</span> 12</li>
                 </ul>
                 <p class="price">8,800,000 ₫ <span class="original-price">9,990,000 ₫</span></p>
-                <button>See More</button>
+                <a href="/Tour_detail/phuquoc_2.php" class="btn">See More</a>
             </div>
         </div>
     </div>
