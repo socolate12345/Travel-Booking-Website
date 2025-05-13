@@ -1,7 +1,8 @@
 
 <?php
 session_start();
-require_once 'dbh-inc.php';
+require_once '../dbconnect.php';
+
 
 if (!isset($_SESSION["usersid"]) || !isset($_POST["cityid"])) {
     header("Location: login.php");

@@ -1,16 +1,7 @@
 <?php
 session_start();
 
-// Database connection
-$servername = "localhost";
-$username = "root";
-$password = "admin";
-$dbname = "travelscapes";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'dbconnect.php';
 
 // Kiểm tra login
 if (!isset($_SESSION["usersid"])) {
@@ -103,12 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $cities = [];
 $hotels = [];
 
-$servername = "localhost";
-$username = "root";
-$password = "admin";
-$dbname = "travelscapes";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include 'dbconnect.php';
 
 $citySql = "SELECT * FROM cities";
 $cityResult = $conn->query($citySql);

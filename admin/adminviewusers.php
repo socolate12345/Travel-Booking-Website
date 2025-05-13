@@ -1,4 +1,5 @@
 <?php
+include '../dbconnect.php';
 
 $db = new PDO('mysql:host=localhost;dbname=travelscapes', 'root', 'admin');
 

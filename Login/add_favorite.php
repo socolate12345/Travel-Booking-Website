@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'dbh-inc.php';
+require_once '../dbconnect.php';
 
 if (!isset($_SESSION["usersid"])) {
     header("Location: loggedinhome.php");

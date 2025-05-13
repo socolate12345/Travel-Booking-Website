@@ -8,16 +8,8 @@ if (!isset($_SESSION['usersid'])) {
 }
 
 $userid = $_SESSION['usersid'];
-$servername = "localhost";
-$username = "root";
-$password ="admin";
-$dbname = "travelscapes";
 
-// Kết nối DB
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include '../dbconnect.php';
 
 // Xử lý yêu cầu xóa booking
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
@@ -155,7 +147,7 @@ $conn->close();
     </table>
 
     <div class="back-home">
-        <a href="../Login/loggedinhome.php">Return to the homepage.</a>
+        <a href="../Login/profile.php">Return to Profile.</a>
     </div>
 </body>
 </html>

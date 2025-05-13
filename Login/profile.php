@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'dbh-inc.php';
+require_once '../dbconnect.php';
+
 
 if (!isset($_SESSION["usersid"])) {
     header("Location: login.php");
@@ -89,6 +90,30 @@ body, html {
     font-size: 20px;
     line-height: 1.6;
     margin-bottom: 20px;
+}
+.nav-buttons2 {
+    display: flex;
+    flex-direction: column; /* Change to row to align buttons horizontally */
+    gap: 10px;
+    justify-content: flex-start; /* Center the buttons horizontally */
+}
+
+.nav-buttons2 button {
+    padding: 10px;
+    background-color: white;
+    color: #2f6ecf;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    width: 250px; /* Set a fixed width to ensure buttons are the same size */
+    height: 80px;
+    text-align: center; /* Ensure text is centered within the button */
+}
+
+.nav-buttons2 button:hover {
+    background-color: #d6eaf8;
 }
 
 .nav-buttons {
@@ -192,7 +217,19 @@ body, html {
     word-break: break-word;
 }
 
-.btn-book,
+.btn-book{
+    display: inline-block;
+    margin: 0;                 /* Remove margin to align consistently */
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;               /* Ensure buttons take full width of city-item */
+    box-sizing: border-box;    /* Include padding in width calculation */
+}
 .btn-remove {
     display: inline-block;
     margin: 0;                 /* Remove margin to align consistently */
@@ -227,25 +264,21 @@ body, html {
     background-color: #c0392b;
 }
 
-
-
-@keyframes wave {
-    0% { margin-left: 0; }
-    100% { margin-left: -1600px; }
-}
-
-@keyframes swell {
-    0%, 100% { transform: translate3d(0,-25px,0); }
-    50% { transform: translate3d(0,5px,0); }
-}
-
     </style>
 </head>
 
 <div class="main-wrapper">
     <!-- Navigation Tab -->
     <div class="nav-tab">
-        <h2>Navigation tab<br>(Functions Related)</h2>
+        <h2>Profile <br></h2>
+        <div class="nav-buttons2">
+            <form action="../Payment Interface/tourlist.php" method="get">
+                <button type="submit">View Tour</button>
+            </form>
+            <form action="../Payment Interface/receiptlist.php" method="get">
+                <button type="submit">View Hotel</button>
+            </form>
+        </div>
         <div class="nav-buttons">
             <form action="loggedinhome.php" method="get">
                 <button type="submit">Home</button>
@@ -265,7 +298,6 @@ body, html {
             if ($row = mysqli_fetch_assoc($result)) {
                 echo "<p><strong>Name:</strong> " . htmlspecialchars($row["usersUid"]) . "</p>";
                 echo "<p><strong>Email:</strong> " . htmlspecialchars($row["usersEmail"]) . "</p>";
-                echo "<p><strong>Phone:</strong> Not updated</p>";
             } else {
                 echo "<p>User information not found.</p>";
             }
@@ -295,25 +327,45 @@ body, html {
             
                     while ($favRow = mysqli_fetch_assoc($favResult)) {
                         $cityName = htmlspecialchars($favRow['city']);
-                        $cityId = intval($favRow['cityid']);
-                        $imagePath = "/Places/{$cityId}.jpg";
-            
-                        echo "<div class='city-item'>";
-                        echo "<img src='$imagePath' alt='$cityName' />";
-                        echo "<p>$cityName</p>";
-            
-                        // Nút đặt vé
-                        echo "<a href='/viewjourney.php?cityid=$cityId' class='btn-book'>Đặt vé</a>";
-            
-                        // Nút xóa yêu thích
-                        echo "
-                            <form action='remove_favorite.php' method='post' style='margin-top: 5px;'>
-                                <input type='hidden' name='cityid' value='$cityId'>
-                                <button type='submit' class='btn-remove'>Xóa</button>
-                            </form>
-                        ";
-            
-                        echo "</div>";
+$cityId = intval($favRow['cityid']);
+$imagePath = "/Places/{$cityId}.jpg";
+
+// Map cityid sang slug để đặt tên file viewjourney_<slug>.php
+$citySlugMap = [
+    10 => 'tay_bac',
+    11 => 'ho_chi_minh',
+    12 => 'nha_trang',
+    13 => 'hue',   // ví dụ thêm
+    14 => 'phu_yen', 
+    15 => 'da_lat',
+    16 => 'phu_quoc',
+    17 => 'hoi_an',
+    18 => 'ha_giang', // ví dụ thêm
+];
+
+$citySlug = isset($citySlugMap[$cityId]) ? $citySlugMap[$cityId] : 'default';
+$tourPage = "../Journey/viewjourney_$citySlug.php";
+
+// HTML
+echo "<div class='city-item'>";
+echo "<img src='$imagePath' alt='$cityName' />";
+echo "<p>$cityName</p>";
+
+// Nút đặt vé khách sạn
+echo "<a href='/view_hotels.php?city_id=$cityId' class='btn-book'>Book Hotel</a>";
+
+// Nút đặt tour đúng file viewjourney_ten.php
+echo "<a href='/$tourPage' class='btn-book'>Book Tour</a>";
+
+// Nút xóa yêu thích
+echo "
+    <form action='remove_favorite.php' method='post' style='margin-top: 5px;'>
+        <input type='hidden' name='cityid' value='$cityId'>
+        <button type='submit' class='btn-remove'>Xóa</button>
+    </form>
+";
+
+echo "</div>";
                     }
                 }
             
