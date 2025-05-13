@@ -27,14 +27,14 @@
         <a href="#about">About</a>
         <a href="#products">Places</a>
         <a href="#review">Review</a>
-        <a href="./Login/login.php">Booking</a>
+        <a href="./Login/login.php">Tour</a>
+        <a href="./Login/login.php">Hotel</a>
         <a href="./Login/login.php">Login/Signup</a>
         <a href="./admin/adminlogin.php">Admin</a>
     </nav>
 
     <div class="icons">
         <span data-tooltip="Favourites" data-flow="top"> <a href="./Login/login.php" class="fas fa-heart"></a></span>
-        <span data-tooltip="Cart" data-flow="top"> <a href="./Payment Interface/receiptlist.php" class="fas fa-shopping-cart"></a></span>
         <span data-tooltip="Profile" data-flow="top"> <a href="./Login/login.php" class="fas fa-user"></a></span>
     </div>
 

@@ -1,10 +1,5 @@
 <?php
-$serverName = "localhost";
-$dbUsername = "root";
-$dbPassword = "admin";
-$dbName = "travelscapes";
-
-$conn = mysqli_connect($serverName, $dbUsername, $dbPassword, $dbName);
+include '../dbconnect.php';
 
 ?>
 <html>

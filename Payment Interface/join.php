@@ -70,15 +70,8 @@ if ($_SESSION['status'] == 'loggedin') {
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
           <?php
-          $servername = 'localhost';
-          $username = 'root';
-          $password = "admin";
-          $db = 'travelscapes';
-          $conn = mysqli_connect($servername, $username, $password, $db);
-          if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-          }
-
+          include '../dbconnect.php';
+          
           //$email=$_SESSION['user_email'];
           //$sql="SELECT FirstName FROM user WHERE Email='".$email."'";
           //$fname = mysqli_query($conn,$sql);                                

@@ -1,17 +1,6 @@
 <?php
 // Database connection parameters
-$servername = "localhost"; 
-$username = "root";        
-$password =  "admin";            
-$dbname = "travelscapes";  
-
-// Create a connection to the database
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'dbconnect.php';
 
 // Initialize variables
 $cityId = $_GET['city_id']; // Assuming you pass the city ID in the URL
@@ -57,9 +46,11 @@ if ($selectedRatings !== "All") {
         case "below":
             $ratingsCondition = "ratings < 3";
             break;
-        case "above":
+        case "3above":
             $ratingsCondition = "ratings >= 3";
             break;
+        case "4above":
+            $ratingsCondition = "ratings >= 4";
     }
 }
 
@@ -110,7 +101,8 @@ Hotels in <?php echo $cityName; ?>
                     <select name="ratings">
                         <option value="All" <?php if ($selectedRatings === "All") echo "selected"; ?>>All</option>
                         <option value="below" <?php if ($selectedRatings === "below") echo "selected"; ?>>Below 3</option>
-                        <option value="above" <?php if ($selectedRatings === "above") echo "selected"; ?>>3 and Above</option>
+                        <option value="3above" <?php if ($selectedRatings === "above") echo "selected"; ?>>3 and Above</option>
+                        <option value="3above" <?php if ($selectedRatings === "above") echo "selected"; ?>>4 and Above</option>
                     </select>
                 </label>
             </div>
@@ -167,9 +159,7 @@ Hotels in <?php echo $cityName; ?>
     $conn->close();
     ?>
     </div>
-    <footer>
-    <p>&copy; 2023 Travelscapes. All rights reserved.</p>
-</footer>
+
 </body>
 </html>
 
