@@ -152,15 +152,23 @@ $conn->close();
         <input type="email" name="email" placeholder="Email" value="<?= htmlspecialchars($userEmail) ?>" readonly required><br>
         <input type="number" name="tourists" id="touristsInput" placeholder="Number of Tourists" required min="1"><br>
         <input type="number" name="calculatedCost" id="calculatedCost" readonly><br>
-        <label>Tour Date:</label>
-        <input type="date" name="dob" required><br>
+<label>Tour Date:</label>
+<input type="date" name="dob" id="tour_date" required><br>
         <label>Contact Number:</label>
         <input type="text" name="contact" placeholder="Contact Number" required><br>
 
         <button type="submit">Proceed to Payment</button>
     </form>
 </div>
+<script>
+  // Lấy ngày hiện tại
+  const today = new Date().toISOString().split('T')[0];
+  const tourDateInput = document.getElementById('tour_date');
 
+  // Thiết lập ngày mặc định và ngày tối thiểu là hôm nay
+  tourDateInput.value = today;
+  tourDateInput.min = today;
+</script>
 <script>
     const citySelect = document.getElementById('citySelect');
     const hotelSelect = document.getElementById('hotelSelect');

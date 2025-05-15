@@ -5,11 +5,11 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Da Lat Tour</title>
+    <title>Dalat Dreamy Getaway: Valley of Love - Datanla Waterfall - Langbiang Mountain - Local Flower Gardens</title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 <body>
-
 
 <header>
     <div class="header-container">
@@ -30,46 +30,45 @@ session_start();
 </header>
 
 <main>
-
-    <h1>&nbsp;&nbsp;&nbsp;  DA LAT - VALLEY OF LOVE - LANGBIANG - NIGHT MARKET TOUR </h1>
-    <p></p>
-    <!-- Gallery placed above the columns -->
+    <h1>Dalat Dreamy Getaway: Valley of Love - Datanla Waterfall - Langbiang Mountain - Local Flower Gardens</h1>
     <div class="gallery">
-
-        <div class="big"><img src="image_tourdetail/dalat_1.1.jpg" alt="Big Image"></div>
-        <div class="small1"><img src="image_tourdetail/dalat_1.2.jpg" alt="Small 1"></div>
-        <div class="small2"><img src="image_tourdetail/dalat_1.3.jpg" alt="Small 2"></div>
-        <div class="small3"><img src="image_tourdetail/dalat_1.4.jpg" alt="Small 3"></div>
-        <div class="small4"><img src="image_tourdetail/dalat_1.5.jpg" alt="Small 4"></div>
+        <div class="big"><img src="dalat1/1.jpg" alt="Big Image"></div>
+        <div class="small1"><img src="dalat1/2.jpg" alt="Small 1"></div>
+        <div class="small2"><img src="dalat1/3.jpg" alt="Small 2"></div>
+        <div class="small3"><img src="dalat1/4.jpg" alt="Small 3"></div>
+        <div class="small4"><img src="dalat1/5.jpg" alt="Small 4"></div>
     </div>
-    <p></p>
-    <!-- Columns start here -->
+
     <div class="content-columns">
         <div class="left-column">
             <div class="box">
                 <h2>Why This Tour Is Attractive</h2>
                 <ul>
-                    <li>Experience the romantic charm of Da Lat with its cool climate, pine forests, and blooming flowers.</li>
-                    <li>Visit iconic landmarks like the Valley of Love and Langbiang Mountain for breathtaking views and outdoor fun.</li>
-                    <li>Enjoy the lively atmosphere of Da Lat Night Market with delicious street food and local specialties.</li>
+                    <li>Experience the cool, romantic atmosphere of Dalat – Vietnam’s “City of Eternal Spring.”</li>
+                    <li>Visit iconic landmarks such as Xuan Huong Lake, Valley of Love, and Dalat Flower Park.</li>
+                    <li>Explore the unique architecture of Linh Phuoc Pagoda and Bao Dai Palace.</li>
+                    <li>Discover French colonial heritage and colorful flower gardens throughout the city.</li>
+                    <li>Enjoy a convenient and comfortable trip with departure from Ho Chi Minh City.</li>
                 </ul>
             </div>
 
             <div class="box">
                 <h2>Itinerary</h2>
                 <div class="box2">
-                    <h3>Day 1: Arrival in Da Lat – City Highlights</h3>
-                    <p>Arrive in Da Lat, visit Xuan Huong Lake, Crazy House, and enjoy a cozy evening at the Da Lat Night Market.</p>
+                    <h3>Day 1: Ho Chi Minh City – Dalat</h3>
+                    <p>Depart from Ho Chi Minh City and arrive in Dalat. Check in to your hotel and take a relaxing walk around Xuan Huong Lake in the evening.</p>
                 </div>
-
                 <div class="box2">
-                    <h3>Day 2: Valley of Love – Langbiang Mountain</h3>
-                    <p>Explore the Valley of Love with its flower gardens and romantic scenery, then trek or jeep ride up Langbiang for panoramic views.</p>
+                    <h3>Day 2: City Highlights Tour</h3>
+                    <p>Visit Dalat Flower Park, the iconic Valley of Love, and explore the architectural beauty of Linh Phuoc Pagoda. Enjoy lunch at a local restaurant.</p>
                 </div>
-
                 <div class="box2">
-                    <h3>Day 3: Da Lat – Departure</h3>
-                    <p>Free time to shop for souvenirs or visit a local café before transferring to the airport or bus station for departure.</p>
+                    <h3>Day 3: Culture & Nature Discovery</h3>
+                    <p>Tour Bao Dai Palace to learn about the last emperor of Vietnam. Stroll through the French Quarter and relax at a scenic hillside café.</p>
+                </div>
+                <div class="box2">
+                    <h3>Day 4: Free Time – Return to Ho Chi Minh City</h3>
+                    <p>Spend the morning shopping at the Dalat Market or enjoying a cup of local coffee. After check-out, return to Ho Chi Minh City by bus.</p>
                 </div>
             </div>
         </div>
@@ -77,16 +76,18 @@ session_start();
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                <h3 style="display: inline;">Price From</h3>
-                <p style="color: red; font-weight: bold; display: inline;">2,800,000 VND</p>
-                <p></p>
-                <a href="../booktour.php?cityid=15&tourid=12" class="booking-button">Booking now!</a>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">5,290,000 VND</p>
+                    <p style="text-decoration: line-through; color: gray;">6,223,529 VND</p>
+                    <a href="../booktour.php?cityid=14&tourid=10" class="booking-button">Booking now!</a>
+                </div>
             </div>
-            </div>
+
             <div class="box">
                 <h3>Contact Support</h3>
                 <p>📞 Hotline: 1919 2025<br>✉️ Email: viettransit.support@mail.com</p>
             </div>
+
             <div class="box">
                 <h3>Why Book Online?</h3>
                 <ul>
@@ -96,6 +97,7 @@ session_start();
                     <li>Exclusive deals</li>
                 </ul>
             </div>
+
             <div class="box">
                 <h3>Trusted Tour</h3>
                 <p>Founded in 2025<br>Leading travel brand<br>Nationally recognized</p>
@@ -105,6 +107,7 @@ session_start();
 </main>
 
 <footer>
+<section class="footer">
     <div class="box-container">
         <div class="box">
             <h3>Quick links</h3>
@@ -121,19 +124,18 @@ session_start();
         </div>
         <div class="box">
             <h3>Popular Travel Locations</h3>
-            <a href="viewjourney_taybac.php">Tay Bac</a>
-            <a href="viewjourney_hcm.php">Ho Chi Minh</a>
-            <a href="viewjourney_phuquoc.php">Phu Quoc</a>
-            <a href="viewjourney_hue.php">Hue</a>
+            <a href="/journey/viewjourney_taybac.php">Tay Bac</a>
+            <a href="/journey/viewjourney_hcm.php">Ho Chi Minh</a>
+            <a href="/journey/viewjourney_phuquoc.php">Phu Quoc</a>
+            <a href="/journey/viewjourney_hue.php">Hue</a>
         </div>
         <div class="box">
-            <h3>Contact Info</h3>
+            <h3>contact info</h3>
             <a href="https://github.com/socolate12345/Travel-Booking-Website">GitHub</a>
             <img src="./images/payment.png" alt="">
         </div>
     </div>
     <div class="credit">©2025 VietTransit</div>
+</section>
 </footer>
-
-</body>
 </html>

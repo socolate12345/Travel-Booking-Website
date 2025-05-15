@@ -5,11 +5,11 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Phu Quoc Tour</title>
+    <title>Phu Quoc Island Adventure</title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 <body>
-
 
 <header>
     <div class="header-container">
@@ -30,52 +30,45 @@ session_start();
 </header>
 
 <main>
-
-    <h1>&nbsp;&nbsp;&nbsp;  PHU QUOC - VINWONDERS - SAFARI - HON THOM CABLE CAR TOUR </h1>
-    <p></p>
-    <!-- Gallery placed above the columns -->
+    <h1>Phu Quoc Island Adventure: Phu Quoc National Park - Fish Sauce Factory - Coconut Prison - Sunset Beach</h1>
     <div class="gallery">
-
-        <div class="big"><img src="image_tourdetail/phuquoc_2.1.jpg" alt="Big Image"></div>
-        <div class="small1"><img src="image_tourdetail/phuquoc_2.2.jpg" alt="Small 1"></div>
-        <div class="small2"><img src="image_tourdetail/phuquoc_2.3.jpg" alt="Small 2"></div>
-        <div class="small3"><img src="image_tourdetail/phuquoc_2.4.jpg" alt="Small 3"></div>
-        <div class="small4"><img src="image_tourdetail/phuquoc_2.5.jpg" alt="Small 4"></div>
+        <div class="big"><img src="phuquoc2/1.jpg" alt="Big Image"></div>
+        <div class="small1"><img src="phuquoc2/2.jpg" alt="Small 1"></div>
+        <div class="small2"><img src="phuquoc2/3.jpg" alt="Small 2"></div>
+        <div class="small3"><img src="phuquoc2/4.jpg" alt="Small 3"></div>
+        <div class="small4"><img src="phuquoc2/5.jpg" alt="Small 4"></div>
     </div>
-    <p></p>
-    <!-- Columns start here -->
+
     <div class="content-columns">
         <div class="left-column">
             <div class="box">
                 <h2>Why This Tour Is Attractive</h2>
                 <ul>
-                    <li>Experience the best of Phu Quoc’s modern attractions and natural beauty in one trip.</li>
-                    <li>Have fun at VinWonders – one of Vietnam’s largest theme parks with thrilling rides and shows.</li>
-                    <li>Explore Vinpearl Safari, home to hundreds of wild animals in a semi-wild environment.</li>
-                    <li>Take in stunning views from the world’s longest sea-crossing Hon Thom Cable Car.</li>
+                    <li>Explore the lush landscapes of Phu Quoc National Park, home to diverse flora and fauna.</li>
+                    <li>Visit a traditional Fish Sauce Factory and learn about this iconic local product’s production.</li>
+                    <li>Discover the history of Coconut Prison, a significant site from the Vietnam War era.</li>
+                    <li>Relax and enjoy the stunning views at Sunset Beach, a perfect spot for evening tranquility.</li>
+                    <li>Enjoy a comfortable trip with direct flight departure from Ho Chi Minh City and quality hotel accommodations.</li>
                 </ul>
             </div>
 
             <div class="box">
                 <h2>Itinerary</h2>
                 <div class="box2">
-                    <h3>Day 1: Arrival in Phu Quoc – Night Market</h3>
-                    <p>Arrive in Phu Quoc, check in at your hotel, and enjoy a relaxing evening at the Phu Quoc Night Market.</p>
+                    <h3>Day 1: Ho Chi Minh City – Phu Quoc</h3>
+                    <p>Fly from Ho Chi Minh City to Phu Quoc. Upon arrival, check in to your hotel and unwind. Spend your evening at leisure or explore the local area.</p>
                 </div>
-
                 <div class="box2">
-                    <h3>Day 2: VinWonders Amusement Park</h3>
-                    <p>Spend the full day at VinWonders with water parks, adventure zones, and spectacular entertainment.</p>
+                    <h3>Day 2: Phu Quoc National Park – Fish Sauce Factory</h3>
+                    <p>Spend the morning exploring the rich biodiversity of Phu Quoc National Park with guided walks. In the afternoon, visit a traditional Fish Sauce Factory to see how this famous ingredient is made.</p>
                 </div>
-
                 <div class="box2">
-                    <h3>Day 3: Vinpearl Safari – Hon Thom Cable Car</h3>
-                    <p>Visit Vinpearl Safari in the morning, then head to the Hon Thom Cable Car for breathtaking ocean views and free time at Sun World Hon Thom Nature Park.</p>
+                    <h3>Day 3: Coconut Prison – Sunset Beach</h3>
+                    <p>Tour the historic Coconut Prison and learn about its role during the Vietnam War. Later, relax at Sunset Beach and enjoy breathtaking views as the sun sets over the sea.</p>
                 </div>
-
                 <div class="box2">
-                    <h3>Day 4: Free Time – Departure</h3>
-                    <p>Enjoy a slow morning at the beach or hotel before heading to the airport for your flight home.</p>
+                    <h3>Day 4: Leisure Morning – Return to Ho Chi Minh City</h3>
+                    <p>Enjoy a free morning to relax or shop for souvenirs before checking out. Transfer to the airport for your return flight to Ho Chi Minh City, concluding your Phu Quoc Island adventure.</p>
                 </div>
             </div>
         </div>
@@ -83,16 +76,18 @@ session_start();
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                <h3 style="display: inline;">Price From</h3>
-                <p style="color: red; font-weight: bold; display: inline;">8,800,000 VND</p>
-                <p></p>
-                <a href="../booktour.php?cityid=16&tourid=15" class="booking-button">Booking now!</a>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">5,790,000 VND</p>
+                    <p style="text-decoration: line-through; color: gray;">6,744,186 VND</p>
+                    <a href="../booktour.php?cityid=14&tourid=10" class="booking-button">Booking now!</a>
+                </div>
             </div>
-            </div>
+
             <div class="box">
                 <h3>Contact Support</h3>
                 <p>📞 Hotline: 1919 2025<br>✉️ Email: viettransit.support@mail.com</p>
             </div>
+
             <div class="box">
                 <h3>Why Book Online?</h3>
                 <ul>
@@ -102,6 +97,7 @@ session_start();
                     <li>Exclusive deals</li>
                 </ul>
             </div>
+
             <div class="box">
                 <h3>Trusted Tour</h3>
                 <p>Founded in 2025<br>Leading travel brand<br>Nationally recognized</p>
@@ -111,6 +107,7 @@ session_start();
 </main>
 
 <footer>
+<section class="footer">
     <div class="box-container">
         <div class="box">
             <h3>Quick links</h3>
@@ -127,19 +124,18 @@ session_start();
         </div>
         <div class="box">
             <h3>Popular Travel Locations</h3>
-            <a href="viewjourney_taybac.php">Tay Bac</a>
-            <a href="viewjourney_hcm.php">Ho Chi Minh</a>
-            <a href="viewjourney_phuquoc.php">Phu Quoc</a>
-            <a href="viewjourney_hue.php">Hue</a>
+            <a href="/journey/viewjourney_taybac.php">Tay Bac</a>
+            <a href="/journey/viewjourney_hcm.php">Ho Chi Minh</a>
+            <a href="/journey/viewjourney_phuquoc.php">Phu Quoc</a>
+            <a href="/journey/viewjourney_hue.php">Hue</a>
         </div>
         <div class="box">
-            <h3>Contact Info</h3>
+            <h3>contact info</h3>
             <a href="https://github.com/socolate12345/Travel-Booking-Website">GitHub</a>
             <img src="./images/payment.png" alt="">
         </div>
     </div>
     <div class="credit">©2025 VietTransit</div>
+</section>
 </footer>
-
-</body>
 </html>

@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.background-image{
+.background-image {
     opacity: 0.1;
 }
 
@@ -13,7 +13,7 @@ form {
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 2);;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 2);
 }
 
 label {
@@ -26,28 +26,28 @@ input[type="number"] {
     width: 90%;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #FF69B4;
+    border: 1px solid #2daeff;
     border-radius: 5px;
-    background-color: #FFECF0;
-    transition: border 0.3s; 
+    background-color: #e6f3ff; 
+    transition: border 0.3s;
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus {
     outline: none;
     width: 90%;
-    border: 2px solid #FF69B4;
+    border: 2px solid #2daeff;
 }
 
 input[type="text"]:focus + label,
 input[type="number"]:focus + label {
     transform: translateY(-25px);
     font-size: 12px;
-    color: #FF69B4;
+    color: #2daeff;
 }
 
 input[type="submit"] {
-    background-color: #FF69B4;
+    background-color: #2daeff;
     color: #FFF;
     padding: 10px 15px;
     border: none;

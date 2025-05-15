@@ -30,7 +30,7 @@ session_start();
 </header>
 
 <main>
-    <h1>&nbsp;&nbsp;&nbsp;  HUNG TEMPLE - NGHIA LO - TU LE - MU CANG CHAI - SAPA - FANSIPAN - DIEN BIEN - MOC CHAU TOUR </h1>
+    <h1>&nbsp;&nbsp;&nbsp;  Hung Temple - Nghia Lo - Tu Le - Mu Cang Chai - Sapa - Fansipan - Dien Bien - Moc Chau Tour </h1>
     <div class="gallery">
         <div class="big"><img src="taybac2/1.jpg" alt="Big Image"></div>
         <div class="small1"><img src="taybac2/2.jpg" alt="Small 1"></div>
@@ -44,38 +44,35 @@ session_start();
             <div class="box">
                 <h2>Why This Tour Is Attractive</h2>
                 <ul>
-                    <li>Visit the historic Hung Temple, a symbol of Vietnam's ancient culture and heritage.</li>
-                    <li>Explore the picturesque rice terraces of Mu Cang Chai and Tu Le Valley.</li>
-                    <li>Conquer Fansipan Mountain, the roof of Indochina, with a breathtaking cable car ride.</li>
-                    <li>Experience the local culture in Nghia Lo, Sapa, and Moc Chau, meeting ethnic minorities like Thai, H'mong, and Dao.</li>
+                    <li>Visit the sacred Hung Temple, an important spiritual and cultural site in Vietnamese history.</li>
+                    <li>Admire the golden rice terraces in Tu Le and Mu Cang Chai during the harvest season.</li>
+                    <li>Conquer Fansipan – the Roof of Indochina – with a spectacular cable car ride.</li>
+                    <li>Explore Sapa’s unique ethnic culture and highland charm.</li>
+                    <li>Enjoy a scenic and insightful journey through Dien Bien and the peaceful Moc Chau Plateau.</li>
+                    <li>Small group tour with convenient departures from Ho Chi Minh City.</li>
                 </ul>
             </div>
 
             <div class="box">
                 <h2>Itinerary</h2>
                 <div class="box2">
-                    <h3>Day 1: Hanoi – Hung Temple – Nghia Lo</h3>
-                    <p>Visit the sacred Hung Temple and continue to the charming town of Nghia Lo.</p>
+                    <h3>Day 1: Ho Chi Minh City – Hanoi – Hung Temple – Nghia Lo</h3>
+                    <p>Fly to Hanoi and travel to the historic Hung Temple. Continue to Nghia Lo to experience the charm of Thai ethnic culture.</p>
                 </div>
 
                 <div class="box2">
-                    <h3>Day 2: Nghia Lo – Tu Le – Mu Cang Chai</h3>
-                    <p>Explore the terraced fields of Tu Le and Mu Cang Chai, famous for its stunning landscapes.</p>
+                    <h3>Day 2: Nghia Lo – Tu Le – Mu Cang Chai – Sapa</h3>
+                    <p>Enjoy the stunning views of terraced fields in Tu Le and Mu Cang Chai, then head to Sapa for an overnight stay.</p>
                 </div>
 
                 <div class="box2">
-                    <h3>Day 3: Mu Cang Chai – Sapa – Fansipan</h3>
-                    <p>Arrive in Sapa, visit local villages, and take a cable car ride to the top of Fansipan Mountain.</p>
+                    <h3>Day 3: Fansipan – Dien Bien</h3>
+                    <p>Ride the cable car to the peak of Fansipan Mountain. Afterward, journey through breathtaking mountain roads to reach Dien Bien.</p>
                 </div>
 
                 <div class="box2">
-                    <h3>Day 4: Sapa – Dien Bien</h3>
-                    <p>Travel to Dien Bien, a historical site where the famous Battle of Dien Bien Phu took place.</p>
-                </div>
-
-                <div class="box2">
-                    <h3>Day 5: Dien Bien – Moc Chau – Hanoi</h3>
-                    <p>Discover the green tea hills of Moc Chau before heading back to Hanoi.</p>
+                    <h3>Day 4: Dien Bien – Moc Chau – Hanoi – Ho Chi Minh City</h3>
+                    <p>Explore Moc Chau’s tea hills and green landscapes before flying back to Ho Chi Minh City from Hanoi.</p>
                 </div>
             </div>
         </div>
@@ -83,11 +80,11 @@ session_start();
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                <h3 style="display: inline;">Price From</h3>
-                <p style="color: red; font-weight: bold; display: inline;">13,590,000 VND</p>
-                <p></p>
-               <a href="../booktour.php?cityid=10&tourid=5" class="booking-button">Booking now!</a>
-            </div>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">13,590,000 VND</p>
+                    <p style="text-decoration: line-through; color: gray;">14,590,000 VND</p>
+                    <a href="../booktour.php?cityid=10&tourid=4" class="booking-button">Booking now!</a>
+                </div>
             </div>
             <div class="box">
                 <h3>Contact Support</h3>

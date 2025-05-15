@@ -140,8 +140,8 @@
                 <img src="./images/taybac.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="./Login/login.php" class="cart-btn">Visit Us</a>
-                    <a href="./Login/login.php" class="fas fa-share"></a>
+                    <a href="./Login/login.php" class="cart-btn">View Tour</a>
+                    <a href="./Login/login.php" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -155,8 +155,8 @@
                 <img src="./images/hcm.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="./Login/login.php" class="cart-btn">Visit Us</a>
-                    <a href="./Login/login.php" class="fas fa-share"></a>
+                    <a href="./Login/login.php" class="cart-btn">View Tour</a>
+                    <a href="./Login/login.php" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -170,8 +170,8 @@
                 <img src="./images/nhatrang.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="./Login/login.php" class="cart-btn">Visit Us</a>
-                    <a href="./Login/login.php" class="fas fa-share"></a>
+                    <a href="./Login/login.php" class="cart-btn">View Tour</a>
+                    <a href="./Login/login.php" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -185,8 +185,8 @@
                 <img src="./images/hue.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="./Login/login.php" class="cart-btn">Visit Us</a>
-                    <a href="./Login/login.php" class="fas fa-share"></a>
+                    <a href="./Login/login.php" class="cart-btn">View Tour</a>
+                    <a href="./Login/login.php" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -200,8 +200,8 @@
                 <img src="./images/phuyen.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="./Login/login.php" class="cart-btn">Visit Us</a>
-                    <a href="./Login/login.php" class="fas fa-share"></a>
+                    <a href="./Login/login.php" class="cart-btn">View Tour</a>
+                    <a href="./Login/login.php" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -215,8 +215,8 @@
                 <img src="./images/dalat.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="./Login/login.php" class="cart-btn">Visit Us</a>
-                    <a href="./Login/login.php" class="fas fa-share"></a>
+                    <a href="./Login/login.php" class="cart-btn">View Tour</a>
+                    <a href="./Login/login.php" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -230,8 +230,8 @@
                 <img src="./images/phuquoc.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="./Login/login.php" class="cart-btn">Visit Us</a>
-                    <a href="./Login/login.php" class="fas fa-share"></a>
+                    <a href="./Login/login.php" class="cart-btn">View Tour</a>
+                    <a href="./Login/login.php" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -245,8 +245,8 @@
                 <img src="./images/hoian.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="./Login/login.php" class="cart-btn">Visit Us</a>
-                    <a href="./Login/login.php" class="fas fa-share"></a>
+                    <a href="./Login/login.php" class="cart-btn">View Tour</a>
+                    <a href="./Login/login.php" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -260,8 +260,8 @@
                 <img src="./images/hagiang.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="./Login/login.php" class="cart-btn">Visit Us</a>
-                    <a href="./Login/login.php" class="fas fa-share"></a>
+                    <a href="./Login/login.php" class="cart-btn">View Tour</a>
+                    <a href="./Login/login.php" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">

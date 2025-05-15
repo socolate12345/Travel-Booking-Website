@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ninh Binh - Moc Chau Tour</title>
+    <title>Northwest in Rice Harvest Season - Nghia Lo - Mu Cang Chai - Sapa - Fansipan - Lai Chau - Dien Bien - Moc Chau</title>
     <link rel="stylesheet" href="../css/tour.css">
 </head>
 <body>
@@ -31,7 +31,7 @@ session_start();
 
 <main>
 
-    <h1>&nbsp;&nbsp;&nbsp;  NORTHWEST IN RICE HARVEST SEASON - NGHIA LO - MU CANG CHAI - SAPA - FANSIPAN - LAI CHAU - DIEN BIEN </h1>
+    <h1>&nbsp;&nbsp;&nbsp; Nghia Lo - Mu Cang Chai - Sapa - Fansipan - Lai Chau - Dien Bien - Moc Chau</h1>
     <p></p>
     <!-- Gallery placed above the columns -->
     <div class="gallery">
@@ -49,27 +49,44 @@ session_start();
             <div class="box">
                 <h2>Why This Tour Is Attractive</h2>
                 <ul>
-                    <li>Explore the stunning landscapes of Sa Pa, with terraced fields and the highest mountain in Vietnam – Fansipan.</li>
-                    <li>Discover the unique culture of ethnic minorities in the northern provinces like H'mong, Tay, and Dao.</li>
-                    <li>Experience the serene beauty of Pu Luong Nature Reserve, Moc Chau Plateau, and Mai Chau Valley.</li>
+                    <li>Marvel at golden terraced rice fields during the stunning harvest season in Northern Vietnam.</li>
+                    <li>Visit remote highland regions including Nghia Lo, Mu Cang Chai, and Lai Chau for authentic local experiences.</li>
+                    <li>Conquer the peak of Fansipan – the "Roof of Indochina" – by cable car or trekking.</li>
+                    <li>Discover the cultural richness of ethnic minorities such as H’mong, Thai, and Dao.</li>
+                    <li>Relax in the cool climate and natural beauty of Moc Chau Plateau and Dien Bien countryside.</li>
                 </ul>
             </div>
 
             <div class="box">
                 <h2>Itinerary</h2>
                 <div class="box2">
-                    <h3>Day 1: Hanoi – Sa Pa</h3>
-                    <p>Arrive in Sa Pa, visit the terraced fields, and enjoy the breathtaking views of the Fansipan Mountain.</p>
+                    <h3>Day 1: Hanoi – Nghia Lo</h3>
+                    <p>Depart from Hanoi and travel to Nghia Lo. Enjoy the peaceful mountain scenery and explore ethnic Thai villages.</p>
                 </div>
 
                 <div class="box2">
-                    <h3>Day 2: Sa Pa – Lai Chau – Moc Chau</h3>
-                    <p>Explore the ethnic villages in Sa Pa, continue your journey to Lai Chau, and visit Moc Chau Plateau.</p>
+                    <h3>Day 2: Nghia Lo – Mu Cang Chai</h3>
+                    <p>Journey through scenic mountain passes to Mu Cang Chai, famous for its breathtaking terraced rice fields in harvest season.</p>
                 </div>
 
                 <div class="box2">
-                    <h3>Day 3: Moc Chau – Mai Chau – Hanoi</h3>
-                    <p>Discover the lush valleys of Mai Chau and interact with the local Thai people before returning to Hanoi.</p>
+                    <h3>Day 3: Mu Cang Chai – Sapa</h3>
+                    <p>Head to Sapa, explore local markets and enjoy the cool mountain air. Visit Cat Cat Village or relax in town.</p>
+                </div>
+
+                <div class="box2">
+                    <h3>Day 4: Fansipan – Lai Chau</h3>
+                    <p>Take a cable car to Fansipan Peak, then continue on a scenic drive to Lai Chau, with stops at waterfalls and hill tribe villages.</p>
+                </div>
+
+                <div class="box2">
+                    <h3>Day 5: Lai Chau – Dien Bien – Moc Chau</h3>
+                    <p>Explore the historical sites in Dien Bien before heading to the lush green plateaus of Moc Chau.</p>
+                </div>
+
+                <div class="box2">
+                    <h3>Day 6: Moc Chau – Hanoi</h3>
+                    <p>Visit tea plantations and flower valleys in Moc Chau, then return to Hanoi, ending your memorable Northern adventure.</p>
                 </div>
             </div>
         </div>
@@ -77,11 +94,11 @@ session_start();
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                <h3 style="display: inline;">Price From</h3>
-                <p style="color: red; font-weight: bold; display: inline;">4,590,000 VND</p>
-                <p></p>
-                <a href="../booktour.php?cityid=10&tourid=4" class="booking-button">Booking now!</a>
-            </div>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">12,179,000 VND</p>
+                    <p style="text-decoration: line-through; color: gray;">12,779,000 VND</p>
+                    <a href="../booktour.php?cityid=10&tourid=4" class="booking-button">Booking now!</a>
+                </div>
             </div>
             <div class="box">
                 <h3>Contact Support</h3>
