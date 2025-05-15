@@ -56,22 +56,23 @@ $conn->close();
     <form method="post" action="addjourney.php">
         <h2>Add Journey </h2><hr weight="4px">
         <label for="city">City:</label>
-        <input type="text" id="city" name="city" placeholder="City"><br><br>
+        <required><input type="text" id="city" name="city" placeholder="City"></required><br><br>
 
         <label for="region">Region:</label>
-        <input type="text" id="region" name="region" placeholder="Region"><br><br>
+       <required><input type="text" id="region" name="region" placeholder="Region"></required><br><br>
 
         <label for="season">Season:</label>
-        <input type="text" id="season" name="season" placeholder="Season"><br><br>
+        <required><input type="text" id="season" name="season" placeholder="Season"></required><br><br>
 
         <label for="days">Days:</label>
-        <input type="number" id="days" name="days" placeholder="Days"><br><br>
+        <required><input type="number" id="days" name="days" placeholder="Days"></required><br><br>
 
         <label for="cost">Cost:</label>
-        <input type="number" id="cost" name="cost" placeholder="Cost"><br><br>
+        <required><input type="number" id="cost" name="cost" placeholder="Cost"></required><br><br>
 
         <input type="submit" value="Add Journey">
-        <a href="adminviewcity.php" style="margin-left: 15px;">Cancel</a>
+        <a href="adminviewcity.php" style="margin-left: 15px; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">Cancel</a>
+
     </form>
 </body>
 </html>

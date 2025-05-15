@@ -66,7 +66,7 @@ session_start();
     </div>
 
     <footer class="footer">
-        <p>&copy; 2023 Admin Panel</p>
+        <p>&copy; 2025 Admin Panel</p>
     </footer>
 
     <script>
@@ -79,10 +79,10 @@ session_start();
         };
 
         var userLineData = {
-            labels: ['2019', '2020', '2021', '2022', '2023'],
+            labels: ['2019', '2020', '2021', '2022', '2023','2024','2025'],
             datasets: [{
                 label: 'Number of Users',
-                data: [200, 400, 600, 800, 1000],
+                data: [200, 400, 600, 800, 1000, 1200, 1500],
                 borderColor: '#ff6384',
                 fill: false
             }]

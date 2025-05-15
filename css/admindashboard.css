@@ -5,7 +5,7 @@ body {
 }
 
 .header {
-    background-color: #e84393;
+    background-color: hsl(201, 100%, 62%);
     color: white;
     padding: 20px;
     display: flex;
@@ -73,7 +73,7 @@ body {
 }
 
 .footer {
-    background-color: #e84393;
+    background-color: hsl(201, 100%, 62%);
     color: white;
     text-align: center;
     padding: 10px;

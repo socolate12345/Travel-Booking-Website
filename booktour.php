@@ -91,8 +91,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Tên: <input type="text" name="name" required><br>
     Email: <input type="email" name="email" required><br>
     Số khách: <input type="number" name="tourists" min="1" value="1" required><br>
-    Ngày đi: <input type="date" name="tour_date" required><br>
+    Ngày đi: <input type="date" name="tour_date" id="tour_date" required><br>
     Liên hệ: <input type="text" name="contact" required><br>
+<script>
+  // Lấy ngày hiện tại
+  const today = new Date().toISOString().split('T')[0];
+  const tourDateInput = document.getElementById('tour_date');
+
+  // Thiết lập ngày mặc định và ngày tối thiểu là hôm nay
+  tourDateInput.value = today;
+  tourDateInput.min = today;
+</script>
+
     
     <p><strong>Tour:</strong> <?= htmlspecialchars($tour_name) ?> (<?= number_format($price_per_person) ?> VND / người)</p>
     <p><strong>Thành phố:</strong> <?= htmlspecialchars($city_name) ?></p>

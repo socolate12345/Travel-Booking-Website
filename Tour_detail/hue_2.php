@@ -29,7 +29,7 @@ session_start();
 </header>
 
 <main>
-    <h1>&nbsp;&nbsp;&nbsp;NORTH-CENTRAL TOUR: HANOI - SAPA - FANSIPAN - HA LONG - NINH BINH - DA NANG - SON TRA - BA NA HILLS - GOLDEN BRIDGE - HOI AN - LA VANG - HUE - PHONG NHA</h1>
+    <h1>North - Central Tour: Hanoi - Sapa - Fansipan - Ha Long - Ninh Binh - Da Nang - Son Tra - Ba Na Hills - Golden Bridge - Hoi An - La Vang - Hue - Phong Nha</h1>
     <div class="gallery">
         <div class="big"><img src="hue2/1.jpg" alt="Big Image"></div>
         <div class="small1"><img src="hue2/2.jpg" alt="Small 1"></div>
@@ -73,8 +73,9 @@ session_start();
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                    <h3>Price From</h3>
-                    <p style="color: red; font-weight: bold;">23,590,000 VND</p>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">23,590,000 VND</p>
+                    <p style="text-decoration: line-through; color: gray;">26,211,111 VND</p>
                     <a href="../booktour.php?cityid=13&tourid=9" class="booking-button">Booking now!</a>
                 </div>
             </div>

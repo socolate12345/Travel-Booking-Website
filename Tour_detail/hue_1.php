@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Da Nang - Phong Nha Cave - La Vang - Hue - Ba Na Hills - Hoi An - 5 Days</title>
+    <title>Da Nang - Phong Nha Cave - La Vang - Hue - Ba Na Hills - Hoi An </title>
     <link rel="stylesheet" href="../css/tour.css">
 </head>
 <body>
@@ -29,7 +29,7 @@ session_start();
 </header>
 
 <main>
-    <h1>&nbsp;&nbsp;&nbsp;DA NANG - PHONG NHA CAVE - LA VANG - HUE - BA NA HILLS - HOI AN - 5 DAYS</h1>
+    <h1>&nbsp;&nbsp;&nbsp;Da Nang - Phong Nha Cave - La Vang - Hue - Ba Na Hills - Hoi An</h1>
     <div class="gallery">
         <div class="big"><img src="hue1/1.jpg" alt="Big Image"></div>
         <div class="small1"><img src="hue1/2.jpg" alt="Small 1"></div>
@@ -77,8 +77,9 @@ session_start();
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                    <h3>Price From</h3>
-                    <p style="color: red; font-weight: bold;">6.990.000 VND</p>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">6,990,000 VND</p>
+                    <p style="text-decoration: line-through; color: gray;">7,943,182 VND</p>
                     <a href="../booktour.php?cityid=13&tourid=8" class="booking-button">Booking now!</a>
                 </div>
             </div>

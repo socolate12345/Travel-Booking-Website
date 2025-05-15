@@ -5,11 +5,11 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Phu Quoc Tour</title>
+    <title>Phu Quoc Paradise Escape</title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 <body>
-
 
 <header>
     <div class="header-container">
@@ -30,46 +30,45 @@ session_start();
 </header>
 
 <main>
-
-    <h1>&nbsp;&nbsp;&nbsp;  PHU QUOC - BAI SAO - TRANH STREAM - NIGHT MARKET TOUR </h1>
-    <p></p>
-    <!-- Gallery placed above the columns -->
+    <h1>&nbsp;&nbsp;&nbsp;Phu Quoc Paradise Escape: Sao Beach - Vinpearl Safari - Night Market - Pepper Farm</h1>
     <div class="gallery">
-
-        <div class="big"><img src="image_tourdetail/phuquoc_1.1.jpg" alt="Big Image"></div>
-        <div class="small1"><img src="image_tourdetail/phuquoc_1.2.jpg" alt="Small 1"></div>
-        <div class="small2"><img src="image_tourdetail/phuquoc_1.3.jpg" alt="Small 2"></div>
-        <div class="small3"><img src="image_tourdetail/phuquoc_1.4.jpg" alt="Small 3"></div>
-        <div class="small4"><img src="image_tourdetail/phuquoc_1.5.jpg" alt="Small 4"></div>
+        <div class="big"><img src="phuquoc1/1.jpg" alt="Big Image"></div>
+        <div class="small1"><img src="phuquoc1/2.jpg" alt="Small 1"></div>
+        <div class="small2"><img src="phuquoc1/3.jpg" alt="Small 2"></div>
+        <div class="small3"><img src="phuquoc1/4.jpg" alt="Small 3"></div>
+        <div class="small4"><img src="phuquoc1/5.jpg" alt="Small 4"></div>
     </div>
-    <p></p>
-    <!-- Columns start here -->
+
     <div class="content-columns">
         <div class="left-column">
             <div class="box">
                 <h2>Why This Tour Is Attractive</h2>
                 <ul>
-                    <li>Relax on the white sandy beaches of Bai Sao, one of the most beautiful in Phu Quoc.</li>
-                    <li>Explore the natural charm of Tranh Stream with its clear water, rocks, and lush surroundings.</li>
-                    <li>Enjoy the vibrant atmosphere of Phu Quoc Night Market with local seafood and souvenirs.</li>
+                    <li>Relax on the pristine Sao Beach, known for its white sand and clear turquoise waters.</li>
+                    <li>Experience the exciting Vinpearl Safari, home to diverse wildlife in natural habitats.</li>
+                    <li>Explore the vibrant Phu Quoc Night Market with delicious local food and unique souvenirs.</li>
+                    <li>Visit a traditional Pepper Farm to learn about one of Phu Quoc’s famous agricultural products.</li>
+                    <li>Enjoy a comfortable trip with direct flight departure from Ho Chi Minh City and quality hotel accommodations.</li>
                 </ul>
             </div>
 
             <div class="box">
                 <h2>Itinerary</h2>
                 <div class="box2">
-                    <h3>Day 1: Arrival in Phu Quoc – Night Market Visit</h3>
-                    <p>Arrive in Phu Quoc, check in at your hotel, and enjoy an evening stroll through the Phu Quoc Night Market.</p>
+                    <h3>Day 1: Ho Chi Minh City – Phu Quoc</h3>
+                    <p>Take a flight from Ho Chi Minh City to Phu Quoc. Upon arrival, check in to your hotel and relax. Spend the evening exploring the lively Phu Quoc Night Market.</p>
                 </div>
-
                 <div class="box2">
-                    <h3>Day 2: Bai Sao – Tranh Stream Adventure</h3>
-                    <p>Spend the morning at Bai Sao beach swimming and relaxing, then visit Tranh Stream for a light nature trek and photo opportunities.</p>
+                    <h3>Day 2: Sao Beach – Vinpearl Safari</h3>
+                    <p>Enjoy a morning at the beautiful Sao Beach, soaking up the sun and swimming in the clear waters. In the afternoon, visit Vinpearl Safari to see exotic animals and learn about conservation efforts.</p>
                 </div>
-
                 <div class="box2">
-                    <h3>Day 3: Free Time – Departure</h3>
-                    <p>Enjoy free time to relax, shop, or explore nearby areas before transferring to the airport.</p>
+                    <h3>Day 3: Pepper Farm – Free Time</h3>
+                    <p>Tour a local Pepper Farm to discover how this island specialty is cultivated. Spend the afternoon at leisure, relaxing or exploring on your own.</p>
+                </div>
+                <div class="box2">
+                    <h3>Day 4: Leisure Morning – Return to Ho Chi Minh City</h3>
+                    <p>Enjoy a free morning to relax or shop for souvenirs before checking out. Transfer to the airport for your return flight to Ho Chi Minh City, concluding your Phu Quoc paradise escape.</p>
                 </div>
             </div>
         </div>
@@ -77,16 +76,18 @@ session_start();
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                <h3 style="display: inline;">Price From</h3>
-                <p style="color: red; font-weight: bold; display: inline;">5,250,000  VND</p>
-                <p></p>
-                <a href="../booktour.php?cityid=16&tourid=14" class="booking-button">Booking now!</a>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">6,290,000 VND</p>
+                    <p style="text-decoration: line-through; color: gray;">7,136,364 VND</p>
+                    <a href="../booktour.php?cityid=14&tourid=10" class="booking-button">Booking now!</a>
+                </div>
             </div>
-            </div>
+
             <div class="box">
                 <h3>Contact Support</h3>
                 <p>📞 Hotline: 1919 2025<br>✉️ Email: viettransit.support@mail.com</p>
             </div>
+
             <div class="box">
                 <h3>Why Book Online?</h3>
                 <ul>
@@ -96,6 +97,7 @@ session_start();
                     <li>Exclusive deals</li>
                 </ul>
             </div>
+
             <div class="box">
                 <h3>Trusted Tour</h3>
                 <p>Founded in 2025<br>Leading travel brand<br>Nationally recognized</p>
@@ -105,6 +107,7 @@ session_start();
 </main>
 
 <footer>
+<section class="footer">
     <div class="box-container">
         <div class="box">
             <h3>Quick links</h3>
@@ -121,19 +124,18 @@ session_start();
         </div>
         <div class="box">
             <h3>Popular Travel Locations</h3>
-            <a href="viewjourney_taybac.php">Tay Bac</a>
-            <a href="viewjourney_hcm.php">Ho Chi Minh</a>
-            <a href="viewjourney_phuquoc.php">Phu Quoc</a>
-            <a href="viewjourney_hue.php">Hue</a>
+            <a href="/journey/viewjourney_taybac.php">Tay Bac</a>
+            <a href="/journey/viewjourney_hcm.php">Ho Chi Minh</a>
+            <a href="/journey/viewjourney_phuquoc.php">Phu Quoc</a>
+            <a href="/journey/viewjourney_hue.php">Hue</a>
         </div>
         <div class="box">
-            <h3>Contact Info</h3>
+            <h3>contact info</h3>
             <a href="https://github.com/socolate12345/Travel-Booking-Website">GitHub</a>
             <img src="./images/payment.png" alt="">
         </div>
     </div>
     <div class="credit">©2025 VietTransit</div>
+</section>
 </footer>
-
-</body>
 </html>

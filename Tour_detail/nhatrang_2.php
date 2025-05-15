@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nha Trang - 3 Days - Pottery & Seashell Workshop, Ancient Nha Trang & More</title>
+    <title>Nha Trang - Pottery & Seashell Workshop, Ancient Nha Trang & More</title>
     <link rel="stylesheet" href="../css/tour.css">
 </head>
 <body>
@@ -29,7 +29,7 @@ session_start();
 </header>
 
 <main>
-    <h1>&nbsp;&nbsp;&nbsp; NHA TRANG - 3 DAYS - POTTERY & SEASHELL WORKSHOP, ANCIENT NHA TRANG & MORE</h1>
+    <h1>&nbsp;&nbsp;&nbsp; Nha Trang - Pottery & Seashell Workshop, Ancient Nha Trang & More</h1>
     <div class="gallery">
         <div class="big"><img src="nhatrang2/1.jpg" alt="Big Image"></div>
         <div class="small1"><img src="nhatrang2/2.jpg" alt="Small 1"></div>
@@ -43,28 +43,30 @@ session_start();
             <div class="box">
                 <h2>Why This Tour Is Attractive</h2>
                 <ul>
-                    <li>Immerse in the artistic heritage of Bàu Trúc Pottery Village.</li>
-                    <li>Discover ancient Nha Trang and its historic sites.</li>
-                    <li>Relax at Nhũ Tiên Beach and enjoy thrilling attractions at VinWonders.</li>
-                    <li>Create unique crafts at the Pottery & Seashell Workshop Experience.</li>
+                    <li>Visit Bau Truc Pottery Village, one of Southeast Asia’s oldest pottery villages.</li>
+                    <li>Explore the rich cultural heritage of ancient Nha Trang and Thap Ba Ponagar.</li>
+                    <li>Unwind at the pristine Nhu Tien Beach and experience family-friendly fun at VinWonders.</li>
+                    <li>Create your own souvenirs during a unique Pottery & Seashell Workshop Experience.</li>
+                    <li>Stay at a comfortable 4-star hotel and enjoy a well-curated travel experience departing from Da Nang.</li>
                 </ul>
             </div>
 
             <div class="box">
                 <h2>Itinerary</h2>
                 <div class="box2">
-                    <h3>Day 1: Arrival & Pottery Village</h3>
-                    <p>Check-in at the 4-star hotel and visit Bàu Trúc Pottery Village for a hands-on pottery session.</p>
+                    <h3>Day 1: Da Nang – Nha Trang – Bau Truc Pottery Village</h3>
+                    <p>Depart from Da Nang and arrive in Nha Trang. Visit Bau Truc Pottery Village for a hands-on cultural experience. Check in to your 4-star hotel and enjoy free time in the evening.</p>
                 </div>
                 <div class="box2">
-                    <h3>Day 2: Ancient Nha Trang & Workshop</h3>
-                    <p>Explore the historic Tháp Bà Ponagar and join the Pottery & Seashell Workshop to craft personalized souvenirs.</p>
+                    <h3>Day 2: Ancient Nha Trang – Thap Ba Ponagar – Pottery & Seashell Workshop</h3>
+                    <p>Discover the beauty of ancient Nha Trang with a guided visit to Thap Ba Ponagar. In the afternoon, take part in the Pottery & Seashell Workshop and craft your own coastal-inspired creations.</p>
                 </div>
                 <div class="box2">
-                    <h3>Day 3: Nhũ Tiên Beach & VinWonders</h3>
-                    <p>Spend the day at Nhũ Tiên Beach before a thrilling afternoon at VinWonders theme park.</p>
+                    <h3>Day 3: Nhu Tien Beach – VinWonders – Return to Da Nang</h3>
+                    <p>Enjoy a relaxing morning at Nhu Tien Beach. Then, spend your afternoon exploring the exciting attractions at VinWonders before returning to Da Nang.</p>
                 </div>
             </div>
+
         </div>
 
         <div class="right-column">
@@ -72,7 +74,7 @@ session_start();
                 <div class="button">
                 <h3 style="display: inline;">Price From</h3>
                 <p style="color: red; font-weight: bold; display: inline;">2,690,000 VND</p>
-                <p></p>
+                <p style="text-decoration: line-through; color: gray;">3,280,488 VND</p>
                 <a href="../booktour.php?cityid=12&tourid=7" class="booking-button">Booking now!</a>
             </div>
             </div>

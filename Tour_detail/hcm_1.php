@@ -31,7 +31,7 @@ session_start();
 
 <main>
 
-    <h1>&nbsp;&nbsp;&nbsp;  CITY TOUR - SAIGON - CHOLON & CULINARY EXPERIENCE</h1>
+    <h1>&nbsp;&nbsp;&nbsp;  Discover Ho Chi Minh - Cu Chi Tunnels - Mekong Delta</h1>
     <div class="gallery">
         <div class="big"><img src="hcm1/1.jpg" alt="Big Image"></div>
         <div class="small1"><img src="hcm1/2.jpg" alt="Small 1"></div>
@@ -45,25 +45,31 @@ session_start();
             <div class="box">
                 <h2>Why This Tour Is Attractive</h2>
                 <ul>
-                            <li>Unique perspective from a double-decker bus</li>
-                           <li>Cultural insights in Cholon</li>
-                           <li>Exquisite culinary stops with local delicacies</li>
+                    <li>Dive into Vietnam’s history at the Cu Chi Tunnels</li>
+                    <li>Experience the vibrant local life of the Mekong Delta</li>
+                    <li>Explore iconic landmarks of Ho Chi Minh City</li>
+                    <li>Enjoy comfortable travel and hotel accommodations</li>
+                    <li>Perfect for small groups with daily departures</li>
                 </ul>
             </div>
 
             <div class="box">
                 <h2>Itinerary</h2>
                 <div class="box2">
-                    <h3>Stop 1: Ben Thanh Market</h3>
-                    <p>Start the tour at Ben Thanh Market, a cultural and shopping hub of Saigon.</p>
+                    <h3>Day 1: Ho Chi Minh City Highlights</h3>
+                    <p>Discover the city's colonial charm with visits to Notre-Dame Cathedral, the Central Post Office, and local markets.</p>
                 </div>
                 <div class="box2">
-                    <h3>Stop 2: Cholon - Saigon's Chinatown</h3>
-                    <p>Explore the vibrant Cholon district, visit temples and traditional shops.</p>
+                    <h3>Day 2: Cu Chi Tunnels</h3>
+                    <p>Travel to the Cu Chi Tunnels, explore underground passageways, and learn about wartime resilience.</p>
                 </div>
                 <div class="box2">
-                    <h3>Stop 3: Street Food Tour</h3>
-                    <p>Sample iconic Vietnamese dishes like Pho, Banh Mi, and fresh spring rolls.</p>
+                    <h3>Day 3: Mekong Delta Exploration</h3>
+                    <p>Cruise along the Mekong River, visit floating markets and local workshops, and enjoy traditional Mekong cuisine.</p>
+                </div>
+                <div class="box2">
+                    <h3>Day 4: Free Time & Departure</h3>
+                    <p>Relax or explore the city at your own pace before returning home.</p>
                 </div>
             </div>
         </div>
@@ -71,11 +77,11 @@ session_start();
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                <h3 style="display: inline;">Price From</h3>
-                <p style="color: red; font-weight: bold; display: inline;">599,000 VND</p>
-                <p></p>
-                <a href="../booktour.php?cityid=11&tourid=1" class="booking-button">Booking now!</a>
-            </div>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">4,590,000 ₫</p>
+                    <p style="text-decoration: line-through; color: gray;">4,840,000 ₫</p>
+                    <a href="../booktour.php?cityid=11&tourid=1" class="booking-button">Booking now!</a>
+                </div>
             </div>
             <div class="box">
                 <h3>Contact Support</h3>

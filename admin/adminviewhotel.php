@@ -1,7 +1,7 @@
 <?php
 include '../dbconnect.php';
 
-// Xử lý thêm hoặc cập nhật
+// Handle add/update
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hotelid = $_POST["hotelid"];
     $hotel = $_POST["hotel"];
@@ -11,14 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ratings = $_POST["ratings"];
 
     if ($hotelid) {
-        // Cập nhật
         $stmt = $conn->prepare("UPDATE hotels SET hotel=?, cityid=?, cost=?, amenities=?, ratings=? WHERE hotelid=?");
-        $stmt->bind_param("siisii", $hotel, $cityid, $cost, $amenities, $ratings, $hotelid);
+        $stmt->bind_param("sidsii", $hotel, $cityid, $cost, $amenities, $ratings, $hotelid);
         $stmt->execute();
     } else {
-        // Thêm mới
         $stmt = $conn->prepare("INSERT INTO hotels (hotel, cityid, cost, amenities, ratings) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("siisi", $hotel, $cityid, $cost, $amenities, $ratings);
+        $stmt->bind_param("sidsi", $hotel, $cityid, $cost, $amenities, $ratings);
         $stmt->execute();
     }
 
@@ -26,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 
-// Xóa khách sạn
+// Handle delete
 if (isset($_GET["delete"])) {
     $id = (int)$_GET["delete"];
     $conn->query("DELETE FROM hotels WHERE hotelid = $id");
@@ -34,10 +32,10 @@ if (isset($_GET["delete"])) {
     exit();
 }
 
-// Lấy danh sách khách sạn
+// Fetch hotels
 $result = $conn->query("SELECT * FROM hotels");
 
-// Lấy danh sách cities để chọn cityid
+// Fetch cities for dropdown
 $cities_result = $conn->query("SELECT cityid, city FROM cities");
 $city_options = [];
 while ($city = $cities_result->fetch_assoc()) {
@@ -45,53 +43,109 @@ while ($city = $cities_result->fetch_assoc()) {
 }
 ?>
 
-<h2>Danh sách Khách Sạn</h2>
-<table border="1" cellpadding="5">
-    <tr>
-        <th>ID</th><th>Tên KS</th><th>City ID</th><th>Chi phí</th><th>Tiện nghi</th><th>Đánh giá</th><th>Hành động</th>
-    </tr>
-    <?php while ($row = $result->fetch_assoc()) { ?>
-    <tr>
-        <td><?= $row["hotelid"] ?></td>
-        <td><?= htmlspecialchars($row["hotel"]) ?></td>
-        <td><?= $row["cityid"] ?> - <?= $city_options[$row["cityid"]] ?? "Không rõ" ?></td>
-        <td><?= number_format($row["cost"]) ?></td>
-        <td><?= nl2br(htmlspecialchars($row["amenities"])) ?></td>
-        <td><?= $row["ratings"] ?></td>
-        <td>
-            <a href="?edit=<?= $row["hotelid"] ?>">Sửa</a> |
-            <a href="?delete=<?= $row["hotelid"] ?>" onclick="return confirm('Xóa khách sạn này?')">Xóa</a>
-        </td>
-    </tr>
-    <?php } ?>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Manage Hotels</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="../css/adminviewhotel.css">
+    
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6 text-center">Hotel List</h2>
+        <div class="overflow-x-auto mb-10">
+            <table class="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg text-sm">
+                <thead class="bg-blue-600 text-white">
+                    <tr>
+                        <th class="p-3 border">ID</th>
+                        <th class="p-3 border">Hotel Name</th>
+                        <th class="p-3 border">City</th>
+                        <th class="p-3 border">Cost</th>
+                        <th class="p-3 border">Amenities</th>
+                        <th class="p-3 border">Ratings</th>
+                        <th class="p-3 border">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                    <tr class="hover:bg-gray-50">
+                        <td class="p-3 border text-center"><?= $row["hotelid"] ?></td>
+                        <td class="p-3 border"><?= htmlspecialchars($row["hotel"]) ?></td>
+                        <td class="p-3 border"><?= $row["cityid"] ?> - <?= $city_options[$row["cityid"]] ?? "Unknown" ?></td>
+                        <td class="p-3 border text-right"><?= number_format($row["cost"]) ?></td>
+                        <td class="p-3 border"><?= nl2br(htmlspecialchars($row["amenities"])) ?></td>
+                        <td class="p-3 border text-center"><?= $row["ratings"] ?></td>
+                        <td class="p-3 border text-center">
+                            <a href="?edit=<?= $row["hotelid"] ?>" class="text-blue-600 hover:underline mr-2">Edit</a> |
+                            <a href="?delete=<?= $row["hotelid"] ?>" class="text-red-600 hover:underline ml-2" onclick="return confirm('Delete this hotel?')">Delete</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
 
-<?php
-// Lấy thông tin để sửa
-$edit = null;
-if (isset($_GET["edit"])) {
-    $id = (int)$_GET["edit"];
-    $edit = $conn->query("SELECT * FROM hotels WHERE hotelid = $id")->fetch_assoc();
-}
-?>
+        <?php
+        $edit = null;
+        if (isset($_GET["edit"])) {
+            $id = (int)$_GET["edit"];
+            $edit = $conn->query("SELECT * FROM hotels WHERE hotelid = $id")->fetch_assoc();
+        }
+        ?>
 
-<h2><?= $edit ? "Chỉnh sửa Khách Sạn #" . $edit["hotelid"] : "Thêm Khách Sạn Mới" ?></h2>
-<form method="POST">
-    <input type="hidden" name="hotelid" value="<?= $edit["hotelid"] ?? '' ?>">
-    Tên khách sạn: <input name="hotel" value="<?= $edit["hotel"] ?? '' ?>"><br>
-    City:
-    <select name="cityid">
-        <?php foreach ($city_options as $id => $name) { ?>
-            <option value="<?= $id ?>" <?= ($edit["cityid"] ?? '') == $id ? "selected" : "" ?>>
-                <?= "$id - $name" ?>
-            </option>
-        <?php } ?>
-    </select><br>
-    Chi phí: <input name="cost" type="number" value="<?= $edit["cost"] ?? '' ?>"><br>
-    Tiện nghi: <textarea name="amenities"><?= $edit["amenities"] ?? '' ?></textarea><br>
-    Đánh giá: <input name="ratings" type="number" min="1" max="5" value="<?= $edit["ratings"] ?? '' ?>"><br>
-    <button type="submit"><?= $edit ? "Cập nhật" : "Thêm mới" ?></button>
-</form>
-<button onclick="window.location.href='admindashboard.php'">
-    <?= $edit ? "Back to Dashboard" : "Back to Dashboard " ?>
-</button>
+        <div class="max-w-2xl mx-auto bg-white p-10 rounded-lg shadow-md">
+
+            <h2 class="text-2xl font-bold mb-6 text-center"><?= $edit ? "Edit Hotel #" . $edit["hotelid"] : "Add New Hotel" ?></h2>
+            <form method="POST" class="space-y-4">
+                <input type="hidden" name="hotelid" value="<?= $edit["hotelid"] ?? '' ?>">
+
+                <div>
+                    <label class="block mb-1 font-semibold" for="hotel">Hotel Name</label>
+                    <input id="hotel" name="hotel" type="text" value="<?= htmlspecialchars($edit["hotel"] ?? '') ?>" class="w-full border border-gray-300 px-3 py-2 rounded" required />
+                </div>
+
+                <div>
+                    <label class="block mb-1 font-semibold" for="cityid">City</label>
+                    <select id="cityid" name="cityid" class="w-full border border-gray-300 px-3 py-2 rounded" required>
+                        <?php foreach ($city_options as $id => $name) { ?>
+                            <option value="<?= $id ?>" <?= ($edit["cityid"] ?? '') == $id ? "selected" : "" ?>>
+                                <?= "$id - $name" ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block mb-1 font-semibold" for="cost">Cost</label>
+                    <input id="cost" name="cost" type="number" value="<?= $edit["cost"] ?? '' ?>" class="w-full border border-gray-300 px-3 py-2 rounded" required />
+                </div>
+
+                <div>
+                    <label class="block mb-1 font-semibold" for="amenities">Amenities</label>
+                    <textarea id="amenities" name="amenities" class="w-full border border-gray-300 px-3 py-2 rounded" rows="3"><?= htmlspecialchars($edit["amenities"] ?? '') ?></textarea>
+                </div>
+
+                <div>
+                    <label class="block mb-1 font-semibold" for="ratings">Ratings (1-5)</label>
+                    <input id="ratings" name="ratings" type="number" min="1" max="5" value="<?= $edit["ratings"] ?? '' ?>" class="w-full border border-gray-300 px-3 py-2 rounded" required />
+                </div>
+
+                <div class="flex justify-between pt-4">
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+                        <?= $edit ? "Update" : "Add New" ?>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="text-center mt-10">
+            <button type="button" onclick="window.location.href='admindashboard.php'" class="back-button">
+                Back to Dashboard
+            </button>
+        </div>
+    </div>
+</body>
+</html>

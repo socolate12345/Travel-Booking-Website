@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nha Trang - 3 Days - Tháp Bà Ponagar, Nhũ Tiên Beach & More</title>
+    <title>Nha Trang - Tháp Bà Ponagar, Nhũ Tiên Beach & More</title>
     <link rel="stylesheet" href="../css/tour.css">
 </head>
 <body>
@@ -29,7 +29,7 @@ session_start();
 </header>
 
 <main>
-    <h1>&nbsp;&nbsp;&nbsp; NHA TRANG - 3 DAYS - THÁP BÀ PONAGAR, NHŨ TIÊN BEACH & MORE</h1>
+    <h1>&nbsp;&nbsp;&nbsp; Nha Trang - Tháp Bà Ponagar, Nhũ Tiên Beach & More</h1>
     <div class="gallery">
         <div class="big"><img src="nhatrang1/1.jpg" alt="Big Image"></div>
         <div class="small1"><img src="nhatrang1/2.jpg" alt="Small 1"></div>
@@ -56,12 +56,12 @@ session_start();
                     <p>Arrive in Nha Trang, check into the hotel, and visit Tháp Bà Ponagar - a historic Cham temple complex.</p>
                 </div>
                 <div class="box2">
-                    <h3>Day 2: Nhũ Tiên Beach & VinWonders</h3>
-                    <p>Relax at Nhũ Tiên Beach in the morning, then head to VinWonders for a day of fun and adventure.</p>
+                    <h3>Day 2: Nhu Tien Beach & VinWonders</h3>
+                    <p>Relax at Nhu Tien Beach in the morning, then head to VinWonders for a day of fun and adventure.</p>
                 </div>
                 <div class="box2">
-                    <h3>Day 3: Bàu Trúc Pottery Village & Departure</h3>
-                    <p>Visit the traditional Bàu Trúc Pottery Village and explore the new expressway before returning home.</p>
+                    <h3>Day 3: Bau Truc Pottery Village & Departure</h3>
+                    <p>Visit the traditional Bau Truc Pottery Village and explore the new expressway before returning home.</p>
                 </div>
             </div>
         </div>
@@ -69,9 +69,9 @@ session_start();
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                <h3 style="display: inline;">Price From</h3>
-                <p style="color: red; font-weight: bold; display: inline;">2,390,000 VND</p>
-                <p></p>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">2,390,000 VND</p>
+                    <p style="text-decoration: line-through; color: gray;">2,987,500</p>
                 <a href="../booktour.php?cityid=12&tourid=6" class="booking-button">Booking now!</a>
             </div>
             </div>

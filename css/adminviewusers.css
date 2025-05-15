@@ -1,51 +1,55 @@
-/* adminviewusers.css */
-
+/* Body Style */
 body {
-    background-color: #FFECF0;
     font-family: Arial, sans-serif;
+    background-color: #f6f8fc;
     margin: 0;
-    padding: 0;
-}
-
-h1 {
-    background-color: #e84393;
-    color: #FFF;
-    text-align: center;
     padding: 20px;
-    margin: 0;
 }
 
-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    background-color: #FFF;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-table, th, td {
-    border: 1px solid #e84393;
-}
-
-th, td {
-    padding: 10px;
+/* Page Title */
+h1 {
     text-align: center;
+    color: #003366;
+    margin-bottom: 30px;
 }
 
-th {
-    background-color: #e84393;
-    color: #FFF;
+/* Table Style */
+table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
 }
 
-tr:nth-child(even) {
-    background-color: #FFECF0;
+/* Table Header */
+thead {
+    background-color: #0b3d91;
+    color: white;
 }
 
-tr:nth-child(odd) {
-    background-color: #FFECF0;
+thead th {
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
 }
 
-tr:hover {
-    background-color: #FF69B4;
-    color: #FFF;
+/* Table Body */
+tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Optional: Make table responsive */
+@media screen and (max-width: 768px) {
+    table {
+        width: 100%;
+    }
 }

@@ -71,12 +71,12 @@ session_start();
 
         <div class="right-column">
             <div class="box3">
-                <div class="button">
-                <h3 style="display: inline;">Price From</h3>
-                <p style="color: red; font-weight: bold; display: inline;">2,800,000 VND</p>
-                <p></p>
-                <a href="../booktour.php?cityid=11&tourid=20" class="booking-button">Booking now!</a>
-            </div>
+               <div class="button">
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">890,000 ₫</p>
+                    <p style="text-decoration: line-through; color: gray;">933,000 ₫</p>
+                    <a href="../booktour.php?cityid=11&tourid=1" class="booking-button">Booking now!</a>
+                </div>
             </div>
             <div class="box">
                 <h3>Contact Support</h3>

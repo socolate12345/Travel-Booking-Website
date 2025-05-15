@@ -5,7 +5,8 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Phu Yen: Quy Nhon - Ky Co - Eo Gio - Ganh Da Dia</title>
+    <title>Phu Yen Hidden Gems: Da Dia Reef - Bai Xep - Mang Lang Church - Nhan Tower </title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="../css/tour.css">
 </head>
 <body>
@@ -29,7 +30,7 @@ session_start();
 </header>
 
 <main>
-    <h1>&nbsp;&nbsp;&nbsp;PHU YEN: QUY NHON - KY CO - EO GIO - GANH DA DIA</h1>
+    <h1>&nbsp;&nbsp;&nbsp;Phu Yen Hidden Gems: Da Dia Reef - Bai Xep - Mang Lang Church - Nhan Tower </h1>
     <div class="gallery">
         <div class="big"><img src="phuyen1/1.jpg" alt="Big Image"></div>
         <div class="small1"><img src="phuyen1/2.jpg" alt="Small 1"></div>
@@ -43,34 +44,42 @@ session_start();
             <div class="box">
                 <h2>Why This Tour Is Attractive</h2>
                 <ul>
-                    <li>Explore the stunning beaches of Ky Co and Eo Gio.</li>
-                    <li>Marvel at the unique rock formations of Ganh Da Dia.</li>
-                    <li>Discover the local culture and cuisine of Quy Nhon.</li>
+                    <li>Marvel at the breathtaking Da Dia Reef with its rare hexagonal rock formations.</li>
+                    <li>Relax on the peaceful golden sands of Bai Xep beach.</li>
+                    <li>Visit the historic Mang Lang Church, one of Vietnam’s oldest Catholic sites.</li>
+                    <li>Explore the ancient Nhan Tower with panoramic views of Tuy Hoa city.</li>
+                    <li>Enjoy a scenic train ride along Vietnam’s stunning coastal railway.</li>
                 </ul>
             </div>
 
             <div class="box">
                 <h2>Itinerary</h2>
                 <div class="box2">
-                    <h3>Day 1: Arrival in Quy Nhon</h3>
-                    <p>Check-in, relax at the beach, and enjoy a seafood dinner.</p>
+                    <h3>Day 1: Nha Trang – Phu Yen by Train</h3>
+                    <p>Depart from Nha Trang by train and arrive in Phu Yen. Check in to the hotel and enjoy an evening stroll along the coastline.</p>
                 </div>
                 <div class="box2">
-                    <h3>Day 2: Ky Co & Eo Gio</h3>
-                    <p>Spend the day exploring Ky Co Beach and Eo Gio with a boat tour and snorkeling experience.</p>
+                    <h3>Day 2: Da Dia Reef – Mang Lang Church</h3>
+                    <p>Visit the iconic Da Dia Reef and continue to Mang Lang Church to learn about local history and architecture.</p>
                 </div>
                 <div class="box2">
-                    <h3>Day 3: Ganh Da Dia & Local Markets</h3>
-                    <p>Visit Ganh Da Dia rock formations and enjoy shopping at the local markets in Quy Nhon.</p>
+                    <h3>Day 3: Bai Xep – Nhan Tower</h3>
+                    <p>Relax at Bai Xep beach before exploring Nhan Tower, an ancient Cham structure overlooking the city.</p>
+                </div>
+                <div class="box2">
+                    <h3>Day 4: Free Time – Return to Nha Trang</h3>
+                    <p>Enjoy free time in the morning for last-minute sightseeing or shopping before boarding the train back to Nha Trang.</p>
                 </div>
             </div>
+
         </div>
 
         <div class="right-column">
             <div class="box3">
                 <div class="button">
-                    <h3>Price From</h3>
-                    <p style="color: red; font-weight: bold;">3,990,000 VND</p>
+                    <h3 style="display: inline;">Price From</h3>
+                    <p style="color: red; font-weight: bold; display: inline;">5,990,000 VND</p>
+                    <p style="text-decoration: line-through; color: gray;">7,304,878 VND</p>
                     <a href="../booktour.php?cityid=14&tourid=10" class="booking-button">Booking now!</a>
                 </div>
             </div>
