@@ -50,7 +50,7 @@
 
     <!-- Nội dung chính -->
     <div class="content">
-        <span><strong>Incredible Vietnam:</strong></span>
+        <span><strong>Incredible Vietnam :</strong></span>
         <p>Where Every Place is a Story, Every Journey an Adventure.</p>
         <a href="#products" class="btn">Travel Now</a>
     </div>
@@ -375,7 +375,6 @@
         <div class="box">
             <h3>contact info</h3>
             <a href="https://github.com/socolate12345/Travel-Booking-Website">GitHub</a>
-            <img src="./images/payment.png" alt="">
         </div>
     </div>
 

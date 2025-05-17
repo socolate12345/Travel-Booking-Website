@@ -113,7 +113,7 @@ if (session_status() === PHP_SESSION_NONE) {
                      data-departure="Hanoi" 
                      data-transport="flight">
                     <div class="tour-image">
-                        <img src="../tourphotoID/taybac_1.jpg" alt="Moc Chau Tour">
+                        <img src="../tourphotoID/1.jpg" alt="Moc Chau Tour">
                         <span class="discount-badge">-4.7%</span>
                     </div>
                     <div class="tour-details">
@@ -142,7 +142,7 @@ if (session_status() === PHP_SESSION_NONE) {
                      data-departure="Ho Chi Minh City" 
                      data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/taybac_2.jpg" alt="Hung Temple Tour">
+                        <img src="../tourphotoID/2.jpg" alt="Hung Temple Tour">
                         <span class="discount-badge">-9%</span>
                     </div>
                     <div class="tour-details">
@@ -171,7 +171,7 @@ if (session_status() === PHP_SESSION_NONE) {
                      data-departure="Hanoi" 
                      data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/taybac_3.jpg" alt="Sapa Tour">
+                        <img src="../tourphotoID/3.jpg" alt="Sapa Tour">
                         <span class="discount-badge">-5%</span>
                     </div>
                     <div class="tour-details">
@@ -200,7 +200,7 @@ if (session_status() === PHP_SESSION_NONE) {
                      data-departure="Da Nang" 
                      data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/taybac_4.jpg" alt="Moc Chau Tour">
+                        <img src="../tourphotoID/4.jpg" alt="Moc Chau Tour">
                         <span class="discount-badge">-7.5%</span>
                     </div>
                     <div class="tour-details">

@@ -99,8 +99,11 @@ label[for="toggler"] {
 }
 
 /* Filter Sidebar Styles */
+
 .filter-sidebar {
-    flex: 0 0 300px;
+    position: sticky;
+    top: 0;
+    flex: 0 0 325px;
     background-color: #fff;
     border-radius: 8px;
     padding: 20px;
@@ -109,6 +112,8 @@ label[for="toggler"] {
 }
 
 .filter-sidebar h2 {
+    position: sticky;
+    top: 0;
     color: #0066cc;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
@@ -118,9 +123,13 @@ label[for="toggler"] {
 
 .filter-group {
     margin-bottom: 1.5rem;
+    position: sticky;
+    top: 0;
 }
 
 .filter-group h3 {
+    position: sticky;
+    top: 0;
     font-size: 1.1rem;
     margin-bottom: 0.8rem;
     color: #444;
@@ -169,7 +178,7 @@ label[for="toggler"] {
 
 .checkbox-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
 }
 

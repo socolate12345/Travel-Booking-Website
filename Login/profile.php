@@ -2,7 +2,6 @@
 session_start();
 require_once '../dbconnect.php';
 
-
 if (!isset($_SESSION["usersid"])) {
     header("Location: login.php");
     exit();
@@ -25,7 +24,7 @@ $result = mysqli_stmt_get_result($stmt);
 
 // Lấy danh sách thành phố yêu thích
 $favSql = "
-    SELECT cities.city 
+    SELECT cities.cityid, cities.city 
     FROM favorites 
     JOIN cities ON favorites.cityid = cities.cityid 
     WHERE favorites.usersid = ?
@@ -40,7 +39,7 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
     $favResult = mysqli_stmt_get_result($favStmt);
 
     while ($favRow = mysqli_fetch_assoc($favResult)) {
-        $favoriteCities[] = $favRow['city'];
+        $favoriteCities[] = $favRow;
     }
 } else {
     $favoriteCities = null;
@@ -65,103 +64,108 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
 
         /* Main wrapper for the whole layout */
         .main-wrapper {
-            display: flex;
-            max-width: 1200px;
-            margin: 40px auto;
-            min-height: 80vh;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
+            width: 100%;
+            min-height: 100vh;
             background-color: white;
         }
 
-        /* Navigation Sidebar */
-        .nav-tab {
-            width: 300px;
-            background-color: #2f6ecf;
+        /* Header */
+        .header {
+            background-color: #003580;
             color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 40px 20px;
+            padding: 25px 15px 15px;
             text-align: center;
         }
 
-        .nav-tab h2 {
-            font-size: 20px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .nav-buttons2 {
-            display: flex;
-            flex-direction: column;
-            /* Change to row to align buttons horizontally */
-            gap: 10px;
-            justify-content: flex-start;
-            /* Center the buttons horizontally */
-        }
-
-        .nav-buttons2 button {
-            padding: 10px;
-            background-color: white;
-            color: #2f6ecf;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .header h1 {
+            max-width: 1125px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            text-align: left;
+            font-size: 48px;
             font-weight: bold;
-            transition: background-color 0.3s;
-            width: 250px;
-            /* Set a fixed width to ensure buttons are the same size */
-            height: 80px;
-            text-align: center;
-            /* Ensure text is centered within the button */
         }
 
-        .nav-buttons2 button:hover {
-            background-color: #d6eaf8;
+        /* Main content section */
+        .main-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-color: #fdfdfd;
+            width: 100%;
+            box-sizing: border-box;
         }
 
+        /* Navigation buttons */
         .nav-buttons {
             display: flex;
             flex-direction: row;
-            /* Change to row to align buttons horizontally */
             gap: 10px;
-            justify-content: center;
-            /* Center the buttons horizontally */
+            justify-content: flex-end;
+            padding: 0 40px;
         }
 
         .nav-buttons button {
             padding: 10px;
-            background-color: white;
-            color: #2f6ecf;
+            background-color: #2f6ecf;
+            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
             transition: background-color 0.3s;
             width: 100px;
-            /* Set a fixed width to ensure buttons are the same size */
             text-align: center;
-            /* Ensure text is centered within the button */
         }
 
         .nav-buttons button:hover {
-            background-color: #d6eaf8;
+            background-color: #1e4a9f;
         }
 
-        /* Main content section (right side) */
-        .main-content {
-            flex: 1;
-            padding: 40px;
+        /* Tab navigation */
+        .tab-nav {
             display: flex;
-            flex-direction: column;
-            gap: 40px;
+            padding: 0 40px;
+            width: 100%;
+            box-sizing: border-box;
             background-color: #fdfdfd;
         }
 
-        /* User Info & Favorite Cities Box */
+        .tab-nav button {
+            padding: 12px 20px;
+            border: none;
+            background-color: #f0f4f8;
+            color: #2f6ecf;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 5px 5px 5px 5px;
+            margin-right: 5px;
+        }
+
+        .tab-nav button.active {
+            background-color: #2f6ecf;
+            color: white;
+        }
+
+        .tab-nav button:hover {
+            background-color: #d6eaf8;
+        }
+
+        /* Tab content */
+        .tab-content {
+            display: none;
+            padding: 0 40px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Info Box */
         .info-box {
             border: 2px solid #2f6ecf;
             border-radius: 10px;
@@ -188,6 +192,7 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
             margin: 0;
         }
 
+        /* City Gallery */
         .city-gallery {
             display: flex;
             flex-wrap: wrap;
@@ -198,24 +203,18 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
 
         .city-item {
             width: 120px;
-            /* Chiều rộng mỗi thành phố */
             text-align: center;
             flex-direction: column;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            /* Ensure consistent spacing between elements */
             gap: 6px;
-            /* Add consistent gap between image, text, and buttons */
         }
 
         .city-item img {
             width: 100%;
-            /* 100% chiều rộng city-item */
             height: 80px;
-            /* Chiều cao vừa phải */
             object-fit: cover;
-            /* Đảm bảo hình ảnh không bị méo */
             border-radius: 10px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
@@ -227,7 +226,6 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
 
         .city-item p {
             margin: 0;
-            /* Remove default margin for consistent spacing */
             font-size: 13px;
             font-weight: bold;
             color: #333;
@@ -235,10 +233,10 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
             word-break: break-word;
         }
 
-        .btn-book {
+        .btn-book,
+        .btn-remove {
             display: inline-block;
             margin: 0;
-            /* Remove margin to align consistently */
             padding: 6px 10px;
             border-radius: 20px;
             font-size: 13px;
@@ -247,26 +245,7 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
             text-decoration: none;
             cursor: pointer;
             width: 100%;
-            /* Ensure buttons take full width of city-item */
             box-sizing: border-box;
-            /* Include padding in width calculation */
-        }
-
-        .btn-remove {
-            display: inline-block;
-            margin: 0;
-            /* Remove margin to align consistently */
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            width: 100%;
-            /* Ensure buttons take full width of city-item */
-            box-sizing: border-box;
-            /* Include padding in width calculation */
         }
 
         .btn-book {
@@ -291,127 +270,140 @@ if (mysqli_stmt_prepare($favStmt, $favSql)) {
     </style>
 </head>
 
-<div class="main-wrapper">
-    <!-- Navigation Tab -->
-    <div class="nav-tab">
-        <h2>Profile <br></h2>
-        <div class="nav-buttons2">
-            <form action="../Payment Interface/tourlist.php" method="get">
-                <button type="submit">View Tour</button>
-            </form>
-            <form action="../Payment Interface/receiptlist.php" method="get">
-                <button type="submit">View Hotel</button>
-            </form>
-        </div>
-        <div class="nav-buttons">
-            <form action="loggedinhome.php" method="get">
-                <button type="submit">Home</button>
-            </form>
-            <form action="login.php" method="post">
-                <button type="submit">Logout</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Main Content Area -->
-    <div class="main-content">
-        <!-- User Info -->
-        <div class="info-box">
-            <h3>User Information</h3>
-            <?php
-            if ($row = mysqli_fetch_assoc($result)) {
-                echo "<p><strong>Name:</strong> " . htmlspecialchars($row["usersUid"]) . "</p>";
-                echo "<p><strong>Email:</strong> " . htmlspecialchars($row["usersEmail"]) . "</p>";
-            } else {
-                echo "<p>User information not found.</p>";
-            }
-            ?>
+<body>
+    <div class="main-wrapper">
+        <!-- Header -->
+        <div class="header">
+            <h1>User Profile</h1>
         </div>
 
-        <!-- Favorite Cities -->
-        <div class="info-box">
-            <?php
-            if ($favoriteCities !== null && count($favoriteCities) > 0) {
-                echo "<div class='info-box'>";
-                echo "<h3>Favorite Cities</h3>";
-                echo "<div class='city-gallery'>";
 
-                $favSql = "
-                    SELECT cities.cityid, cities.city 
-                    FROM favorites 
-                    JOIN cities ON favorites.cityid = cities.cityid 
-                    WHERE favorites.usersid = ?
-                ";
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <form action="loggedinhome.php" method="get">
+                    <button type="submit">Home</button>
+                </form>
+                <form action="login.php" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
 
-                $favStmt = mysqli_stmt_init($conn);
-                if (mysqli_stmt_prepare($favStmt, $favSql)) {
-                    mysqli_stmt_bind_param($favStmt, "i", $userid);
-                    mysqli_stmt_execute($favStmt);
-                    $favResult = mysqli_stmt_get_result($favStmt);
+            <!-- User Info -->
+            <div class="info-box">
+                <h3>User Information</h3>
+                <?php
+                if ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p><strong>Name:</strong> " . htmlspecialchars($row["usersUid"]) . "</p>";
+                    echo "<p><strong>Email:</strong> " . htmlspecialchars($row["usersEmail"]) . "</p>";
+                } else {
+                    echo "<p>User information not found.</p>";
+                }
+                ?>
+            </div>
 
-                    while ($favRow = mysqli_fetch_assoc($favResult)) {
-                        $cityName = htmlspecialchars($favRow['city']);
-                        $cityId = intval($favRow['cityid']);
-                        $imagePath = "/Places/{$cityId}.jpg";
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-button active" onclick="openTab('favorite-cities')">Favorite Cities</button>
+                <button class="tab-button" onclick="openTab('manage-tour')">Manage Tour</button>
+                <button class="tab-button" onclick="openTab('manage-hotel')">Manage Hotel</button>
+            </div>
 
-                        // Map cityid sang slug để đặt tên file viewjourney_<slug>.php
+            <!-- Tab Content -->
+            <div id="favorite-cities" class="tab-content active">
+                <div class="info-box">
+                    <?php
+                    if ($favoriteCities !== null && count($favoriteCities) > 0) {
+                        echo "<h3>Favorite Cities</h3>";
+                        echo "<div class='city-gallery'>";
+
                         $citySlugMap = [
                             10 => 'tay_bac',
                             11 => 'ho_chi_minh',
                             12 => 'nha_trang',
-                            13 => 'hue',   // ví dụ thêm
+                            13 => 'hue',
                             14 => 'phu_yen',
                             15 => 'da_lat',
                             16 => 'phu_quoc',
                             17 => 'hoi_an',
-                            18 => 'ha_giang', // ví dụ thêm
+                            18 => 'ha_giang',
                         ];
 
-                        $citySlug = isset($citySlugMap[$cityId]) ? $citySlugMap[$cityId] : 'default';
-                        $tourPage = "../Journey/viewjourney_$citySlug.php";
+                        foreach ($favoriteCities as $favRow) {
+                            $cityName = htmlspecialchars($favRow['city']);
+                            $cityId = intval($favRow['cityid']);
+                            $imagePath = "/Places/{$cityId}.jpg";
+                            $citySlug = isset($citySlugMap[$cityId]) ? $citySlugMap[$cityId] : 'default';
+                            $tourPage = "../Journey/viewjourney_$citySlug.php";
 
-                        // HTML
-                        echo "<div class='city-item'>";
-                        echo "<img src='$imagePath' alt='$cityName' />";
-                        echo "<p>$cityName</p>";
-
-                        // Nút đặt vé khách sạn
-                        echo "<a href='/view_hotels.php?city_id=$cityId' class='btn-book'>Book Hotel</a>";
-
-                        // Nút đặt tour đúng file viewjourney_ten.php
-                        echo "<a href='/$tourPage' class='btn-book'>Book Tour</a>";
-
-                        // Nút xóa yêu thích
-                        echo "
-    <form action='remove_favorite.php' method='post' style='margin-top: 5px;'>
-        <input type='hidden' name='cityid' value='$cityId'>
-        <button type='submit' class='btn-remove'>Xóa</button>
-    </form>
-";
+                            echo "<div class='city-item'>";
+                            echo "<img src='$imagePath' alt='$cityName' />";
+                            echo "<p>$cityName</p>";
+                            echo "<a href='/view_hotels.php?city_id=$cityId' class='btn-book'>Book Hotel</a>";
+                            echo "<a href='/$tourPage' class='btn-book'>Book Tour</a>";
+                            echo "<form action='remove_favorite.php' method='post' style='margin-top: 5px;'>";
+                            echo "<input type='hidden' name='cityid' value='$cityId'>";
+                            echo "<button type='submit' class='btn-remove'>Xóa</button>";
+                            echo "</form>";
+                            echo "</div>";
+                        }
 
                         echo "</div>";
+                    } else {
+                        echo "<p>You haven't favorited any cities.</p>";
                     }
-                }
+                    ?>
+                </div>
+            </div>
 
-                echo "</div></div>";
-            } else {
-                echo "<div class='info-box'><p>You haven't favorited any cities.</p></div>";
-            }
+            <div id="manage-tour" class="tab-content">
+                <div class="info-box">
+                    <h3>Manage Tours</h3>
+                    <p>Here you can view and manage your booked tours.</p>
+                    <form action="../Payment Interface/tourlist.php" method="get">
+                        <button type="submit" class="btn-book">View Booked Tours</button>
+                    </form>
+                </div>
+            </div>
 
-            ?>
+            <div id="manage-hotel" class="tab-content">
+                <div class="info-box">
+                    <h3>Manage Hotels</h3>
+                    <p>Here you can view and manage your hotel bookings.</p>
+                    <form action="../Payment Interface/receiptlist.php" method="get">
+                        <button type="submit" class="btn-book">View Booked Hotels</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
+    <script>
+        function openTab(tabName) {
+            // Hide all tab contents
+            var tabContents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
 
-</div>
+            // Remove active class from all tab buttons
+            var tabButtons = document.getElementsByClassName('tab-button');
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
 
+            // Show selected tab content and add active class to clicked button
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
 
+    <?php
+    mysqli_stmt_close($stmt);
+    mysqli_stmt_close($favStmt);
+    mysqli_close($conn);
+    ?>
 </body>
 
 </html>
-<?php
-mysqli_stmt_close($stmt);
-mysqli_stmt_close($favStmt);
-mysqli_close($conn);
-?>

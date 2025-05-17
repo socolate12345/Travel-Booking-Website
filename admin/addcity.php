@@ -2,23 +2,19 @@
 include '../dbconnect.php';
 
 // Initialize variables for journey data
-$city = $region = $season = $days = $cost = "";
-
+$city = $region = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve journey data from the form if available
     $city = isset($_POST["city"]) ? $_POST["city"] : "";
     $region = isset($_POST["region"]) ? $_POST["region"] : "";
-    $season = isset($_POST["season"]) ? $_POST["season"] : "";
-    $days = isset($_POST["days"]) ? $_POST["days"] : "";
-    $cost = isset($_POST["cost"]) ? $_POST["cost"] : "";
 
     // Prepare a SQL statement to insert the journey
-    $sql = "INSERT INTO cities (city, region, season, days, cost) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO cities (city, region) VALUES (?, ?)";
 
     $stmt = $conn->prepare($sql);
     if ($stmt) {
-        $stmt->bind_param("sssid", $city, $region, $season, $days, $cost);
+        $stmt->bind_param("ss", $city, $region);
 
         if ($stmt->execute()) {
             // Insertion was successful
@@ -42,7 +38,7 @@ $conn->close();
 <html>
 <head>
     <link rel="stylesheet" href="../css/addjourney.css">
-    <title>Admin - Add Journey</title>
+    <title>Admin - Add City</title>
     <style>
         body {
             background-size: cover;
@@ -54,25 +50,15 @@ $conn->close();
 </head>
 <body>
     <form method="post" action="addjourney.php">
-        <h2>Add Journey </h2><hr weight="4px">
+        <h2>Add City</h2><hr weight="4px">
         <label for="city">City:</label>
         <required><input type="text" id="city" name="city" placeholder="City"></required><br><br>
 
         <label for="region">Region:</label>
-       <required><input type="text" id="region" name="region" placeholder="Region"></required><br><br>
-
-        <label for="season">Season:</label>
-        <required><input type="text" id="season" name="season" placeholder="Season"></required><br><br>
-
-        <label for="days">Days:</label>
-        <required><input type="number" id="days" name="days" placeholder="Days"></required><br><br>
-
-        <label for="cost">Cost:</label>
-        <required><input type="number" id="cost" name="cost" placeholder="Cost"></required><br><br>
+        <required><input type="text" id="region" name="region" placeholder="Region"></required><br><br>
 
         <input type="submit" value="Add Journey">
         <a href="adminviewcity.php" style="margin-left: 15px; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">Cancel</a>
-
     </form>
 </body>
 </html>

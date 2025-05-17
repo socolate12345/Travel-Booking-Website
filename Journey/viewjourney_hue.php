@@ -118,7 +118,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hue_1.jpg" alt="Central Vietnam Tour">
+                        <img src="../tourphotoID/13.jpg" alt="Central Vietnam Tour">
                         <span class="discount-badge">-12%</span>
                     </div>
                     <div class="tour-details">
@@ -147,7 +147,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hue_2.jpg" alt="North-Central Vietnam Grand Tour">
+                        <img src="../tourphotoID/14.jpg" alt="North-Central Vietnam Grand Tour">
                         <span class="discount-badge">-10%</span>
                     </div>
                     <div class="tour-details">
@@ -176,7 +176,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Can Tho" 
                     data-transport="flight">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hue_3.jpg" alt="Hue Cultural Discovery Tour">
+                        <img src="../tourphotoID/15.jpg" alt="Hue Cultural Discovery Tour">
                         <span class="discount-badge">-15%</span>
                     </div>
                     <div class="tour-details">
@@ -205,7 +205,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Hanoi" 
                     data-transport="train">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hue_4.jpg" alt="Heritage Train Journey to Hue">
+                        <img src="../tourphotoID/16.jpg" alt="Heritage Train Journey to Hue">
                         <span class="discount-badge">-13%</span>
                     </div>
                     <div class="tour-details">

@@ -118,7 +118,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/nhatrang_1.jpg" alt="Nha Trang Tour">
+                        <img src="../tourphotoID/9.jpg" alt="Nha Trang Tour">
                         <span class="discount-badge">-20%</span>
                     </div>
                     <div class="tour-details">
@@ -148,7 +148,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Da Nang" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/nhatrang_2.jpg" alt="Nha Trang Tour">
+                        <img src="../tourphotoID/10.jpg" alt="Nha Trang Tour">
                         <span class="discount-badge">-18%</span>
                     </div>
                     <div class="tour-details">
@@ -177,7 +177,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="flight">
                     <div class="tour-image">
-                        <img src="../tourphotoID/nhatrang_3.jpg" alt="Nha Trang Beach Adventure">
+                        <img src="../tourphotoID/11.jpg" alt="Nha Trang Beach Adventure">
                         <span class="discount-badge">-15%</span>
                     </div>
                     <div class="tour-details">
@@ -206,7 +206,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Can Tho" 
                     data-transport="flight">
                     <div class="tour-image">
-                        <img src="../tourphotoID/nhatrang_4.jpg" alt="Nha Trang Nature & Culture Tour">
+                        <img src="../tourphotoID/12.jpg" alt="Nha Trang Nature & Culture Tour">
                         <span class="discount-badge">-17%</span>
                     </div>
                     <div class="tour-details">

@@ -113,7 +113,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Hanoi" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hagiang_1.jpg" alt="Ha Giang Adventure and Culture Tour">
+                        <img src="../tourphotoID/33.jpg" alt="Ha Giang Adventure and Culture Tour">
                         <span class="discount-badge">-12%</span>
                     </div>
                     <div class="tour-details">
@@ -142,7 +142,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Can Tho" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hagiang_2.jpg" alt="Ha Giang Explorer Tour">
+                        <img src="../tourphotoID/34.jpg" alt="Ha Giang Explorer Tour">
                         <span class="discount-badge">-11%</span>
                     </div>
                     <div class="tour-details">
@@ -171,7 +171,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Hanoi" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hagiang_3.jpg" alt="Ha Giang Nature & Culture Tour">
+                        <img src="../tourphotoID/35.jpg" alt="Ha Giang Nature & Culture Tour">
                         <span class="discount-badge">-13%</span>
                     </div>
                     <div class="tour-details">
@@ -200,7 +200,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hagiang_4.jpg" alt="Ha Giang Nature & Culture Discovery Tour">
+                        <img src="../tourphotoID/36.jpg" alt="Ha Giang Nature & Culture Discovery Tour">
                         <span class="discount-badge">-14%</span>
                     </div>
                     <div class="tour-details">
