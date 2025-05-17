@@ -113,7 +113,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="flight">
                     <div class="tour-image">
-                        <img src="../tourphotoID/phuquoc_1.jpg" alt="Phu Quoc Paradise Escape Tour">
+                        <img src="../tourphotoID/25.jpg" alt="Phu Quoc Paradise Escape Tour">
                         <span class="discount-badge">-12%</span>
                     </div>
                     <div class="tour-details">
@@ -142,7 +142,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="flight">
                     <div class="tour-image">
-                        <img src="../tourphotoID/phuquoc_2.jpg" alt="Phu Quoc Island Adventure Tour">
+                        <img src="../tourphotoID/26.jpg" alt="Phu Quoc Island Adventure Tour">
                         <span class="discount-badge">-14%</span>
                     </div>
                     <div class="tour-details">
@@ -171,7 +171,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Da Nang" 
                     data-transport="flight">
                     <div class="tour-image">
-                        <img src="../tourphotoID/phuquoc_3.jpg" alt="Phu Quoc Island Serenity Tour">
+                        <img src="../tourphotoID/27.jpg" alt="Phu Quoc Island Serenity Tour">
                         <span class="discount-badge">-13%</span>
                     </div>
                     <div class="tour-details">
@@ -200,7 +200,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Hanoi" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/phuquoc_4.jpg" alt="Phu Quoc Relax & Discover Tour">
+                        <img src="../tourphotoID/28.jpg" alt="Phu Quoc Relax & Discover Tour">
                         <span class="discount-badge">-10%</span>
                     </div>
                     <div class="tour-details">

@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-size: 20px;
+    font-family: 'Helvetica Neue Web', Helvetica, Arial, sans-serif;
+
 }
 
 .header {
@@ -44,7 +46,7 @@ body {
     padding: 20px;
     min-width: 200px;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
-} 
+}
 
 .sidebar h2 {
     font-size: 20px;
@@ -87,7 +89,7 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 30px; 
+    width: 30px;
     height: auto;
     z-index: 2;
 }
@@ -162,7 +164,7 @@ body {
 }
 
 .pie-chart-container .dashboard-widget {
-    width: 40%; 
+    width: 40%;
 }
 
 .dashboard-widget h2 {
@@ -170,8 +172,8 @@ body {
 }
 
 .pie-chart {
-    max-width: 40%; 
-    height: auto; 
+    max-width: 40%;
+    height: auto;
 }
 
 .userGrowth-chart .dashboard-widget {
@@ -180,5 +182,5 @@ body {
 
 .userLineChart {
     max-width: 40%;
-    height: auto; 
+    height: auto;
 }

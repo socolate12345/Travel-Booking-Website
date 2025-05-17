@@ -113,7 +113,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Da Nang" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hoian_1.jpg" alt="Hoi An Ancient Town Discovery Tour">
+                        <img src="../tourphotoID/29.jpg" alt="Hoi An Ancient Town Discovery Tour">
                         <span class="discount-badge">-13%</span>
                     </div>
                     <div class="tour-details">
@@ -142,7 +142,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Hanoi" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hoian_2.jpg" alt="Hoi An Cultural Experience Tour">
+                        <img src="../tourphotoID/30.jpg" alt="Hoi An Cultural Experience Tour">
                         <span class="discount-badge">-10%</span>
                     </div>
                     <div class="tour-details">
@@ -171,7 +171,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Hanoi" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hoian_3.jpg" alt="Hoi An Heritage & Beach Tour">
+                        <img src="../tourphotoID/31.jpg" alt="Hoi An Heritage & Beach Tour">
                         <span class="discount-badge">-12%</span>
                     </div>
                     <div class="tour-details">
@@ -200,7 +200,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Da Nang" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hoian_4.jpg" alt="Hoi An Nature & Culture Tour">
+                        <img src="../tourphotoID/32.jpg" alt="Hoi An Nature & Culture Tour">
                         <span class="discount-badge">-15%</span>
                     </div>
                     <div class="tour-details">

@@ -40,7 +40,7 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Booking Management</title>
+    <title>Tour Reserve</title>
     <style>
         body {
             font-family: Arial, sans-serif;

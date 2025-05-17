@@ -113,7 +113,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/dalat_1.jpg" alt="Dalat Dreamy Getaway Tour">
+                        <img src="../tourphotoID/21.jpg" alt="Dalat Dreamy Getaway Tour">
                         <span class="discount-badge">-15%</span>
                     </div>
                     <div class="tour-details">
@@ -143,7 +143,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/dalat_2.jpg" alt="Dalat Nature & Culture Tour">
+                        <img src="../tourphotoID/22.jpg" alt="Dalat Nature & Culture Tour">
                         <span class="discount-badge">-12%</span>
                     </div>
                     <div class="tour-details">
@@ -173,7 +173,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Da Nang" 
                     data-transport="flight">
                     <div class="tour-image">
-                        <img src="../tourphotoID/dalat_3.jpg" alt="Dalat Flower & Highlands Adventure Tour">
+                        <img src="../tourphotoID/23.jpg" alt="Dalat Flower & Highlands Adventure Tour">
                         <span class="discount-badge">-15%</span>
                     </div>
                     <div class="tour-details">
@@ -203,7 +203,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/dalat_4.jpg" alt="Dalat Chill & Relax Tour">
+                        <img src="../tourphotoID/24.jpg" alt="Dalat Chill & Relax Tour">
                         <span class="discount-badge">-12%</span>
                     </div>
                     <div class="tour-details">

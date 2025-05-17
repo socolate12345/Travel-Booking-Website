@@ -113,7 +113,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hcm_1.jpg" alt="Cu Chi - Mekong Delta Tour">
+                        <img src="../tourphotoID/5.jpg" alt="Cu Chi - Mekong Delta Tour">
                         <span class="discount-badge">-5.2%</span>
                     </div>
                     <div class="tour-details">
@@ -142,7 +142,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="walking">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hcm_2.jpg" alt="Ho Chi Minh Food Tour">
+                        <img src="../tourphotoID/6.jpg" alt="Ho Chi Minh Food Tour">
                         <span class="discount-badge">-4.5%</span>
                     </div>
                     <div class="tour-details">
@@ -171,7 +171,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hcm_3.jpg" alt="Museum and Art Tour">
+                        <img src="../tourphotoID/7.jpg" alt="Museum and Art Tour">
                         <span class="discount-badge">-3.8%</span>
                     </div>
                     <div class="tour-details">
@@ -200,7 +200,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     data-departure="Ho Chi Minh City" 
                     data-transport="bus-boat">
                     <div class="tour-image">
-                        <img src="../tourphotoID/hcm_4.jpg" alt="Mekong Delta Day Tour">
+                        <img src="../tourphotoID/8.jpg" alt="Mekong Delta Day Tour">
                         <span class="discount-badge">-4.5%</span>
                     </div>
                     <div class="tour-details">
