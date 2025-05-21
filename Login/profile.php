@@ -9,18 +9,42 @@ if (!isset($_SESSION["usersid"])) {
 
 $userid = $_SESSION["usersid"];
 
-// Lấy thông tin người dùng
-$sql = "SELECT usersId, usersEmail, usersUid FROM login WHERE usersId = ?";
-$stmt = mysqli_stmt_init($conn);
-
-if (!mysqli_stmt_prepare($stmt, $sql)) {
-    echo "Lỗi truy vấn cơ sở dữ liệu.";
+// Xử lý xóa hotel booking
+if (isset($_GET['delete_hotel']) && is_numeric($_GET['delete_hotel'])) {
+    $deleteId = (int) $_GET['delete_hotel'];
+    $deleteStmt = mysqli_stmt_init($conn);
+    if (mysqli_stmt_prepare($deleteStmt, "DELETE FROM hotel_bookings WHERE booking_id = ? AND userid = ?")) {
+        mysqli_stmt_bind_param($deleteStmt, "ii", $deleteId, $userid);
+        mysqli_stmt_execute($deleteStmt);
+        mysqli_stmt_close($deleteStmt);
+    }
+    header("Location: profile.php");
     exit();
 }
 
-mysqli_stmt_bind_param($stmt, "i", $userid);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+// Xử lý xóa tour booking
+if (isset($_GET['delete_tour']) && is_numeric($_GET['delete_tour'])) {
+    $booking_id = (int)$_GET['delete_tour'];
+    $deleteStmt = mysqli_stmt_init($conn);
+    if (mysqli_stmt_prepare($deleteStmt, "DELETE FROM tour_bookings WHERE booking_id = ? AND userid = ?")) {
+        mysqli_stmt_bind_param($deleteStmt, "ii", $booking_id, $userid);
+        mysqli_stmt_execute($deleteStmt);
+        mysqli_stmt_close($deleteStmt);
+    }
+    header("Location: profile.php");
+    exit();
+}
+
+// Lấy thông tin người dùng
+$userSql = "SELECT usersId, usersEmail, usersUid FROM login WHERE usersId = ?";
+$userStmt = mysqli_stmt_init($conn);
+if (!mysqli_stmt_prepare($userStmt, $userSql)) {
+    echo "Lỗi truy vấn cơ sở dữ liệu.";
+    exit();
+}
+mysqli_stmt_bind_param($userStmt, "i", $userid);
+mysqli_stmt_execute($userStmt);
+$userResult = mysqli_stmt_get_result($userStmt);
 
 // Lấy danh sách thành phố yêu thích
 $favSql = "
@@ -30,380 +54,303 @@ $favSql = "
     WHERE favorites.usersid = ?
 ";
 $favStmt = mysqli_stmt_init($conn);
-
 $favoriteCities = [];
-
 if (mysqli_stmt_prepare($favStmt, $favSql)) {
     mysqli_stmt_bind_param($favStmt, "i", $userid);
     mysqli_stmt_execute($favStmt);
     $favResult = mysqli_stmt_get_result($favStmt);
-
     while ($favRow = mysqli_fetch_assoc($favResult)) {
         $favoriteCities[] = $favRow;
     }
-} else {
-    $favoriteCities = null;
+    mysqli_stmt_close($favStmt);
 }
+
+// Lấy danh sách hotel bookings
+$hotelReceipts = [];
+$hotelStmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($hotelStmt, "SELECT booking_id, hotel_name, city_name, tourists, number_of_rooms, room_type, total_amount, booking_date, check_in_date, check_out_date, payment_status FROM hotel_bookings WHERE userid = ?")) {
+    mysqli_stmt_bind_param($hotelStmt, "i", $userid);
+    mysqli_stmt_execute($hotelStmt);
+    $hotelResult = mysqli_stmt_get_result($hotelStmt);
+    while ($row = mysqli_fetch_assoc($hotelResult)) {
+        $hotelReceipts[] = $row;
+    }
+    mysqli_stmt_close($hotelStmt);
+}
+
+// Lấy danh sách tour bookings
+$tourBookings = [];
+$tourStmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($tourStmt, "SELECT booking_id, name, email, city_name, tour_name, tourists, tour_date, contact, price_per_person, total_amount, booking_date, payment_status FROM tour_bookings WHERE userid = ?")) {
+    mysqli_stmt_bind_param($tourStmt, "i", $userid);
+    mysqli_stmt_execute($tourStmt);
+    $tourResult = mysqli_stmt_get_result($tourStmt);
+    while ($row = mysqli_fetch_assoc($tourResult)) {
+        $tourBookings[] = $row;
+    }
+    mysqli_stmt_close($tourStmt);
+}
+
+mysqli_close($conn);
 ?>
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Thông tin người dùng</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VietTransit - User Profile</title>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/profile.css">
     <style>
-        /* Reset and base styles */
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f0f4f8;
-            height: 100%;
-        }
-
-        /* Main wrapper for the whole layout */
-        .main-wrapper {
+        .info-box table {
+            border-collapse: collapse;
             width: 100%;
-            min-height: 100vh;
-            background-color: white;
-        }
-
-        /* Header */
-        .header {
-            background-color: #003580;
-            color: white;
-            padding: 25px 15px 15px;
-            text-align: center;
-        }
-
-        .header h1 {
-            max-width: 1125px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 30px;
-            text-align: left;
-            font-size: 48px;
-            font-weight: bold;
-        }
-
-        /* Main content section */
-        .main-content {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            background-color: #fdfdfd;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Navigation buttons */
-        .nav-buttons {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            justify-content: flex-end;
-            padding: 0 40px;
-        }
-
-        .nav-buttons button {
-            padding: 10px;
-            background-color: #2f6ecf;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            width: 100px;
-            text-align: center;
-        }
-
-        .nav-buttons button:hover {
-            background-color: #1e4a9f;
-        }
-
-        /* Tab navigation */
-        .tab-nav {
-            display: flex;
-            padding: 0 40px;
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #fdfdfd;
-        }
-
-        .tab-nav button {
-            padding: 12px 20px;
-            border: none;
-            background-color: #f0f4f8;
-            color: #2f6ecf;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            border-radius: 5px 5px 5px 5px;
-            margin-right: 5px;
-        }
-
-        .tab-nav button.active {
-            background-color: #2f6ecf;
-            color: white;
-        }
-
-        .tab-nav button:hover {
-            background-color: #d6eaf8;
-        }
-
-        /* Tab content */
-        .tab-content {
-            display: none;
-            padding: 0 40px;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Info Box */
-        .info-box {
-            border: 2px solid #2f6ecf;
-            border-radius: 10px;
-            padding: 20px;
+            margin: 20px 0;
             background-color: #fff;
-        }
-
-        .info-box h3 {
-            margin-top: 0;
-            color: #2f6ecf;
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
-
-        .info-box p,
-        .info-box li {
-            font-size: 16px;
-            line-height: 1.6;
-            margin: 10px 0;
-        }
-
-        .info-box ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        /* City Gallery */
-        .city-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            justify-content: flex-start;
-            padding-top: 10px;
-        }
-
-        .city-item {
-            width: 120px;
-            text-align: center;
-            flex-direction: column;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 6px;
-        }
-
-        .city-item img {
-            width: 100%;
-            height: 80px;
-            object-fit: cover;
+            border: 1px solid #3498db;
             border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-
-        .city-item img:hover {
-            transform: scale(1.05);
-        }
-
-        .city-item p {
-            margin: 0;
-            font-size: 13px;
-            font-weight: bold;
-            color: #333;
+        .info-box th, .info-box td {
+            border-bottom: 1px solid #3498db;
+            padding: 12px;
             text-align: center;
-            word-break: break-word;
         }
-
-        .btn-book,
-        .btn-remove {
+        .info-box th {
+            background-color: #eaf6fb;
+            color: #3498db;
+            font-weight: bold;
+        }
+        .info-box tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .info-box .delete-link a {
             display: inline-block;
-            margin: 0;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .btn-book {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-        }
-
-        .btn-book:hover {
-            background-color: #219150;
-        }
-
-        .btn-remove {
+            padding: 6px 12px;
             background-color: #e74c3c;
             color: white;
-            border: none;
+            text-decoration: none;
+            border-radius: 4px;
         }
-
-        .btn-remove:hover {
+        .info-box .delete-link a:hover {
             background-color: #c0392b;
         }
     </style>
 </head>
-
 <body>
-    <div class="main-wrapper">
-        <!-- Header -->
-        <div class="header">
-            <h1>User Profile</h1>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="LoggedinHome.php">
+                <img src="../images/logo.png" alt="VietTransit Logo">
+                <span>VietTransit</span>
+            </a>
         </div>
+        <div class="nav-links">
+            <a href="LoggedinHome.php" class="nav-btn">Home</a>
+            <a href="login.php" class="nav-btn">Logout</a>
+        </div>
+    </nav>
 
-
-        <!-- Main Content Area -->
-        <div class="main-content">
-            <!-- Navigation Buttons -->
-            <div class="nav-buttons">
-                <form action="loggedinhome.php" method="get">
-                    <button type="submit">Home</button>
-                </form>
-                <form action="login.php" method="post">
-                    <button type="submit">Logout</button>
-                </form>
+    <!-- Profile Header Section -->
+    <div class="profile-header">
+        <div class="cover-photo" style="background-image: url('../images/Cover_pic.png');"></div>
+        <div class="profile-info-container">
+            <div class="avatar-container">
+                <img src="../images/avatar.jpg" alt="User Avatar" class="avatar">
+                <div class="avatar-overlay">
+                    <i class="fas fa-camera"></i>
+                </div>
             </div>
-
-            <!-- User Info -->
-            <div class="info-box">
-                <h3>User Information</h3>
+            <div class="user-info">
                 <?php
-                if ($row = mysqli_fetch_assoc($result)) {
-                    echo "<p><strong>Name:</strong> " . htmlspecialchars($row["usersUid"]) . "</p>";
-                    echo "<p><strong>Email:</strong> " . htmlspecialchars($row["usersEmail"]) . "</p>";
+                if ($row = mysqli_fetch_assoc($userResult)) {
+                    echo "<h2>" . htmlspecialchars($row["usersUid"]) . "</h2>";
+                    echo "<p><i class='fas fa-envelope'></i> " . htmlspecialchars($row["usersEmail"]) . "</p>";
                 } else {
-                    echo "<p>User information not found.</p>";
+                    echo "<h2>User</h2>";
+                    echo "<p><i class='fas fa-envelope'></i> Not found</p>";
                 }
                 ?>
-            </div>
-
-            <!-- Tab Navigation -->
-            <div class="tab-nav">
-                <button class="tab-button active" onclick="openTab('favorite-cities')">Favorite Cities</button>
-                <button class="tab-button" onclick="openTab('manage-tour')">Manage Tour</button>
-                <button class="tab-button" onclick="openTab('manage-hotel')">Manage Hotel</button>
-            </div>
-
-            <!-- Tab Content -->
-            <div id="favorite-cities" class="tab-content active">
-                <div class="info-box">
-                    <?php
-                    if ($favoriteCities !== null && count($favoriteCities) > 0) {
-                        echo "<h3>Favorite Cities</h3>";
-                        echo "<div class='city-gallery'>";
-
-                        $citySlugMap = [
-                            10 => 'tay_bac',
-                            11 => 'ho_chi_minh',
-                            12 => 'nha_trang',
-                            13 => 'hue',
-                            14 => 'phu_yen',
-                            15 => 'da_lat',
-                            16 => 'phu_quoc',
-                            17 => 'hoi_an',
-                            18 => 'ha_giang',
-                        ];
-
-                        foreach ($favoriteCities as $favRow) {
-                            $cityName = htmlspecialchars($favRow['city']);
-                            $cityId = intval($favRow['cityid']);
-                            $imagePath = "/Places/{$cityId}.jpg";
-                            $citySlug = isset($citySlugMap[$cityId]) ? $citySlugMap[$cityId] : 'default';
-                            $tourPage = "../Journey/viewjourney_$citySlug.php";
-
-                            echo "<div class='city-item'>";
-                            echo "<img src='$imagePath' alt='$cityName' />";
-                            echo "<p>$cityName</p>";
-                            echo "<a href='/view_hotels.php?city_id=$cityId' class='btn-book'>Book Hotel</a>";
-                            echo "<a href='/$tourPage' class='btn-book'>Book Tour</a>";
-                            echo "<form action='remove_favorite.php' method='post' style='margin-top: 5px;'>";
-                            echo "<input type='hidden' name='cityid' value='$cityId'>";
-                            echo "<button type='submit' class='btn-remove'>Xóa</button>";
-                            echo "</form>";
-                            echo "</div>";
-                        }
-
-                        echo "</div>";
-                    } else {
-                        echo "<p>You haven't favorited any cities.</p>";
-                    }
-                    ?>
-                </div>
-            </div>
-
-            <div id="manage-tour" class="tab-content">
-                <div class="info-box">
-                    <h3>Manage Tours</h3>
-                    <p>Here you can view and manage your booked tours.</p>
-                    <form action="../Payment Interface/tourlist.php" method="get">
-                        <button type="submit" class="btn-book">View Booked Tours</button>
-                    </form>
-                </div>
-            </div>
-
-            <div id="manage-hotel" class="tab-content">
-                <div class="info-box">
-                    <h3>Manage Hotels</h3>
-                    <p>Here you can view and manage your hotel bookings.</p>
-                    <form action="../Payment Interface/receiptlist.php" method="get">
-                        <button type="submit" class="btn-book">View Booked Hotels</button>
-                    </form>
+                <div class="user-stats">
+                    <span><i class="fas fa-award"></i> 2840 PTS</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Group 1 Web Dev, Vietnam</span>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Navigation Tabs -->
+    <div class="profile-tabs">
+        <button class="tab-btn active" data-tab="favorite-cities">Favorite Cities</button>
+        <button class="tab-btn" data-tab="view-tours">View Tours</button>
+        <button class="tab-btn" data-tab="view-hotels">View Hotels</button>
+    </div>
+
+    <!-- Tab Contents -->
+    <div class="tab-contents">
+        <!-- Favorite Cities Tab -->
+        <div id="favorite-cities" class="tab-content active">
+            <div class="info-box">
+                <h3>Favorite Cities</h3>
+                <?php
+                if ($favoriteCities !== null && count($favoriteCities) > 0) {
+                    echo "<div class='city-gallery'>";
+                    $citySlugMap = [
+                        10 => 'tay_bac',
+                        11 => 'ho_chi_minh',
+                        12 => 'nha_trang',
+                        13 => 'hue',
+                        14 => 'phu_yen',
+                        15 => 'da_lat',
+                        16 => 'phu_quoc',
+                        17 => 'hoi_an',
+                        18 => 'ha_giang',
+                    ];
+                    foreach ($favoriteCities as $favRow) {
+                        $cityName = htmlspecialchars($favRow['city']);
+                        $cityId = intval($favRow['cityid']);
+                        $imagePath = "/Places/{$cityId}.jpg";
+                        $citySlug = isset($citySlugMap[$cityId]) ? $citySlugMap[$cityId] : 'default';
+                        $tourPage = "../Journey/viewjourney_$citySlug.php";
+                        echo "<div class='city-item'>";
+                        echo "<img src='$imagePath' alt='$cityName'>";
+                        echo "<p>$cityName</p>";
+                        echo "<div class='city-actions'>";
+                        echo "<a href='../view_hotels.php?city_id=$cityId' class='btn-book'>Book Hotel</a>";
+                        echo "<a href='$tourPage' class='btn-book'>Book Tour</a>";
+                        echo "<form action='remove_favorite.php' method='post'>";
+                        echo "<input type='hidden' name='cityid' value='$cityId'>";
+                        echo "<button type='submit' class='btn-remove'>Remove</button>";
+                        echo "</form>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                    echo "</div>";
+                } else {
+                    echo "<p>You haven't favorited any cities.</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <!-- View Tours Tab -->
+<div id="view-tours" class="tab-content">
+    <div class="info-box">
+        <h3>Your Booked Tours</h3>
+        <table>
+            <tr>
+                <th>Booking ID</th>
+                <th>City</th>
+                <th>Tour Name</th>
+                <th>Tourists</th>
+                <th>Tour Date</th>
+                <th>Contact</th>
+                <th>Price/Person (VND)</th>
+                <th>Total Amount (VND)</th>
+                <th>Booking Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            <?php if (!empty($tourBookings) && is_array($tourBookings)): ?>
+                <?php foreach ($tourBookings as $booking): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($booking['booking_id'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($booking['city_name'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($booking['tour_name'] ?? '') ?></td>
+                        <td><?= htmlspecialchars((string)($booking['tourists'] ?? '1')) ?></td>
+                        <td><?= htmlspecialchars($booking['tour_date'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($booking['contact'] ?? '') ?></td>
+                        <td><?= number_format($booking['price_per_person'] ?? 0) ?></td>
+                        <td><?= number_format($booking['total_amount'] ?? 0) ?></td>
+                        <td><?= htmlspecialchars($booking['booking_date'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($booking['payment_status'] ?? '') ?></td>
+                        <td class="delete-link">
+                            <a href="?delete_tour=<?= htmlspecialchars($booking['booking_id'] ?? '') ?>" 
+                               onclick="return confirm('Are you sure you want to delete this booking?')">Delete</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr><td colspan="11">No bookings available.</td></tr>
+            <?php endif; ?>
+        </table>
+    </div>
+</div>
+
+        <!-- View Hotels Tab -->
+        <div id="view-hotels" class="tab-content">
+            <div class="info-box">
+                <h3>Your Booked Hotels</h3>
+                <table>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Hotel Name</th>
+                        <th>City</th>
+                        <th>Tourists</th>
+                        <th>Number of Rooms</th>
+                        <th>Room Types</th>
+                        <th>Check-In Date</th>
+                        <th>Check-Out Date</th>
+                        <th>Total Amount</th>
+                        <th>Booking Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php if (!empty($hotelReceipts)): ?>
+                        <?php foreach ($hotelReceipts as $receipt): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($receipt['booking_id']) ?></td>
+                                <td><?= htmlspecialchars($receipt['hotel_name']) ?></td>
+                                <td><?= htmlspecialchars($receipt['city_name']) ?></td>
+                                <td><?= htmlspecialchars($receipt['tourists']) ?></td>
+                                <td><?= htmlspecialchars($receipt['number_of_rooms']) ?></td>
+                                <td><?= htmlspecialchars($receipt['room_type']) ?></td>
+                                <td><?= htmlspecialchars($receipt['check_in_date']) ?></td>
+                                <td><?= htmlspecialchars($receipt['check_out_date']) ?></td>
+                                <td><?= htmlspecialchars($receipt['total_amount']) ?> VND</td>
+                                <td><?= htmlspecialchars($receipt['booking_date']) ?></td>
+                                 <td><?= htmlspecialchars($receipt['payment_status']) ?></td>
+                                <td class="delete-link">
+                                    <a href="?delete_hotel=<?= $receipt['booking_id'] ?>" onclick="return confirm('Are you sure you want to delete this booking?')">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr><td colspan="13">No receipts recorded.</td></tr>
+                    <?php endif; ?>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function openTab(tabName) {
-            // Hide all tab contents
-            var tabContents = document.getElementsByClassName('tab-content');
-            for (var i = 0; i < tabContents.length; i++) {
-                tabContents[i].classList.remove('active');
-            }
-
-            // Remove active class from all tab buttons
-            var tabButtons = document.getElementsByClassName('tab-button');
-            for (var i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove('active');
-            }
-
-            // Show selected tab content and add active class to clicked button
-            document.getElementById(tabName).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            const avatarContainer = document.querySelector('.avatar-container');
+            avatarContainer.addEventListener('click', function() {
+                alert('Avatar upload functionality will be implemented here.');
+            });
+        });
     </script>
 
     <?php
-    mysqli_stmt_close($stmt);
-    mysqli_stmt_close($favStmt);
-    mysqli_close($conn);
+    mysqli_stmt_close($userStmt);
     ?>
 </body>
-
 </html>

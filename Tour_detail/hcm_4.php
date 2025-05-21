@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Mekong Delta Tour Departing from Ho Chi Minh City </title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

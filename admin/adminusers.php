@@ -10,6 +10,7 @@ $result = $conn->query($sql);
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/adminusers.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <title>Admin Login Data</title>
 </head>
 <body>

@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>City Tour - 4-Hour Double-Decker Bus Saigon - Cholon & Culinary Experience</title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

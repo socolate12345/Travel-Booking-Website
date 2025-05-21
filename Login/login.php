@@ -37,6 +37,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'>
     <link rel="stylesheet" href="../css/login.css" />
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 
 </style>
 </head>

@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Saigon City Tour - Duc Ba Church, Nguyen Hue Street, Landmark 81, Bui Vien, Dinh Doc Lap </title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

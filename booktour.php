@@ -10,6 +10,21 @@ if (!isset($_SESSION['usersid'])) {
 
 $userid = $_SESSION['usersid'];
 
+// MoMo Payment Gateway Configuration
+$accessKey = 'F8BBA842ECF85';
+$secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';
+$partnerCode = 'MOMO';
+$redirectUrl = 'http://localhost:8000/payment_return.php'; // Replace with your return URL
+$ipnUrl = 'http://localhost:8000/ipn2.php'; // Replace with your IPN URL
+$requestType = 'payWithMethod';
+$orderInfo = 'Pay with MoMo';
+$endpoint = 'https://test-payment.momo.vn/v2/gateway/api/create';
+$lang = 'vi';
+$autoCapture = true;
+$extraData = '';
+$orderGroupId = '';
+$payType = 'momo_wallet'; // Set to match orderType
+
 // Lấy cityid và tourid từ URL nếu có
 $cityid = isset($_GET['cityid']) ? intval($_GET['cityid']) : 0;
 $tourid = isset($_GET['tourid']) ? intval($_GET['tourid']) : 0;
@@ -53,7 +68,7 @@ if ($tourid > 0) {
     }
 }
 
-// Xử lý đặt tour
+// Xử lý đặt tour và chuyển hướng đến cổng thanh toán
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_SESSION['usersid'])) {
         die("⚠️ Vui lòng đăng nhập trước khi đặt tour.");
@@ -66,27 +81,103 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $city_name = $_POST['city_name'];
     $tourid = $_POST['tourid'];
     $tour_name = $_POST['tour_name'];
-    $tourists = $_POST['tourists'];
+    $tourists = intval($_POST['tourists']);
     $tour_date = $_POST['tour_date'];
     $contact = $_POST['contact'];
-    $price_per_person = $_POST['price_per_person'];
+    $price_per_person = intval($_POST['price_per_person']);
     $total_amount = $price_per_person * $tourists;
 
+    // Tạo orderId và requestId
+    $orderId = $partnerCode . time();
+    $requestId = $orderId;
+
+    // Lưu thông tin đặt tour tạm thời (trạng thái pending)
     $stmt = $conn->prepare("INSERT INTO tour_bookings 
-        (userid, name, email, cityid, city_name, tourid, tour_name, tourists, tour_date, contact, price_per_person, total_amount) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ississsissii", $userid, $name, $email, $cityid, $city_name, $tourid, $tour_name, $tourists, $tour_date, $contact, $price_per_person, $total_amount);
+        (userid, name, email, cityid, city_name, tourid, tour_name, tourists, tour_date, contact, price_per_person, total_amount, order_id, payment_status) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')");
+    $stmt->bind_param("ississsississ", $userid, $name, $email, $cityid, $city_name, $tourid, $tour_name, $tourists, $tour_date, $contact, $price_per_person, $total_amount, $orderId);
 
     if ($stmt->execute()) {
-        echo "<div class='container'><p>✅ Đặt tour thành công!</p>";
-        echo "<a href='./Login/loggedinhome.php' style='
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;'>🏠 Về trang chủ</a></div>";
+        // Tạo chữ ký (signature) cho MoMo
+        $rawSignature = "accessKey=$accessKey&amount=$total_amount&extraData=$extraData&ipnUrl=$ipnUrl&orderId=$orderId&orderInfo=$orderInfo&partnerCode=$partnerCode&redirectUrl=$redirectUrl&requestId=$requestId&requestType=$requestType";
+        $signature = hash_hmac('sha256', $rawSignature, $secretKey);
+
+        // Tạo request body
+        $requestBody = json_encode([
+            'partnerCode' => $partnerCode,
+            'partnerName' => 'Test',
+            'storeId' => 'MomoTestStore',
+            'requestId' => $requestId,
+            'amount' => $total_amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'redirectUrl' => $redirectUrl,
+            'ipnUrl' => $ipnUrl,
+            'lang' => $lang,
+            'requestType' => $requestType,
+            'payType' => $payType,
+            'autoCapture' => $autoCapture,
+            'extraData' => $extraData,
+            'orderGroupId' => $orderGroupId,
+            'signature' => $signature
+        ]);
+
+        // Gửi yêu cầu đến MoMo
+        $ch = curl_init($endpoint);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($requestBody)
+        ]);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlError = curl_error($ch);
+        curl_close($ch);
+
+        // Log response for debugging
+        file_put_contents('momo_log.txt', "Request: $requestBody\nResponse: $response\nHTTP Code: $httpCode\nCurl Error: $curlError\n", FILE_APPEND);
+
+        if ($httpCode == 200) {
+            $responseData = json_decode($response, true);
+            if (isset($responseData['resultCode']) && $responseData['resultCode'] == 0) {
+                // Chuyển hướng đến URL thanh toán của MoMo
+                header("Location: " . $responseData['payUrl']);
+                exit();
+            } else {
+                // Hiển thị lỗi cụ thể từ MoMo
+                $errorMessage = isset($responseData['message']) ? $responseData['message'] : 'Unknown error';
+                $resultCode = isset($responseData['resultCode']) ? $responseData['resultCode'] : 'N/A';
+                echo "<div class='container'>";
+                echo "<h2>❌ Lỗi khi tạo thanh toán</h2>";
+                echo "<p>Mã lỗi: " . htmlspecialchars($resultCode) . "</p>";
+                echo "<p>Thông báo: " . htmlspecialchars($errorMessage) . "</p>";
+                if ($resultCode == '1002') {
+                    echo "<p>Vui lòng kiểm tra phương thức thanh toán hoặc sử dụng phương thức khác (ví MoMo, thẻ ATM, thẻ tín dụng).</p>";
+                }
+                echo "<a href='./bookingtour.php?cityid=$cityid&tourid=$tourid' style='
+                    display: inline-block;
+                    margin-top: 10px;
+                    padding: 10px 20px;
+                    background-color: #f44336;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px;'>🔄 Thử lại</a>";
+                echo "<a href='./Login/loggedinhome.php' style='
+                    display: inline-block;
+                    margin-top: 10px;
+                    padding: 10px 20px;
+                    background-color: #4CAF50;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px; margin-left: 10px;'>🏠 Về trang chủ</a>";
+                echo "</div>";
+            }
+        } else {
+            echo "<div class='container'>❌ Lỗi kết nối đến cổng thanh toán: HTTP $httpCode</div>";
+        }
     } else {
         echo "<div class='container'>❌ Lỗi khi đặt tour: " . $stmt->error . "</div>";
     }
@@ -101,158 +192,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đặt Tour: <?php echo htmlspecialchars($tour_name); ?></title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            margin-top: 50px;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header-text {
-            flex: 1;
-            padding-right: 20px;
-        }
-
-        .header-text h2 {
-            margin-left: 60px;
-            color: #333;
-            font-size: 36px;
-            font-weight: bold;
-            font-family: 'Helvetica Neue Web', Helvetica, Arial, sans-serif;
-        }
-
-        .tour-image {
-            width: 300px;
-            height: 200px;
-            border-radius: 8px;
-            margin-right: 60px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .form-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .form-left,
-        .form-right {
-            flex: 1;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            margin-left: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="number"],
-        input[type="date"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        input[readonly] {
-            background-color: #e9ecef;
-            cursor: not-allowed;
-        }
-
-        input[type="number"] {
-            max-width: 100px;
-        }
-
-        .form-right .form-group {
-            padding-right: 20px;
-        }
-
-        .button-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px auto;
-        }
-
-        button {
-            padding: 12px;
-            width: 200px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #total-amount {
-            font-size: 16px;
-            color: #333;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .header-text {
-                padding-right: 0;
-            }
-
-            .tour-image {
-                max-width: 100%;
-            }
-
-            .form-container {
-                flex-direction: column;
-            }
-
-            .form-right .form-group {
-                padding-right: 0;
-            }
-
-            .button-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-    </style>
+    <title>Tour Reserve: <?php echo htmlspecialchars($tour_name); ?></title>
+    <link rel="stylesheet" href="./css/booktour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
     <div class="container">

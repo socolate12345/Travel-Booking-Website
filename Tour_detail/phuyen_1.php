@@ -6,7 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Phu Yen Hidden Gems: Da Dia Reef - Bai Xep - Mang Lang Church - Nhan Tower </title>
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <link rel="stylesheet" href="../css/tour.css">
 </head>
 <body>

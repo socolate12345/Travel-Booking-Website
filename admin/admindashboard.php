@@ -7,6 +7,7 @@ session_start();
 <head>
     <link rel="stylesheet" type="text/css" href="../css/admindashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <title>Admin Panel</title>
 </head>
 <body>

@@ -17,6 +17,8 @@ $db = null;
 <html>
 <head>
 <link rel="stylesheet" href="../css/adminviewusers.css">
+<title>View User</title>
+<link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

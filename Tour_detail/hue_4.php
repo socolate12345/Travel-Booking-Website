@@ -8,6 +8,7 @@ session_start();
     <title>Hanoi - Overnight Train to Hue - Imperial City - Khai Dinh Tomb - Dong Ba Market - Relaxing Cruise on Perfume River </title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

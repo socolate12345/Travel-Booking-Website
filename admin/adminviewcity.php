@@ -33,7 +33,8 @@ $conn->close();
 <html>
 <head>
     <link rel="stylesheet" href="../css/adminviewcity.css">
-    <title>Available Journeys</title>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <title>Manage Cities</title>
     <style>
         .back-red {
             display: block;

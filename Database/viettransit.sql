@@ -91,7 +91,7 @@ CREATE TABLE `favorites` (
 
 LOCK TABLES `favorites` WRITE;
 /*!40000 ALTER TABLE `favorites` DISABLE KEYS */;
-INSERT INTO `favorites` VALUES (20,1,10,'2025-05-13 16:38:50'),(21,2,11,'2025-05-14 13:27:39'),(22,1,13,'2025-05-15 05:51:52');
+INSERT INTO `favorites` VALUES (20,1,10,'2025-05-13 16:38:50'),(21,2,11,'2025-05-14 13:27:39');
 /*!40000 ALTER TABLE `favorites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,8 +118,10 @@ CREATE TABLE `hotel_bookings` (
   `contact` varchar(20) NOT NULL,
   `cost_per_day` int NOT NULL,
   `total_amount` int NOT NULL,
+  `order_id` varchar(50) DEFAULT NULL,
   `booking_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `number_of_rooms` int NOT NULL DEFAULT '1',
+  `payment_status` varchar(20) DEFAULT 'pending',
   PRIMARY KEY (`booking_id`),
   KEY `userid` (`userid`),
   KEY `cityid` (`cityid`),
@@ -127,7 +129,7 @@ CREATE TABLE `hotel_bookings` (
   CONSTRAINT `hotel_bookings_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `login` (`usersid`),
   CONSTRAINT `hotel_bookings_ibfk_2` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`),
   CONSTRAINT `hotel_bookings_ibfk_3` FOREIGN KEY (`hotelid`) REFERENCES `hotels` (`hotelid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +138,7 @@ CREATE TABLE `hotel_bookings` (
 
 LOCK TABLES `hotel_bookings` WRITE;
 /*!40000 ALTER TABLE `hotel_bookings` DISABLE KEYS */;
-INSERT INTO `hotel_bookings` VALUES (6,1,'test','test@test.com',15,'Da Lat',51,'Thanh Premier Dalat',1,'2025-05-15','2025-05-16','Standard','0784285198',1400000,1400000,'2025-05-15 15:54:17',1),(7,1,'test','test@test.com',15,'Da Lat',52,'BIDV Central Dalat Hotel',4,'2025-05-15','2025-05-16','Suite','0129334324',2139000,4278000,'2025-05-15 15:58:19',2);
+INSERT INTO `hotel_bookings` VALUES (41,2,'test2','test2@test.com',12,'Nha Trang',21,'LYN Panorama Nha Trang Condotel',1,'2025-05-20','2025-05-21','Standard','0784285198',1679999,1679999,NULL,'2025-05-20 15:47:10',1,'pending'),(47,1,'test','test@test.com',11,'Ho Chi Minh',11,'Ming Ngoc Hotel',1,'2025-05-21','2025-05-22','Standard','0129334308',1607800,1607800,NULL,'2025-05-21 03:15:57',1,'completed'),(48,1,'test','test@test.com',10,'Tay Bac',7,'Anh Hong Hotel',1,'2025-05-21','2025-05-22','Standard','0816228857',1485000,1485000,NULL,'2025-05-21 04:11:14',1,'completed'),(49,1,'test','test@test.com',11,'Ho Chi Minh',12,'Nori Homestay',1,'2025-05-21','2025-05-22','Standard','0389189189',1250504,1250504,NULL,'2025-05-21 04:46:08',1,'completed'),(50,1,'test','test@test.com',12,'Nha Trang',22,'Panorama Beachfront',1,'2025-05-21','2025-05-22','Standard','0389189189',1200000,1200000,NULL,'2025-05-21 05:59:39',1,'completed');
 /*!40000 ALTER TABLE `hotel_bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,6 +220,8 @@ CREATE TABLE `tour_bookings` (
   `price_per_person` int NOT NULL,
   `total_amount` int NOT NULL,
   `booking_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_id` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment_status` varchar(20) COLLATE utf8mb4_general_ci DEFAULT 'pending',
   PRIMARY KEY (`booking_id`),
   KEY `userid` (`userid`),
   KEY `cityid` (`cityid`),
@@ -225,7 +229,7 @@ CREATE TABLE `tour_bookings` (
   CONSTRAINT `tour_bookings_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `login` (`usersid`),
   CONSTRAINT `tour_bookings_ibfk_2` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`),
   CONSTRAINT `tour_bookings_ibfk_3` FOREIGN KEY (`tourid`) REFERENCES `tours` (`tourid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,6 +238,7 @@ CREATE TABLE `tour_bookings` (
 
 LOCK TABLES `tour_bookings` WRITE;
 /*!40000 ALTER TABLE `tour_bookings` DISABLE KEYS */;
+INSERT INTO `tour_bookings` VALUES (23,1,'test','test@test.com',11,'Ho Chi Minh',8,'Mekong Delta Tour Departing from Ho Chi Minh City',1,'2025-05-21','0389189189',1050000,1050000,'2025-05-21 06:58:51','MOMO1747810731','completed');
 /*!40000 ALTER TABLE `tour_bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,4 +283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-17 12:36:30
+-- Dump completed on 2025-05-21 18:03:28
