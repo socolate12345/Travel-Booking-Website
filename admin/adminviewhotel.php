@@ -50,6 +50,7 @@ while ($city = $cities_result->fetch_assoc()) {
     <title>Manage Hotels</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="../css/adminviewhotel.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     
 </head>
 <body class="bg-gray-100 p-6">

@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Nha Trang - Yang Bay Eco Park - Mud Bath Experience - Dam Market - Thap Ba Ponagar - Coastal Road Discovery </title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

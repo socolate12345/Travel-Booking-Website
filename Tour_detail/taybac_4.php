@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Moc Chau - Pha Din Pass - Son La - Dien Bien - 5 Days 4 Nights</title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

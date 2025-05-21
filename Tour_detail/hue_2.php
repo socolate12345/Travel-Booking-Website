@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>North-Central Tour: Hanoi - Sapa - Fansipan - Ha Long - Ninh Binh - Da Nang - Son Tra - Ba Na Hills - Golden Bridge - Hoi An - La Vang - Hue - Phong Nha</title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

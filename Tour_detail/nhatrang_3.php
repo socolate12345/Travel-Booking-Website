@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Nha Trang - Hon Mun Island Snorkeling - Institute of Oceanography - Vinpearl Cable Car - Long Son Pagoda - Local Seafood Feast </title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Hue Cultural Discovery – Imperial Citadel – Thien Mu Pagoda – Perfume River – Truong Tien Bridge – Local Cuisine</title>
     <link rel="stylesheet" href="../css/tour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

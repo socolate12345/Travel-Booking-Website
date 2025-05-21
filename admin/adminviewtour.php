@@ -44,6 +44,7 @@ while ($row = $cities->fetch_assoc()) {
     <meta charset="UTF-8" />
     <title>Tour Management</title>
     <link rel="stylesheet" type="text/css" href="../css/adminviewtour.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

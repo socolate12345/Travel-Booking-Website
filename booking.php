@@ -61,163 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Đặt phòng tại <?php echo htmlspecialchars($hotelName); ?></title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 20px;
-                background-color: #f4f4f4;
-            }
-
-            .container {
-                background-color: white;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-            }
-
-            .header {
-                display: flex;
-                align-items: center;
-                margin-bottom: 20px;
-            }
-
-            .header-text {
-                flex: 1;
-                padding-right: 20px;
-            }
-
-            .header-text h2 {
-                margin-left: 60px;
-                color: #333;
-                font-size: 36px;
-                font-weight: bold;
-                font-family: 'Helvetica Neue Web', Helvetica, Arial, sans-serif;
-            }
-
-            .hotel-image {
-                width: 300px;
-                height: 200px;
-                border-radius: 8px;
-                margin-right: 60px;
-                margin-top: 30px;
-                margin-bottom: 30px;
-            }
-
-            .form-container {
-                display: flex;
-                justify-content: space-between;
-                gap: 40px;
-            }
-
-            .form-left,
-            .form-right {
-                flex: 1;
-            }
-
-            .form-group {
-                margin-bottom: 20px;
-                margin-left: 20px;
-            }
-
-            label {
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #555;
-            }
-
-            input[type="text"],
-            input[type="email"],
-            input[type="number"],
-            input[type="date"],
-            select {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                font-size: 16px;
-                box-sizing: border-box;
-            }
-
-            input[readonly] {
-                background-color: #e9ecef;
-                cursor: not-allowed;
-            }
-
-            input[type="number"] {
-                max-width: 100px;
-            }
-
-            select {
-                cursor: pointer;
-            }
-
-            .form-right .form-group {
-                padding-right: 20px;
-            }
-
-            .button-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 20px;
-                margin: 20px auto;
-            }
-
-            button {
-                padding: 12px;
-                width: 200px;
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-
-            button:hover {
-                background-color: #45a049;
-            }
-
-            #total-amount {
-                font-size: 16px;
-                color: #333;
-                font-weight: bold;
-            }
-
-            @media (max-width: 768px) {
-                .header {
-                    flex-direction: column;
-                    text-align: center;
-                }
-
-                .header-text {
-                    padding-right: 0;
-                }
-
-                .hotel-image {
-                    max-width: 100%;
-                }
-
-                .form-container {
-                    flex-direction: column;
-                }
-
-                .form-right .form-group {
-                    padding-right: 0;
-                }
-
-                .button-container {
-                    flex-direction: column;
-                    gap: 10px;
-                }
-            }
-        </style>
+        <title>Reserve at <?php echo htmlspecialchars($hotelName); ?></title>
+        <link rel="stylesheet" href="./css/hotelbooking.css">
+        <link rel="icon" type="image/png" href="./images/favicon.png">
     </head>
 
     <body>
@@ -400,8 +246,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Tính số ngày ở
     $days = (strtotime($check_out_date) - strtotime($check_in_date)) / (60 * 60 * 24);
-    if ($days <= 0)
+    if ($days <= 0) {
         die("Ngày trả phòng phải sau ngày nhận phòng.");
+    }
 
     $totalAmount = $costPerDay * $days * $number_of_rooms;
 
@@ -436,15 +283,104 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     );
 
     if ($stmt->execute()) {
-        echo "<p>✅ Đặt tour thành công!</p>";
-        echo "<a href='./Login/loggedinhome.php' style='
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;'>🏠 Về trang chủ</a>";
+        $bookingId = $conn->insert_id; // Get the ID of the inserted booking
+
+        // MoMo Payment Integration
+        $accessKey = 'F8BBA842ECF85'; // Replace with your MoMo test accessKey if different
+        $secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz'; // Replace with your MoMo test secretKey if different
+        $orderInfo = 'Thanh toan dat phong tai ' . preg_replace('/[^A-Za-z0-9 ]/', '', $hotelName);
+        $partnerCode = 'MOMO';
+        $redirectUrl = 'http://localhost:8000/redirect.php';
+        $ipnUrl = 'http://localhost:8000/ipn.php';
+        $requestType = 'payWithMethod';
+        $amount = (string) $totalAmount; // Ensure amount is a string
+        $orderId = $partnerCode . time() . '_' . $bookingId; // Unique order ID
+        $requestId = $orderId;
+        $extraData = '';
+        $autoCapture = true;
+        $lang = 'vi';
+
+        // Create raw signature
+        $rawSignature = "accessKey=$accessKey&amount=$amount&extraData=$extraData&ipnUrl=$ipnUrl&orderId=$orderId&orderInfo=$orderInfo&partnerCode=$partnerCode&redirectUrl=$redirectUrl&requestId=$requestId&requestType=$requestType";
+
+        // Generate HMAC SHA256 signature
+        $signature = hash_hmac('sha256', $rawSignature, $secretKey);
+
+        // Log signature details
+        file_put_contents('momo_log.txt', "Raw Signature: $rawSignature\nSignature: $signature\n", FILE_APPEND);
+
+        // Prepare request body
+        $requestBody = json_encode([
+            'partnerCode' => $partnerCode,
+            'partnerName' => 'Test',
+            'storeId' => 'MomoTestStore',
+            'requestId' => $requestId,
+            'amount' => $amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'redirectUrl' => $redirectUrl,
+            'ipnUrl' => $ipnUrl,
+            'lang' => $lang,
+            'requestType' => $requestType,
+            'autoCapture' => $autoCapture,
+            'extraData' => $extraData,
+            'signature' => $signature
+        ], JSON_UNESCAPED_SLASHES);
+
+        // Log request body
+        file_put_contents('momo_log.txt', "Request Body: $requestBody\n", FILE_APPEND);
+
+        // Send request to MoMo
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://test-payment.momo.vn/v2/gateway/api/create');
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($requestBody)
+        ]);
+        // Enable verbose output for debugging
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
+        $verbose = fopen('momo_verbose_log.txt', 'a');
+        curl_setopt($ch, CURLOPT_STDERR, $verbose);
+
+        $response = curl_exec($ch);
+        if ($response === false) {
+            $error = curl_error($ch);
+            curl_close($ch);
+            fclose($verbose);
+            file_put_contents('momo_log.txt', "cURL Error: $error\n", FILE_APPEND);
+            die("❌ Lỗi cURL: $error");
+        }
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        fclose($verbose);
+
+        // Log response
+        file_put_contents('momo_log.txt', "HTTP Code: $httpCode\nResponse: $response\n", FILE_APPEND);
+
+        // Process MoMo response
+        $responseData = json_decode($response, true);
+        if ($httpCode == 200 && isset($responseData['payUrl']) && $responseData['resultCode'] == 0) {
+            // Redirect to MoMo payment page
+            header('Location: ' . $responseData['payUrl']);
+            exit();
+        } else {
+            // Handle error
+            $errorMessage = $responseData['message'] ?? 'Lỗi khi kết nối với MoMo';
+            $resultCode = $responseData['resultCode'] ?? 'N/A';
+            file_put_contents('momo_log.txt', "Error Message: $errorMessage\nResult Code: $resultCode\n", FILE_APPEND);
+            echo "<p>❌ Lỗi thanh toán: $errorMessage (Result Code: $resultCode)</p>";
+            echo "<a href='./Login/loggedinhome.php' style='
+                display: inline-block;
+                margin-top: 10px;
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;'>🏠 Về trang chủ</a>";
+        }
     } else {
         echo "❌ Lỗi khi đặt tour: " . $stmt->error;
     }
@@ -452,4 +388,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $conn->close();
 }
-?>

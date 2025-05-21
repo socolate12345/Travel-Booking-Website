@@ -7,7 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Dalat Flower & Highlands Adventure: Valley of Love - Langbiang Peak - Dalat Railway - Hydrangea Garden</title>
     <link rel="stylesheet" href="../css/tour.css">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
 

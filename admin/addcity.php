@@ -38,6 +38,7 @@ $conn->close();
 <html>
 <head>
     <link rel="stylesheet" href="../css/addjourney.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <title>Admin - Add City</title>
     <style>
         body {
