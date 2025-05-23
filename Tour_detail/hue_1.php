@@ -81,7 +81,7 @@ session_start();
                     <h3 style="display: inline;">Price From</h3>
                     <p style="color: red; font-weight: bold; display: inline;">6,990,000 VND</p>
                     <p style="text-decoration: line-through; color: gray;">7,943,182 VND</p>
-                    <a href="../booktour.php?cityid=13&tourid=13" class="booking-button">Booking now!</a>
+                    <a href="/tour/booking?cityid=13&tourid=13" class="booking-button">Booking now!</a>
                 </div>
             </div>
 

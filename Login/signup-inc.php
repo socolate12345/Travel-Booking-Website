@@ -7,7 +7,7 @@ if (isset($_POST["submit"])){
     $pwd = $_POST["pwd"];
     $pwdconfirm = $_POST["pwdconfirm"];
 
-    require_once 'dbh-inc.php';
+    require_once '../dbconnect.php';
     require_once 'functions-inc.php';
 
     if(emptyInputSignup($email, $username, $pwd, $pwdconfirm) !== false){

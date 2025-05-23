@@ -310,7 +310,7 @@
         <div class="review-info">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <span class="review-count">900.000đ</span>
-            <a href="../booking.php?hotel_id=10">Book now</a>
+            <a href=" /hotel/booking?hotel_id=10">Book now</a>
           </div>
         </div>
       </div>
@@ -328,7 +328,7 @@
         <div class="review-info">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <span class="review-count">1.852.000đ</span>
-            <a href="../booking.php?hotel_id=43">Book now</a>
+            <a href=" /hotel/booking?hotel_id=43">Book now</a>
           </div>
         </div>
       </div>
@@ -345,7 +345,7 @@
         <div class="review-info">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <span class="review-count">1.008.000đ</span>
-            <a href="../booking.php?hotel_id=47">Book now</a>
+            <a href=" /hotel/booking?hotel_id=47">Book now</a>
           </div>
         </div>
       </div>
@@ -362,7 +362,7 @@
         <div class="review-info">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <span class="review-count">970.000đ</span>
-            <a href="../booking.php?hotel_id=89">Book now</a>
+            <a href=" /hotel/booking?hotel_id=89">Book now</a>
           </div>
         </div>
       </div>

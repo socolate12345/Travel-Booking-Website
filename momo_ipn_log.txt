@@ -1,0 +1,4 @@
+Input: 
+Error: Missing partnerCode
+Input: 
+Error: Missing partnerCode

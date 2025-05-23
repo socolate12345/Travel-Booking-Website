@@ -150,7 +150,7 @@ $result = $conn->query($sql);
                                             <span class="price"><?php echo number_format($discountedPrice, 0, ',', '.'); ?> ₫</span>
                                             <span class="original-price"><?php echo number_format($row['cost'], 0, ',', '.'); ?> ₫</span>
                                         </div>
-                                        <a href="booking.php?hotel_id=<?php echo $hotelId; ?>" class="btn">Book now</a>
+                                        <a href="/hotel/booking?hotel_id=<?php echo $hotelId; ?>" class="btn">Book now</a>
                                     </div>
                                 </div>
                             </div>
