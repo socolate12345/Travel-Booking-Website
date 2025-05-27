@@ -1,5 +1,5 @@
 <?php
-include '../dbconnect.php';
+include '../../dbconnect.php';
 
 // Initialize variables for journey data
 $city = $region = "";
@@ -37,8 +37,8 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../css/addjourney.css">
-    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="stylesheet" href="../../css/addjourney.css">
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
     <title>Admin - Add City</title>
     <style>
         body {

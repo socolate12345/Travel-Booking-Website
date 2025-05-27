@@ -1,114 +1,151 @@
 <?php
-include '../dbconnect.php';
-
-// ADD or EDIT
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $userid = $_POST['userid'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $cityid = $_POST['cityid'];
-    $city_name = $_POST['city_name'];
-    $tourid = $_POST['tourid'];
-    $tour_name = $_POST['tour_name'];
-    $tourists = $_POST['tourists'];
-    $tour_date = $_POST['tour_date'];
-    $contact = $_POST['contact'];
-    $price_per_person = $_POST['price_per_person'];
-    $total_amount = $price_per_person * $tourists;
-    $paymentStatus = $_POST['payment_status'];
-
-    if (isset($_POST['booking_id']) && !empty($_POST['booking_id'])) {
-        // Update existing booking
-        $booking_id = $_POST['booking_id'];
-        // Fetch existing order_id
-        $stmt = $conn->prepare("SELECT order_id FROM tour_bookings WHERE booking_id = ?");
-        $stmt->bind_param("i", $booking_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $order_id = $result->fetch_assoc()['order_id'] ?? NULL;
-        $stmt->close();
-
-        $stmt = $conn->prepare("UPDATE tour_bookings SET userid=?, name=?, email=?, cityid=?, city_name=?, tourid=?, tour_name=?, tourists=?, tour_date=?, contact=?, price_per_person=?, total_amount=?, payment_status=? WHERE booking_id=?");
-        $stmt->bind_param(
-            "ississsissdssi",
-            $userid,
-            $name,
-            $email,
-            $cityid,
-            $city_name,
-            $tourid,
-            $tour_name,
-            $tourists,
-            $tour_date,
-            $contact,
-            $price_per_person,
-            $total_amount,
-            $paymentStatus,
-            $booking_id
-        );
-    } else {
-        // Add new booking (order_id set to NULL or adjust based on schema)
-        $order_id = NULL; // Adjust if schema requires a value
-        $stmt = $conn->prepare("INSERT INTO tour_bookings (userid, name, email, cityid, city_name, tourid, tour_name, tourists, tour_date, contact, price_per_person, total_amount,  payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param(
-            "ississsissds",
-            $userid,
-            $name,
-            $email,
-            $cityid,
-            $city_name,
-            $tourid,
-            $tour_name,
-            $tourists,
-            $tour_date,
-            $contact,
-            $price_per_person,
-            $total_amount,
-            $paymentStatus
-        );
-    }
-
-    if ($stmt->execute()) {
-        $stmt->close();
-        header("Location: adminviewtourbooking.php");
-        exit;
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-    $stmt->close();
-}
+require_once '../dbconnect.php';
 
 // DELETE
 if (isset($_GET['delete'])) {
-    $booking_id = filter_var($_GET['delete'], FILTER_VALIDATE_INT);
-    if ($booking_id) {
-        $stmt = $conn->prepare("DELETE FROM tour_bookings WHERE booking_id = ?");
-        $stmt->bind_param("i", $booking_id);
-        if ($stmt->execute()) {
-            $stmt->close();
-            header("Location: adminviewtourbooking.php");
-            exit;
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-        $stmt->close();
-    } else {
-        echo "Invalid booking ID.";
+    $booking_id = $_GET['delete'];
+    $stmt = $conn->prepare("DELETE FROM tour_bookings WHERE booking_id = ?");
+    $stmt->bind_param("i", $booking_id);
+    $stmt->execute();
+    header("Location: adminviewtourbooking.php");
+    exit;
+}
+
+// Get distinct cities for dropdown
+$city_query = "SELECT DISTINCT city_name FROM tour_bookings ORDER BY city_name";
+$city_result = $conn->query($city_query);
+
+// FILTER
+$filter_city = $_GET['city'] ?? '';
+$filter_status = $_GET['status'] ?? '';
+$filter_price = $_GET['price'] ?? '';
+
+$where = [];
+$params = [];
+$types = '';
+
+if (!empty($filter_city)) {
+    $where[] = "city_name = ?";
+    $params[] = $filter_city;
+    $types .= 's';
+}
+if (!empty($filter_status)) {
+    $where[] = "payment_status = ?";
+    $params[] = $filter_status;
+    $types .= 's';
+}
+if (!empty($filter_price)) {
+    if ($filter_price === '1to5') {
+        $where[] = "price_per_person BETWEEN 00 AND 5000000";
+    } elseif ($filter_price === '5to10') {
+        $where[] = "price_per_person BETWEEN 5000000 AND 10000000";
+    } elseif ($filter_price === 'over10') {
+        $where[] = "price_per_person > 10000000";
     }
 }
+
+$sql = "SELECT * FROM tour_bookings";
+if (!empty($where)) {
+    $sql .= " WHERE " . implode(" AND ", $where);
+}
+$stmt = $conn->prepare($sql);
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
+}
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tour Bookings Management</title>
-    <link rel="stylesheet" type="text/css" href="../css/adminviewtourbooking.css">
-    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="stylesheet" href="../css/adminviewtourbooking.css" />
+    <style>
+.filter-form {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    border: none; /* Remove any border */
+    background: none; /* Remove any background */
+    padding: 0; /* Remove any padding */
+    margin-left: 375px;
+}
+
+.filter-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filter-form button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.filter-form button:hover {
+    background-color: #45a049;
+}
+
+/* Optional: Reset div styling inside filter-form to avoid inherited styles */
+.filter-form div {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+    </style>
 </head>
 <body>
     <h2>Tour Bookings List</h2>
+
+    <!-- Filter Form -->
+    <form class="filter-form" method="GET" action="">
+        <div>
+            <label for="city">City:</label>
+            <select name="city" id="city">
+                <option value="">All Cities</option>
+                <?php while ($city_row = $city_result->fetch_assoc()): ?>
+                    <option value="<?= htmlspecialchars($city_row['city_name']) ?>" 
+                        <?= $filter_city === $city_row['city_name'] ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($city_row['city_name']) ?>
+                    </option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
+        <div>
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+                <option value="">All Statuses</option>
+                <option value="completed" <?= $filter_status === 'completed' ? 'selected' : '' ?>>Completed</option>
+                <option value="failed" <?= $filter_status === 'failed' ? 'selected' : '' ?>>Failed</option>
+                <option value="pending" <?= $filter_status === 'pending' ? 'selected' : '' ?>>Pending</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="price">Price Range:</label>
+            <select name="price" id="price">
+                <option value="">All Prices</option>
+                <option value="1to5" <?= $filter_price === '1to5' ? 'selected' : '' ?>>0M - 5M</option>
+                <option value="5to10" <?= $filter_price === '5to10' ? 'selected' : '' ?>>5M - 10M</option>
+                <option value="over10" <?= $filter_price === 'over10' ? 'selected' : '' ?>>Over 10M</option>
+            </select>
+        </div>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+</body>
+</html>
     <table>
         <tr>
             <th>ID</th>
@@ -126,115 +163,31 @@ if (isset($_GET['delete'])) {
             <th>Status</th>
             <th>Actions</th>
         </tr>
-        <?php
-        $result = $conn->query("SELECT * FROM tour_bookings");
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>
-                    <td>" . htmlspecialchars($row['booking_id']) . "</td>
-                    <td>" . htmlspecialchars($row['userid']) . "</td>
-                    <td>" . htmlspecialchars($row['name']) . "</td>
-                    <td>" . htmlspecialchars($row['email']) . "</td>
-                    <td>" . htmlspecialchars($row['city_name']) . "</td>
-                    <td>" . htmlspecialchars($row['tour_name']) . "</td>
-                    <td>" . htmlspecialchars($row['tour_date']) . "</td>
-                    <td>" . htmlspecialchars($row['tourists']) . "</td>
-                    <td>" . htmlspecialchars($row['contact']) . "</td>
-                    <td>" . htmlspecialchars($row['price_per_person']) . "</td>
-                    <td>" . htmlspecialchars($row['total_amount']) . "</td>
-                    <td>" . htmlspecialchars($row['order_id'] ?? '') . "</td>
-                    <td>" . htmlspecialchars($row['payment_status']) . "</td>
-                    <td>
-                        <a href='?edit=" . htmlspecialchars($row['booking_id']) . "'>Edit</a> |
-                        <a href='?delete=" . htmlspecialchars($row['booking_id']) . "' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</a>
-                    </td>
-                </tr>";
-            }
-            $result->free();
-        } else {
-            echo "<tr><td colspan='13'>Error: " . $conn->error . "</td></tr>";
-        }
-        ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+                <td><?= $row['booking_id'] ?></td>
+                <td><?= $row['userid'] ?></td>
+                <td><?= $row['name'] ?></td>
+                <td><?= $row['email'] ?></td>
+                <td><?= $row['city_name'] ?></td>
+                <td><?= $row['tour_name'] ?></td>
+                <td><?= $row['tour_date'] ?></td>
+                <td><?= $row['tourists'] ?></td>
+                <td><?= $row['contact'] ?></td>
+                <td><?= number_format($row['price_per_person'], 0, ',', '.') ?></td>
+                <td><?= number_format($row['total_amount'], 0, ',', '.') ?></td>
+                <td><?= $row['order_id'] ?></td>
+                <td><?= $row['payment_status'] ?></td>
+                <td>
+                    <a href="controllers/edittourbooking.php?edit=<?= $row['booking_id'] ?>">Edit</a> |
+                    <a href="?delete=<?= $row['booking_id'] ?>" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                </td>
+            </tr>
+        <?php endwhile; ?>
     </table>
 
-    <?php
-    $booking = [
-        "booking_id" => "",
-        "userid" => "",
-        "name" => "",
-        "email" => "",
-        "cityid" => "",
-        "city_name" => "",
-        "tourid" => "",
-        "tour_name" => "",
-        "tourists" => 1,
-        "tour_date" => "",
-        "contact" => "",
-        "price_per_person" => "",
-        "payment_status" => ""
-    ];
-    if (isset($_GET['edit'])) {
-        $edit_id = filter_var($_GET['edit'], FILTER_VALIDATE_INT);
-        if ($edit_id) {
-            $stmt = $conn->prepare("SELECT * FROM tour_bookings WHERE booking_id = ?");
-            $stmt->bind_param("i", $edit_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            if ($result->num_rows > 0) {
-                $booking = $result->fetch_assoc();
-            } else {
-                echo "No booking found with ID: $edit_id";
-            }
-            $stmt->close();
-        } else {
-            echo "Invalid edit ID.";
-        }
-    }
-    ?>
-
-    <div class="form-wrapper">
-        <form method="POST">
-            <h2><?= isset($_GET['edit']) ? "Edit Booking" : "Add New Booking"; ?></h2>
-            <input type="hidden" name="booking_id" value="<?= htmlspecialchars($booking['booking_id']) ?>">
-            <div class="form-columns">
-                <div>
-                    <label for="userid">User ID:</label>
-                    <input type="number" id="userid" name="userid" value="<?= htmlspecialchars($booking['userid']) ?>" required>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" value="<?= htmlspecialchars($booking['name']) ?>" required>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<?= htmlspecialchars($booking['email']) ?>" required>
-                    <label for="cityid">City ID:</label>
-                    <input type="number" id="cityid" name="cityid" value="<?= htmlspecialchars($booking['cityid']) ?>" required>
-                    <label for="city_name">City Name:</label>
-                    <input type="text" id="city_name" name="city_name" value="<?= htmlspecialchars($booking['city_name']) ?>" required>
-                    <label for="tourid">Tour ID:</label>
-                    <input type="number" id="tourid" name="tourid" value="<?= htmlspecialchars($booking['tourid']) ?>" required>
-                </div>
-                <div>
-                    <label for="tour_name">Tour Name:</label>
-                    <input type="text" id="tour_name" name="tour_name" value="<?= htmlspecialchars($booking['tour_name']) ?>" required>
-                    <label for="tourists">Guests:</label>
-                    <input type="number" id="tourists" name="tourists" value="<?= htmlspecialchars($booking['tourists']) ?>" required>
-                    <label for="tour_date">Tour Date:</label>
-                    <input type="date" id="tour_date" name="tour_date" value="<?= htmlspecialchars($booking['tour_date']) ?>" required>
-                    <label for="contact">Contact:</label>
-                    <input type="text" id="contact" name="contact" value="<?= htmlspecialchars($booking['contact']) ?>" required>
-                    <label for="price_per_person">Price per Person:</label>
-                    <input type="number" id="price_per_person" name="price_per_person" value="<?= htmlspecialchars($booking['price_per_person']) ?>" required>
-                    <label for="payment_status">Status:</label>
-                    <select id="payment_status" name="payment_status" required>
-                        <option value="pending" <?= ($booking['payment_status'] == 'pending') ? 'selected' : '' ?>>Pending</option>
-                        <option value="completed" <?= ($booking['payment_status'] == 'completed') ? 'selected' : '' ?>>Completed</option>
-                        <option value="failed" <?= ($booking['payment_status'] == 'failed') ? 'selected' : '' ?>>Failed</option>
-                    </select>
-                </div>
-            </div>
-            <input type="submit" value="<?= isset($_GET['edit']) ? "Update Booking" : "Add Booking" ?>">
-        </form>
+    <div class="back-btn-wrapper">
+        <button class="back-btn" onclick="window.location.href='admindashboard.php'">Back to Dashboard</button>
     </div>
-
-    <button onclick="window.location.href='admindashboard.php'">Back to Dashboard</button>
 </body>
 </html>
-<?php $conn->close(); ?>

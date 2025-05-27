@@ -1,5 +1,5 @@
 <?php
-include '../dbconnect.php';
+include '../../dbconnect.php';
 
 if (!isset($_GET['cityid'])) {
     echo "City ID not provided.";
@@ -49,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../css/addjourney.css">
-    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="stylesheet" href="../../css/addjourney.css">
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
     <title>Admin - Edit Journey</title>
     <style>
         body {

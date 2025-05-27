@@ -3,13 +3,12 @@ require_once './lib/flight/Flight.php';
 require_once 'dbconnect.php'; // Include dbconnect.php first
 
 Flight::map('db', function() {
-    $conn = new mysqli('localhost', 'root', 'admin', 'travelscapes'); // sửa lại theo config của bạn
+    $conn = new mysqli('localhost', 'root', 'admin', 'travelscapes'); // Adjust to your config
     if ($conn->connect_error) {
         die('Connection failed: ' . $conn->connect_error);
     }
     return $conn;
 });
-
 
 // Set views path (optional, for templates)
 Flight::set('flight.views.path', __DIR__ . '/views');
@@ -22,6 +21,10 @@ Flight::route('GET /tour/booking', function() {
 Flight::route('POST /tour/booking/submit', function() {
     require_once 'controllers/booktour.php'; // Handles POST to process tour booking
 });
+Flight::route('GET /admin/tour/bookings', function() {
+    require_once 'admin/adminviewtourbooking.php';
+});
+
 
 Flight::route('GET /payment/tour/redirect', function() {
     require_once 'payment_handler/tour_redirect.php';
@@ -59,3 +62,4 @@ Flight::map('notFound', function() {
 });
 
 Flight::start();
+?>
