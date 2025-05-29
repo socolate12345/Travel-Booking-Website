@@ -1,6 +1,6 @@
 <?php
 // Database connection parameters
-include 'dbconnect.php';
+include '../dbconnect.php';
 
 // Initialize variables
 $cityId = isset($_GET['city_id']) ? $_GET['city_id'] : null;
@@ -78,7 +78,7 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel information</title>
     <link rel="icon" type="image/png" href="../images/favicon.png">
-     <link rel="stylesheet" href="./css/hotels.css">
+     <link rel="stylesheet" href="../css/hotels.css">
 </head>
 <body>
     <header>
@@ -126,7 +126,7 @@ $result = $conn->query($sql);
                     if ($result && $result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $hotelId = htmlspecialchars($row['hotelid']);
-                            $imagePath = "hotelphotoID/{$hotelId}.jpg";
+                            $imagePath = "../hotelphotoID/{$hotelId}.jpg";
                             $discount = rand(3, 5); // Random discount for demo
                             $discountedPrice = $row['cost'] * (1 - $discount / 100);
                             $amenities = htmlspecialchars($row['amenities']);
@@ -150,7 +150,7 @@ $result = $conn->query($sql);
                                             <span class="price"><?php echo number_format($discountedPrice, 0, ',', '.'); ?> ₫</span>
                                             <span class="original-price"><?php echo number_format($row['cost'], 0, ',', '.'); ?> ₫</span>
                                         </div>
-                                        <a href="/hotel/booking?hotel_id=<?php echo $hotelId; ?>" class="btn">Book now</a>
+                                        <a href="hoteldescription.php?hotel_id=<?php echo $hotelId; ?>" class="btn">View Information</a>
                                     </div>
                                 </div>
                             </div>
