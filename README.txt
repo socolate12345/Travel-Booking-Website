@@ -1,3 +1,4 @@
+
 This project implements FlightPHP Framework for the Payment Gate
 Make sure you have XAMPP to use it 
 
@@ -10,4 +11,10 @@ Make sure you have curl , and certificate cacert
 Then open ngrok ( Register Required ) in the directory ngrok http 8000 
 
 THE PROJECT RUNS ON PORTS 8000 NOT 8080 (DO NOT MISTAKE FOR IT)
+
+First, go to the project directory and open Terminal 
+php -S localhotst:8000
+Make sure you have curl , and certificate cacert
+
+Then open ngrok ( Register Required ) in the directory ngrok http 8000 
 Enjoy the game!!!
