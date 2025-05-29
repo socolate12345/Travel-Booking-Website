@@ -104,24 +104,28 @@ main {
 }
 
 .box {
-    background-color: #f2f2f2;
+    background-color: #fff; /* Nền trắng */
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 1.5px solid #90c2ff; /* Khung xanh dương nhạt */
     border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgba(30,130,231,0.06);
 }
 .box2 {
-    background-color: #fff;
+    background-color: #fff; /* Nền trắng */
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 1.5px solid #468be6; /* Khung xanh dương trung bình */
     border-radius: 8px;
     margin: 15px;
+    box-shadow: 0 2px 8px 0 rgba(70,139,230,0.08);
 }
 .box3 {
-    background-color: #f2f2f2;
+    background-color: #fff; /* Nền trắng */
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 1.5px solid #1e82e7; /* Khung xanh dương đậm */
     border-radius: 8px;
+    color: #1e82e7;
     text-align: center;
+    box-shadow: 0 2px 8px 0 rgba(30,130,231,0.10);
 }
 
 .image-gallery {
@@ -190,6 +194,7 @@ footer .box h3 {
     margin-bottom: 10px;
     font-size: 16px;
     font-weight: bold;
+    color: #1e82e7
 }
 
 footer a {
@@ -208,4 +213,21 @@ footer .credit {
     width: 100%;
     text-align: center;
     margin-top: 20px;
+}
+
+h4 {
+    color: #1e82e7;         /* Màu xanh dương chủ đạo */
+    font-weight: bold;      /* In đậm */
+    text-align: center;     /* Căn giữa */
+    margin-bottom: 12px;    /* Khoảng cách dưới */
+    font-size: 18px;        /* Kích thước chữ */
+}
+
+h3 {
+    color: #1e82e7;         /* Màu cam */
+    font-weight: bold;      /* In đậm */
+    text-transform: uppercase; /* In hoa */
+    text-align: left;       /* Căn trái */
+    margin-bottom: 14px;    /* Khoảng cách dưới */
+    font-size: 20px;        /* Kích thước chữ */
 }

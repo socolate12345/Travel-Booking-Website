@@ -155,7 +155,7 @@ session_start();
                 <div class="icons">
                     <a href="add_favorite.php?cityid=10" class="fas fa-heart"></a>
                     <a href="..//Journey/viewjourney_tay_bac.php" class="cart-btn">View Tour</a>
-                    <a href="../view_hotels.php?city_id=10" class="cart-btn">View Hotel</a>
+                    <a href="../hotelinfo/view_hotels.php?city_id=10" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -170,7 +170,7 @@ session_start();
                 <div class="icons">
                     <a href="add_favorite.php?cityid=11" class="fas fa-heart"></a>
                     <a href="..//Journey/viewjourney_ho_chi_minh.php" class="cart-btn">View Tour</a>
-                    <a href="../view_hotels.php?city_id=11" class="cart-btn">View Hotel</a>
+                    <a href="../hotelinfo/view_hotels.php?city_id=11" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -185,7 +185,7 @@ session_start();
                 <div class="icons">
                     <a href="add_favorite.php?cityid=12" class="fas fa-heart"></a>
                     <a href="..//Journey/viewjourney_nha_trang.php" class="cart-btn">View Tour</a>
-                    <a href="../view_hotels.php?city_id=12" class="cart-btn">View Hotel</a>
+                    <a href="../hotelinfo/view_hotels.php?city_id=12" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -200,7 +200,7 @@ session_start();
                 <div class="icons">
                     <a href="add_favorite.php?cityid=13" class="fas fa-heart"></a>
                     <a href="..//Journey/viewjourney_hue.php" class="cart-btn">View Tour</a>
-                    <a href="../view_hotels.php?city_id=13" class="cart-btn">View Hotel</a>
+                    <a href="../hotelinfo/view_hotels.php?city_id=13" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -215,7 +215,7 @@ session_start();
                 <div class="icons">
                     <a href="add_favorite.php?cityid=14" class="fas fa-heart"></a>
                     <a href="..//Journey/viewjourney_phu_yen.php" class="cart-btn">View Tour</a>
-                    <a href="../view_hotels.php?city_id=14" class="cart-btn">View Hotel</a>
+                    <a href="../hotelinfo/view_hotels.php?city_id=14" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -230,7 +230,7 @@ session_start();
                 <div class="icons">
                     <a href="add_favorite.php?cityid=15" class="fas fa-heart"></a>
                     <a href="..//Journey/viewjourney_da_lat.php" class="cart-btn">View Tour</a>
-                    <a href="../view_hotels.php?city_id=15" class="cart-btn">View Hotel</a>
+                    <a href="../hotelinfo/view_hotels.php?city_id=15" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -245,7 +245,7 @@ session_start();
                 <div class="icons">
                     <a href="add_favorite.php?cityid=16" class="fas fa-heart"></a>
                     <a href="..//Journey/viewjourney_phu_quoc.php" class="cart-btn">View Tour</a>
-                    <a href="../view_hotels.php?city_id=16" class="cart-btn">View Hotel</a>
+                    <a href="../hotelinfo/view_hotels.php?city_id=16" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -260,7 +260,7 @@ session_start();
                 <div class="icons">
                     <a href="add_favorite.php?cityid=17" class="fas fa-heart"></a>
                     <a href="..//Journey/viewjourney_hoi_an.php" class="cart-btn">View Tour</a>
-                    <a href="../view_hotels.php?city_id=17" class="cart-btn">View Hotel</a>
+                    <a href="../hotelinfo/view_hotels.php?city_id=17" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">
@@ -275,7 +275,7 @@ session_start();
                 <div class="icons">
                     <a href="add_favorite.php?cityid=18" class="fas fa-heart"></a>
                     <a href="..//Journey/viewjourney_ha_giang.php" class="cart-btn">View Tour</a>
-                    <a href="../view_hotels.php?city_id=18" class="cart-btn">View Hotel</a>
+                    <a href="../hotelinfo/view_hotels.php?city_id=18" class="cart-btn">View Hotel</a>
                 </div>
             </div>
             <div class="content">

@@ -79,7 +79,7 @@ session_start();
                     <h3 style="display: inline;">Price From</h3>
                     <p style="color: red; font-weight: bold; display: inline;">6,290,000 VND</p>
                     <p style="text-decoration: line-through; color: gray;">7,136,364 VND</p>
-                    <a href="../booktour.php?cityid=16&tourid=25" class="booking-button">Booking now!</a>
+                    <a href="/tour/booking?cityid=16&tourid=25" class="booking-button">Booking now!</a>
                 </div>
             </div>
 
@@ -110,24 +110,17 @@ session_start();
 <section class="footer">
     <div class="box-container">
         <div class="box">
-            <h3>Quick links</h3>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#products">Places</a>
-            <a href="#review">Review</a>
-        </div>
-        <div class="box">
             <h3>Extra links</h3>
-            <a href="/Login/profile.php">My account</a>
-            <a href="/Payment Interface/receiptlist.php">My List</a>
-            <a href="/Login/profile.php">My favorite</a>
+            <a href="../Login/profile.php">My account</a>
+            <a href="../Payment Interface/receiptlist.php">My List</a>
+            <a href="../Login/profile.php">My favorite</a>
         </div>
         <div class="box">
             <h3>Popular Travel Locations</h3>
-            <a href="/journey/viewjourney_taybac.php">Tay Bac</a>
-            <a href="/journey/viewjourney_hcm.php">Ho Chi Minh</a>
-            <a href="/journey/viewjourney_phuquoc.php">Phu Quoc</a>
-            <a href="/journey/viewjourney_hue.php">Hue</a>
+            <a href="../Journey/viewjourney_tay_bac.php">Tay Bac</a>
+            <a href="../Journey/viewjourney_ho_chi_minh.php">Ho Chi Minh</a>
+            <a href="../Journey/viewjourney_phu_quoc.php">Phu Quoc</a>
+            <a href="../Journey/viewjourney_hue.php">Hue</a>
         </div>
         <div class="box">
             <h3>contact info</h3>
@@ -136,6 +129,7 @@ session_start();
         </div>
     </div>
     <div class="credit">©2025 VietTransit</div>
+
 </section>
 </footer>
 </html>
