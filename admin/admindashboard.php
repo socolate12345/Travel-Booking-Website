@@ -1,5 +1,26 @@
 <?php
 session_start();
+
+// Database connection (adjust with your credentials)
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query for user distribution (Admins and Regular Users)
+$admin_count = $conn->query("SELECT COUNT(*) as count FROM admin_login")->fetch_assoc()['count'];
+$user_count = $conn->query("SELECT COUNT(*) as count FROM login")->fetch_assoc()['count'];
+
+// Query for booking distribution
+$hotel_bookings = $conn->query("SELECT COUNT(*) as count FROM hotel_bookings")->fetch_assoc()['count'];
+$tour_bookings = $conn->query("SELECT COUNT(*) as count FROM tour_bookings")->fetch_assoc()['count'];
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -58,34 +79,32 @@ session_start();
                     <canvas id="userPieChart" class="pie-chart" width="400" height="400"></canvas>
                 </div>
 
-                <div class="dashboard-widget userGrowth-chart">
-                    <h2>User Growth</h2>
-                    <canvas id="userLineChart" width="400" height="400"></canvas>
+                <div class="dashboard-widget pie-chart-container">
+                    <h2>Booking Distribution</h2>
+                    <canvas id="bookingPieChart" width="400" height="400"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2025 Admin Panel</p>
+        <p>© 2025 Admin Panel</p>
     </footer>
 
     <script>
         var userPieData = {
-            labels: ['Admins', 'Regular Users', 'Guests'],
+            labels: ['Admins', 'Regular Users'],
             datasets: [{
-                data: [30, 60, 10],
-                backgroundColor: ['#36a2eb', '#ffcd56', '#ff6384']
+                data: [<?php echo $admin_count; ?>, <?php echo $user_count; ?>],
+                backgroundColor: ['#36a2eb', '#ffcd56']
             }]
         };
 
-        var userLineData = {
-            labels: ['2019', '2020', '2021', '2022', '2023','2024','2025'],
+        var bookingPieData = {
+            labels: ['Hotel Bookings', 'Tour Bookings'],
             datasets: [{
-                label: 'Number of Users',
-                data: [200, 400, 600, 800, 1000, 1200, 1500],
-                borderColor: '#ff6384',
-                fill: false
+                data: [<?php echo $hotel_bookings; ?>, <?php echo $tour_bookings; ?>],
+                backgroundColor: ['#ff6384', '#36a2eb']
             }]
         };
 
@@ -94,9 +113,9 @@ session_start();
             data: userPieData
         });
 
-        var userLineChart = new Chart(document.getElementById('userLineChart'), {
-            type: 'line',
-            data: userLineData
+        var bookingPieChart = new Chart(document.getElementById('bookingPieChart'), {
+            type: 'pie',
+            data: bookingPieData
         });
     </script>
 </body>
