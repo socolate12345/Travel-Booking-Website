@@ -30,7 +30,7 @@
         <a href="./Login/login.php">Tour</a>
         <a href="./Login/login.php">Hotel</a>
         <a href="./Login/login.php">Login/Signup</a>
-        <a href="./admin/adminlogin.php">Admin</a>
+        <a href=".admin/adminlogin.php">Admin</a>
     </nav>
 
     <div class="icons">

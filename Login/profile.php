@@ -176,7 +176,7 @@ mysqli_close($conn);
                 ?>
                 <div class="user-stats">
                     <span><i class="fas fa-award"></i> 2840 PTS</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Group 1 Web Dev, Vietnam</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Chill guy Group, Vietnam</span>
                 </div>
             </div>
         </div>

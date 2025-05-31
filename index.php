@@ -2,6 +2,8 @@
 require_once './lib/flight/Flight.php';
 require_once 'dbconnect.php'; // Include dbconnect.php first
 
+
+
 Flight::map('db', function() {
     $conn = new mysqli('localhost', 'root', 'admin', 'travelscapes'); // Adjust to your config
     if ($conn->connect_error) {
@@ -11,7 +13,9 @@ Flight::map('db', function() {
 });
 
 // Set views path (optional, for templates)
-Flight::set('flight.views.path', __DIR__ . '/views');
+
+Flight::path(__DIR__.'/../');
+
 
 // Define routes for tour-related files
 Flight::route('GET /tour/booking', function() {
@@ -35,6 +39,7 @@ Flight::route('POST /payment/tour/ipn', function() {
 });
 
 // Define routes for hotel-related files
+
 Flight::route('GET /hotel/booking', function() {
     require_once 'controllers/bookhotel_form.php'; // Handles GET to show hotel booking form
 });
@@ -55,6 +60,7 @@ Flight::route('POST /payment/hotel/ipn', function() {
 Flight::route('/', function() {
     echo 'Welcome to the Booking System!';
 });
+
 
 // 404 handler
 Flight::map('notFound', function() {
