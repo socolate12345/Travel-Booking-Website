@@ -8,6 +8,7 @@ session_start();
     <title>Ha Giang Explore</title>
     <link rel="stylesheet" href="../css/tour.css">
     <link rel="icon" type="image/png" href="../images/favicon.png">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/css/lightgallery.css">
 </head>
 <body>
 
@@ -31,12 +32,12 @@ session_start();
 
 <main>
     <h1>Ha Giang Explorer: Quan Ba Heaven Gate - Dong Van Karst Plateau - Meo Vac - Local Homestay Experience</h1>
-    <div class="gallery">
-        <div class="big"><img src="hagiang2/1.jpg" alt="Big Image"></div>
-        <div class="small1"><img src="hagiang2/2.jpg" alt="Small 1"></div>
-        <div class="small2"><img src="hagiang2/3.jpg" alt="Small 2"></div>
-        <div class="small3"><img src="hagiang2/4.jpg" alt="Small 3"></div>
-        <div class="small4"><img src="hagiang2/5.jpg" alt="Small 4"></div>
+    <div class="gallery" id="lightgallery">
+        <a href="hagiang2/1.jpg" class="big"><img src="hagiang2/1.jpg" alt="Ma Li Peng Hill"></a>
+        <a href="hagiang2/2.jpg" class="small1"><img src="hagiang2/2.jpg" alt="Nho Que River"></a>
+        <a href="hagiang2/3.jpg" class="small2"><img src="hagiang2/3.jpg" alt="Lung Cu Flag"></a>
+        <a href="hagiang2/4.jpg" class="small3"><img src="hagiang2/4.jpg" alt="Dong Van Old Tunnel"></a>
+        <a href="hagiang2/5.jpg" class="small4"><img src="hagiang2/5.jpg" alt="Tam Giac Mach Flower Garden"></a>
     </div>
 
     <div class="content-columns">
@@ -131,5 +132,16 @@ session_start();
     <div class="credit">©2025 VietTransit</div>
 
 </section>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/lightgallery.min.js"></script>
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: true,
+        mode: 'lg-slide',
+        download: false,
+        share: false
+    });
+</script>
 </footer>
 </html>
