@@ -8,6 +8,7 @@ session_start();
     <title>City Tour - 4-Hour Double-Decker Bus Saigon - Cholon & Culinary Experience</title>
     <link rel="stylesheet" href="../css/tour.css">
     <link rel="icon" type="image/png" href="../images/favicon.png">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/css/lightgallery.css">
 </head>
 <body>
 
@@ -33,12 +34,12 @@ session_start();
 <main>
 
     <h1>&nbsp;&nbsp;&nbsp;  Discover Ho Chi Minh - Cu Chi Tunnels - Mekong Delta</h1>
-    <div class="gallery">
-        <div class="big"><img src="hcm1/1.jpg" alt="Big Image"></div>
-        <div class="small1"><img src="hcm1/2.jpg" alt="Small 1"></div>
-        <div class="small2"><img src="hcm1/3.jpg" alt="Small 2"></div>
-        <div class="small3"><img src="hcm1/4.jpg" alt="Small 3"></div>
-        <div class="small4"><img src="hcm1/5.jpg" alt="Small 4"></div>
+    <div class="gallery" id="lightgallery">
+        <a href="hcm1/1.jpg" class="big"><img src="hcm1/1.jpg" alt="Sai Gon Post Office"></a>
+        <a href="hcm1/2.jpg" class="small1"><img src="hcm1/2.jpg" alt="Cathedral Chruch"></a>
+        <a href="hcm1/3.jpg" class="small2"><img src="hcm1/3.jpg" alt="Ben Thanh Market"></a>
+        <a href="hcm1/4.jpg" class="small3"><img src="hcm1/4.jpg" alt="Cu Chi Tunnel"></a>
+        <a href="hcm1/5.jpg" class="small4"><img src="hcm1/5.jpg" alt="Mekong River"></a>
     </div>
 
     <div class="content-columns">
@@ -130,5 +131,16 @@ session_start();
     <div class="credit">©2025 VietTransit</div>
 
 </section>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/lightgallery.min.js"></script>
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: true,
+        mode: 'lg-slide',
+        download: false,
+        share: false
+    });
+</script>
 </footer>
 </html>
