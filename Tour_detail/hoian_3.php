@@ -8,6 +8,7 @@ session_start();
     <title>Hoi An Heritage & Beach</title>
     <link rel="stylesheet" href="../css/tour.css">
     <link rel="icon" type="image/png" href="../images/favicon.png">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/css/lightgallery.css">
 </head>
 <body>
 
@@ -31,14 +32,13 @@ session_start();
 
 <main>
     <h1>Hoi An Heritage & Beach: Ancient Town - My Son Sanctuary - An Bang Beach - Traditional Cooking Class</h1>
-    <div class="gallery">
-        <div class="big"><img src="hoian3/1.jpg" alt="Big Image"></div>
-        <div class="small1"><img src="hoian3/2.jpg" alt="Small 1"></div>
-        <div class="small2"><img src="hoian3/3.jpg" alt="Small 2"></div>
-        <div class="small3"><img src="hoian3/4.jpg" alt="Small 3"></div>
-        <div class="small4"><img src="hoian3/5.jpg" alt="Small 4"></div>
+    <div class="gallery" id="lightgallery">
+        <a href="hoian3/1.jpg" class="big"><img src="hoian3/1.jpg" alt="Hoi An Old Quarter"></a>
+        <a href="hoian3/2.jpg" class="small1"><img src="hoian3/2.jpg" alt="My Son Ruins"></a>
+        <a href="hoian3/3.jpg" class="small2"><img src="hoian3/3.jpg" alt="An Bang Beach"></a>
+        <a href="hoian3/4.jpg" class="small3"><img src="hoian3/4.jpg" alt="Cooking Class"></a>
+        <a href="hoian3/5.jpg" class="small4"><img src="hoian3/5.jpg" alt="Cooking Class"></a>
     </div>
-
     <div class="content-columns">
         <div class="left-column">
             <div class="box">
@@ -132,5 +132,16 @@ session_start();
     <div class="credit">©2025 VietTransit</div>
 
 </section>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/lightgallery.min.js"></script>
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: true,
+        mode: 'lg-slide',
+        download: false,
+        share: false
+    });
+</script>
 </footer>
 </html>
