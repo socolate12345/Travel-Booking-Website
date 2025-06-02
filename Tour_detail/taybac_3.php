@@ -8,6 +8,7 @@ session_start();
     <title>Sapa - Fansipan - Y Ty - Bat Xat Rice Terraces Tour</title>
     <link rel="stylesheet" href="../css/tour.css">
     <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/css/lightgallery.css">
 </head>
 <body>
 
@@ -34,12 +35,12 @@ session_start();
     <p></p>
 
     <!-- Gallery -->
-    <div class="gallery">
-        <div class="big"><img src="taybac3/1.jpg" alt="Sapa View"></div>
-        <div class="small1"><img src="taybac3/2.jpg" alt="Fansipan Cable Car"></div>
-        <div class="small2"><img src="taybac3/3.jpg" alt="Y Ty Scenery"></div>
-        <div class="small3"><img src="taybac3/4.jpg" alt="Bat Xat Rice Terraces"></div>
-        <div class="small4"><img src="taybac3/5.jpg" alt="Local Culture"></div>
+    <div class="gallery" id="lightgallery">
+        <a href="Taybac3/1.jpg" class="big"><img src="Taybac3/1.jpg" alt="Best View Cafe"></a>
+        <a href="Taybac3/2.jpg" class="small1"><img src="Taybac3/2.jpg" alt="Phansipang Cable Car"></a>
+        <a href="Taybac3/3.jpg" class="small2"><img src="Taybac3/3.jpg" alt="Hoang Su Phi Rice field></a>
+        <a href="Taybac3/4.jpg" class="small3"><img src="Taybac3/4.jpg" alt="Bat Xat Rice filed></a>
+        <a href="Taybac3/5.jpg" class="small4"><img src="Taybac3/5.jpg" alt="Sewing Tradition"></a>
     </div>
 
     <div class="content-columns">
@@ -127,5 +128,16 @@ session_start();
     <div class="credit">©2025 VietTransit</div>
 
 </section>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/lightgallery.min.js"></script>
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: true,
+        mode: 'lg-slide',
+        download: false,
+        share: false
+    });
+</script>
 </footer>
 </html>

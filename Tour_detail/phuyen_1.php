@@ -8,6 +8,7 @@ session_start();
     <title>Phu Yen Hidden Gems: Da Dia Reef - Bai Xep - Mang Lang Church - Nhan Tower </title>
     <link rel="icon" type="image/png" href="../images/favicon.png">
     <link rel="stylesheet" href="../css/tour.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/css/lightgallery.css">
 </head>
 <body>
 
@@ -31,12 +32,12 @@ session_start();
 
 <main>
     <h1>&nbsp;&nbsp;&nbsp;Phu Yen Hidden Gems: Da Dia Reef - Bai Xep - Mang Lang Church - Nhan Tower </h1>
-    <div class="gallery">
-        <div class="big"><img src="phuyen1/1.jpg" alt="Big Image"></div>
-        <div class="small1"><img src="phuyen1/2.jpg" alt="Small 1"></div>
-        <div class="small2"><img src="phuyen1/3.jpg" alt="Small 2"></div>
-        <div class="small3"><img src="phuyen1/4.jpg" alt="Small 3"></div>
-        <div class="small4"><img src="phuyen1/5.jpg" alt="Small 4"></div>
+    <div class="gallery" id="lightgallery">
+        <a href="Phuyen1/1.jpg" class="big"><img src="Phuyen1/1.jpg" alt="Da Dia Reef"></a>
+        <a href="Phuyen1/2.jpg" class="small1"><img src="Phuyen1/2.jpg" alt="Bai Xep Beach Village"></a>
+        <a href="Phuyen1/3.jpg" class="small2"><img src="Phuyen1/3.jpg" alt="Phu Yen Chruch"></a>
+        <a href="Phuyen1/4.jpg" class="small3"><img src="Phuyen1/4.jpg" alt="Paka Jatrang"></a>
+        <a href="Phuyen1/5.jpg" class="small4"><img src="Phuyen1/5.jpg" alt="Phu Yen Beach"></a>
     </div>
 
     <div class="content-columns">
@@ -132,5 +133,16 @@ session_start();
     <div class="credit">©2025 VietTransit</div>
 
 </section>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/lightgallery.min.js"></script>
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: true,
+        mode: 'lg-slide',
+        download: false,
+        share: false
+    });
+</script>
 </footer>
 </html>

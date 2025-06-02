@@ -8,6 +8,7 @@ session_start();
     <title>Moc Chau - Pha Din Pass - Son La - Dien Bien - 5 Days 4 Nights</title>
     <link rel="stylesheet" href="../css/tour.css">
     <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/css/lightgallery.css">
 </head>
 <body>
 
@@ -34,12 +35,12 @@ session_start();
     <h1>&nbsp;&nbsp;&nbsp; Moc Chau - Pha Din Pass - Son La - Dien Bien </h1>
     <p></p>
     <!-- Gallery placed above the columns -->
-    <div class="gallery">
-        <div class="big"><img src="taybac4/1.jpg" alt="Big Image"></div>
-        <div class="small1"><img src="taybac4/2.jpg" alt="Small 1"></div>
-        <div class="small2"><img src="taybac4/3.jpg" alt="Small 2"></div>
-        <div class="small3"><img src="taybac4/4.jpg" alt="Small 3"></div>
-        <div class="small4"><img src="taybac4/5.jpg" alt="Small 4"></div>
+    <div class="gallery" id="lightgallery">
+        <a href="Taybac4/1.jpg" class="big"><img src="Taybac4/1.jpg" alt="Man Ka Na Flower Garden"></a>
+        <a href="Taybac4/2.jpg" class="small1"><img src="Taybac4/2.jpg" alt="Pha Din Pass"></a>
+        <a href="Taybac4/3.jpg" class="small2"><img src="Taybac4/3.jpg" alt="Ta Xua"></a>
+        <a href="Taybac4/4.jpg" class="small3"><img src="Taybac4/4.jpg" alt="Ang Village"></a>
+        <a href="Taybac4/5.jpg" class="small4"><img src="Taybac4/5.jpg" alt="Dien Bien City"></a>
     </div>
     <p></p>
     <!-- Columns start here -->
@@ -138,6 +139,17 @@ session_start();
     <div class="credit">©2025 VietTransit</div>
 
 </section>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/lightgallery.min.js"></script>
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: true,
+        mode: 'lg-slide',
+        download: false,
+        share: false
+    });
+</script>
 </footer>
 
 </html>
