@@ -56,7 +56,7 @@ Flight::route('POST /payment/hotel/ipn', function() {
 
 // Default route
 Flight::route('/', function() {
-    echo 'Welcome to the Booking System!';
+    require_once 'home.php';
 });
 
 // 404 handler
