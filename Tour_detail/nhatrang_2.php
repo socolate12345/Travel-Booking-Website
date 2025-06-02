@@ -7,7 +7,8 @@ session_start();
     <meta charset="UTF-8">
     <title>Nha Trang - Pottery & Seashell Workshop, Ancient Nha Trang & More</title>
     <link rel="stylesheet" href="../css/tour.css">
-    <link rel="icon" type="image/png" href="../images/favicon.png">     
+    <link rel="icon" type="image/png" href="../images/favicon.png"> 
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/css/lightgallery.css">    
 </head>
 <body>
 
@@ -31,12 +32,13 @@ session_start();
 
 <main>
     <h1>&nbsp;&nbsp;&nbsp; Nha Trang - Pottery & Seashell Workshop, Ancient Nha Trang & More</h1>
-    <div class="gallery">
-        <div class="big"><img src="nhatrang2/1.jpg" alt="Big Image"></div>
-        <div class="small1"><img src="nhatrang2/2.jpg" alt="Small 1"></div>
-        <div class="small2"><img src="nhatrang2/3.jpg" alt="Small 2"></div>
-        <div class="small3"><img src="nhatrang2/4.jpg" alt="Small 3"></div>
-        <div class="small4"><img src="nhatrang2/5.jpg" alt="Small 4"></div>
+    <div class="gallery" id="lightgallery">
+        <a href="nhatrang2/1.jpg" class="big"><img src="nhatrang2/1.jpg" alt="Pot Village"></a>
+        <a href="nhatrang2/2.jpg" class="small1"><img src="nhatrang2/2.jpg" alt=">Ponagar Nha Trang</a>
+    <a href="nhatrang2/3.jpg" class="small2"><img src="nhatrang2/3.jpg" alt=""></a>
+        <a href="nhatrang2/3.jpg" class="small2"><img src="nhatrang2/3.jpg" alt="Nha Trang Beach"></a>
+        <a href="nhatrang2/4.jpg" class="small3"><img src="nhatrang2/4.jpg" alt="VinPearl Nha Trang"></a>
+        <a href="nhatrang2/5.jpg" class="small4"><img src="nhatrang2/5.jpg" alt="VinWonders Nha Trang"></a>
     </div>
 
     <div class="content-columns">
@@ -125,5 +127,16 @@ session_start();
     <div class="credit">©2025 VietTransit</div>
 
 </section>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/lightgallery.min.js"></script>
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: true,
+        mode: 'lg-slide',
+        download: false,
+        share: false
+    });
+</script>
 </footer>
 </html>
