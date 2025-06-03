@@ -106,14 +106,14 @@ main {
 .box {
     background-color: #fff; /* Nền trắng */
     padding: 15px;
-    border: 1.5px solid #90c2ff; /* Khung xanh dương nhạt */
+    border: 1.5px solid #fff; /* Khung xanh dương nhạt */
     border-radius: 8px;
     box-shadow: 0 2px 8px 0 rgba(30,130,231,0.06);
 }
 .box2 {
     background-color: #fff; /* Nền trắng */
     padding: 15px;
-    border: 1.5px solid #468be6; /* Khung xanh dương trung bình */
+    border: 1.5px solid #fff; /* Khung xanh dương trung bình */
     border-radius: 8px;
     margin: 15px;
     box-shadow: 0 2px 8px 0 rgba(70,139,230,0.08);
