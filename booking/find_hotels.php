@@ -63,7 +63,7 @@
           };
           var mappedPrice = priceMap[price];
 
-          var url = `../view_hotels.php?city_id=${cityId}&ratings=${mappedRating}&cost=${mappedPrice}`;
+          var url = `../hotelinfo/view_hotels.php?city_id=${cityId}&ratings=${mappedRating}&cost=${mappedPrice}`;
           window.location.href = url;
         } else {
           alert("City not available from the list");
