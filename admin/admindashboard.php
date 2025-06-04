@@ -2,15 +2,8 @@
 session_start();
 
 // Database connection (adjust with your credentials)
-$servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database";
+include '../dbconnect.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Query for user distribution (Admins and Regular Users)
 $admin_count = $conn->query("SELECT COUNT(*) as count FROM admin_login")->fetch_assoc()['count'];
